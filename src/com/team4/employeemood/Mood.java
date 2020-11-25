@@ -2,6 +2,8 @@ package com.team4.employeemood;
 
 import com.team4.employeemood.exceptions.MoodConstructException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,18 +29,20 @@ public class Mood {
         MoodData.moodList.add(this);
     }
 
-    public Mood(String MoodDetails) throws MoodConstructException {
+    public Mood(String MoodDetails) throws MoodConstructException, ParseException {
 
-        Pattern pattern = Pattern.compile("(.*?)|(.*?)|(.*?)|(.*?)|(.*?)|(.*?)");
+        Pattern pattern = Pattern.compile("(.*);(.*);(.*?);(.*?);(([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9]?[0-9][0-9]));(.*wq)");
         Matcher matcher = pattern.matcher(MoodDetails);
 
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
         if (matcher.find()) {
-            this.dayRating = 10;//Integer.parseInt(matcher.group(1));
+            this.dayRating = Integer.parseInt(matcher.group(1));
             this.comment = matcher.group(2);
             this.previousDayChange = matcher.group(3);
             this.improvementIdea = matcher.group(4);
-            //this.date = matcher.group(5);
-            this.username = matcher.group(6);
+            this.date = new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(5));
+            this.username = matcher.group(9);
         } else {
             throw new MoodConstructException("Mood not properly defined.");
         }

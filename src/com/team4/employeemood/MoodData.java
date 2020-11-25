@@ -5,6 +5,7 @@ import com.team4.employeemood.exceptions.MoodConstructException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class MoodData {
                 line = reader.readLine();
             }
             reader.close();
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         } catch (MoodConstructException e) {
             e.printStackTrace();
