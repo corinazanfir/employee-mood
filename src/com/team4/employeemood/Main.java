@@ -18,17 +18,14 @@ public class Main {
 
         Mood mood = new Mood(5, "iiiii", "not much", "zero", new Date(), "catalin.gheorghe@domain.com");
 
-        for (Mood m : MoodData.moodList) {
-            System.out.println(m.dayRating);
-        }
 
+        System.out.println();
         MoodData md = new MoodData();
-
         md.readMoodDataFromFile("MoodSampleFile.csv");
 
 
-
-        for(Mood m:MoodData.moodList){
+        System.out.println();
+        for (Mood m : MoodData.moodList) {
 
             System.out.println(m);
 
