@@ -31,7 +31,7 @@ public class Mood {
 
     public Mood(String MoodDetails) throws MoodConstructException, ParseException {
 
-        Pattern pattern = Pattern.compile("(.*);(.*);(.*?);(.*?);(([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9]?[0-9][0-9]));(.*wq)");
+        Pattern pattern = Pattern.compile("(.*);(.*);(.*?);(.*?);(([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9]?[0-9][0-9]));(.*)");
         Matcher matcher = pattern.matcher(MoodDetails);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
