@@ -14,10 +14,8 @@ import java.util.Map;
 public class MoodData {
 
     public static List<Mood> moodList = new ArrayList<>();
-    public static Map<String, String> employeeManagerMap = new HashMap<>();
 
-
-    public void readMoodDataFromFile(String filePath) {
+    public void loadMoodDataFromFile(String filePath) {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(filePath));
@@ -26,7 +24,7 @@ public class MoodData {
                 Mood mood = new Mood(line);
                 MoodData.moodList.add(mood);
 
-                //System.out.println(line);
+                //System.out.println(line); //kept for debugging
 
                 line = reader.readLine();
             }

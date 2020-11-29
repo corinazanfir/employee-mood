@@ -43,7 +43,7 @@ public class Mood {
             this.date = new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(5));
             this.username = matcher.group(9);
         } else {
-            throw new MoodConstructException("Mood not properly defined.");
+            throw new MoodConstructException("Mood not properly defined. Certain field are not using the expected format.");
         }
     }
 
