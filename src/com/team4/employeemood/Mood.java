@@ -10,12 +10,12 @@ import java.util.regex.Pattern;
 
 public class Mood {
 
-    Integer dayRating;
-    String comment;
-    String previousDayChange;
-    String improvementIdea;
-    Date date;
-    String username;
+    private Integer dayRating;
+    private String comment;
+    private String previousDayChange;
+    private String improvementIdea;
+    private Date date;
+    private String username;
 
     public Mood(Integer dayRating, String comment, String previousDayChange, String improvementIdea, Date date, String username) {
         this.dayRating = dayRating;
