@@ -2,7 +2,6 @@ package com.team4.employeemood;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Main {
@@ -21,7 +20,7 @@ public class Main {
 
         System.out.println();
         MoodData md = new MoodData();
-        md.readMoodDataFromFile("MoodSampleFile.csv");
+        md.loadMoodDataFromFile("MoodSampleFile.csv");
 
 
         System.out.println();
