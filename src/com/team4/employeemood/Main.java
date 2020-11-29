@@ -8,28 +8,10 @@ public class Main {
 
     public static void main(String[] args) throws ParseException {
 
-        Date birthday = new SimpleDateFormat("dd/MM/yyyy").parse("16/01/1988");
-        Date hireDate = new SimpleDateFormat("dd/MM/yyyy").parse("01/04/2019");
-
-        Employee employee1 = new Employee("Catalin", "Gheorghe", birthday, hireDate);
-
-        System.out.println(employee1);
-
-        Mood mood = new Mood(5, "iiiii", "not much", "zero", new Date(), "catalin.gheorghe@domain.com");
-
-
-        System.out.println();
         MoodData md = new MoodData();
         md.loadMoodDataFromFile("MoodSampleFile.csv");
 
-
-        System.out.println();
-        for (Mood m : MoodData.moodList) {
-
-            System.out.println(m);
-
-        }
-
+        md.displayMoodData();
 
     }
 }
