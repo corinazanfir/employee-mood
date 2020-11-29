@@ -7,11 +7,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MoodData {
 
     public static List<Mood> moodList = new ArrayList<>();
+    public static Map<String, String> employeeManagerMap = new HashMap<>();
+
 
     public void readMoodDataFromFile(String filePath) {
         BufferedReader reader;
@@ -22,7 +26,7 @@ public class MoodData {
                 Mood mood = new Mood(line);
                 MoodData.moodList.add(mood);
 
-                System.out.println(line);
+                //System.out.println(line);
 
                 line = reader.readLine();
             }
@@ -33,6 +37,4 @@ public class MoodData {
             e.printStackTrace();
         }
     }
-
-
 }
