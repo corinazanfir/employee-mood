@@ -11,7 +11,7 @@ public class Employee {
     Date hireDate;
     String username;
     List<Project> assignedProjects;
-    List<Employee> directReports;
+
 
     public Employee(String firstName, String lastName, Date birthday, Date hireDate) {
         this.firstName = firstName;
@@ -30,7 +30,6 @@ public class Employee {
                 ", hireDate=" + hireDate +
                 ", username='" + username + '\'' +
                 ", assignedProjects=" + assignedProjects +
-                ", directReports=" + directReports +
                 '}';
     }
 }

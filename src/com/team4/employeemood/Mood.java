@@ -16,7 +16,6 @@ public class Mood {
     String improvementIdea;
     Date date;
     String username;
-    //"|" separator for CSV file
 
     public Mood(Integer dayRating, String comment, String previousDayChange, String improvementIdea, Date date, String username) {
         this.dayRating = dayRating;
