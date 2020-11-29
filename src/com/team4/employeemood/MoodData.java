@@ -35,4 +35,11 @@ public class MoodData {
             e.printStackTrace();
         }
     }
+
+    public void displayMoodData() {
+        for (Mood m : MoodData.moodList) {
+            System.out.println(m);
+        }
+    }
+
 }
