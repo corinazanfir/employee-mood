@@ -14,6 +14,7 @@ public class Main {
         FileImporter fileImporter = new FileImporter();
 
         fileImporter.loadDataFromFile("MoodSampleFile.csv", FileImporter.ImportTypeEnum.MOOD);
+        fileImporter.loadDataFromFile("MoodSampleFile.csv", FileImporter.ImportTypeEnum.MOOD);
         fileImporter.loadDataFromFile("ProjectSampleFile.csv", FileImporter.ImportTypeEnum.PROJECT);
         fileImporter.loadDataFromFile("UsersSampleFile.csv", FileImporter.ImportTypeEnum.USER);
         fileImporter.displayRecordsFromRawDataMap();
