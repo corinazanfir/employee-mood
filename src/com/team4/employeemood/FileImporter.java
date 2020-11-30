@@ -12,7 +12,6 @@ import java.util.Map;
 public class FileImporter {
 
     //This class is designed ONLY to read data from CSV files and populate the data in a map.
-    //Regex Pattern/Matcher should be defined in: INDIVIDUAL Classes or a centralized class that performs only this activity??? TO BE CLARIFIED
 
 
     //define predefined import by adding an additional import type to the enum
@@ -21,10 +20,6 @@ public class FileImporter {
         USER,
         PROJECT
     }
-
-//REQUIREMENTS QUESTION: will there be only 1 file imported for each Import Type?
-//                    OR there will be multiple files and they should be appended to the existing ArrayList
-//             Example: only 1 file that would contain the Mood data from all employees OR each employee will have a dedicated file or a dedicated file for each workday
 
     public static Map<ImportTypeEnum, List<String>> importRawDataMap = new HashMap<>();
 
@@ -57,6 +52,8 @@ public class FileImporter {
     }
 
     public void displayRecordsFromRawDataMap() {
+
+        System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
 
         for (ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
             System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
