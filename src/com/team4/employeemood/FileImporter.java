@@ -53,7 +53,6 @@ public class FileImporter {
     public void displayRecordsFromRawDataMap(ImportTypeEnum importType) {
 
         System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
-
         for (ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
             if (importTypeEnum.equals(importType)) {
                 System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));

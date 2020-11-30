@@ -13,7 +13,11 @@ public class Main {
         fileImporter.loadDataFromFile("MoodSampleFile2.csv", FileImporter.ImportTypeEnum.MOOD);
         fileImporter.loadDataFromFile("ProjectSampleFile.csv", FileImporter.ImportTypeEnum.PROJECT);
         fileImporter.loadDataFromFile("UsersSampleFile.csv", FileImporter.ImportTypeEnum.USER);
+
         fileImporter.displayRecordsFromRawDataMap();
+//        Display RawData only for a particular import type using method overload
+//        fileImporter.displayRecordsFromRawDataMap(FileImporter.ImportTypeEnum.MOOD);
+
 
         FileImporterValidator fileImporterValidator = new FileImporterValidator();
         fileImporterValidator.validateData(FileImporter.ImportTypeEnum.MOOD);

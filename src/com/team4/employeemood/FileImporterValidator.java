@@ -9,7 +9,7 @@ public class FileImporterValidator {
 
     public void validateData(FileImporter.ImportTypeEnum importTypeEnum) {
 
-        int recordCounter=0;
+        int recordCounter=0; //Added a counter to display the number of processed records for each import type
         if (!FileImporter.importRawDataMap.containsKey(importTypeEnum)) {
             System.out.println("\nWARNING: Unable to perform data validation. No data available for the import type: " + importTypeEnum);
         } else {
