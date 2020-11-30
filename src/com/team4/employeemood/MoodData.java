@@ -37,6 +37,7 @@ public class MoodData {
     }
 
     public void displayMoodData() {
+        System.out.println("\nDisplay Mood data:");
         for (Mood m : MoodData.moodList) {
             System.out.println(m);
         }
