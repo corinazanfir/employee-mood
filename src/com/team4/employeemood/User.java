@@ -1,22 +1,22 @@
 package com.team4.employeemood;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+public class User {
+    private String firstName;
+    private String lastName;
+    private String birthDate;
+    private String employmentDate;
+    private String projectName;
 
-public class Users {
-    public String firstName;
-    public String lastName;
-    public String birthDate;
-    public String employmentDate;
-    public String projectName;
-
-    public Users(String firstName, String lastName, String birthDate, String employmentDate, String projectName) {
+    public User(String firstName, String lastName, String birthDate, String employmentDate, String projectName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.employmentDate = employmentDate;
         this.projectName = projectName;
+    }
+
+    public User(String userDetails){
+        //TO DO
     }
 
     public String getFirstName() {

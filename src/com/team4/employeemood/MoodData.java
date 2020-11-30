@@ -1,15 +1,13 @@
 package com.team4.employeemood;
 
-import com.team4.employeemood.exceptions.MoodConstructException;
+import com.team4.employeemood.exceptions.PatternNotMatchingException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MoodData {
 
@@ -29,9 +27,7 @@ public class MoodData {
                 line = reader.readLine();
             }
             reader.close();
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        } catch (MoodConstructException e) {
+        } catch (IOException | ParseException | PatternNotMatchingException e) {
             e.printStackTrace();
         }
     }
