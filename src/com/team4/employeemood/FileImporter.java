@@ -11,10 +11,10 @@ import java.util.Map;
 
 public class FileImporter {
 
-    //This class is designed ONLY to read data from CSV files and populate the data in a map.
+    //# This class is designed ONLY to read data from CSV files and populate the data in a map.
 
 
-    //define predefined import by adding an additional import type to the enum
+    //define predefined import types by adding an additional import type to the enum
     enum ImportTypeEnum {
         MOOD,
         USER,
@@ -36,11 +36,9 @@ public class FileImporter {
                 importTypeData.addAll(existingData); /* add existing data to the used ArrayList (the functionality is useful in case there are multiple
                                                         files imported for the same import type */
             }
-
             while (line != null) {
 
                 importTypeData.add(line); //populate ArrayList with line by line raw string data from import file
-
                 line = reader.readLine();
                 FileImporter.importRawDataMap.put(typeOfImport, importTypeData); //put ArrayList under the corresponding Key in the map
             }
@@ -51,10 +49,24 @@ public class FileImporter {
         }
     }
 
-    public void displayRecordsFromRawDataMap() {
+    //Method overload to be able to filter based an import type.
+    public void displayRecordsFromRawDataMap(ImportTypeEnum importType) {
 
         System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
 
+        for (ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
+            if (importTypeEnum.equals(importType)) {
+                System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
+                for (String value : importRawDataMap.get(importTypeEnum)) {
+                    System.out.println("value:" + value);
+                }
+            }
+        }
+    }
+
+    public void displayRecordsFromRawDataMap() {
+
+        System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
         for (ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
             System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
             for (String value : importRawDataMap.get(importTypeEnum)) {
@@ -63,6 +75,8 @@ public class FileImporter {
         }
     }
 }
+
+
 
 
 

@@ -1,6 +1,6 @@
 package com.team4.employeemood;
 
-import com.team4.employeemood.exceptions.MoodConstructException;
+import com.team4.employeemood.exceptions.PatternNotMatchingException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,10 +28,13 @@ public class Mood {
         MoodData.moodList.add(this);
     }
 
-    public Mood(String MoodDetails) throws MoodConstructException, ParseException {
+    public Mood(){
+
+    };
+    public Mood(String moodDetails) throws PatternNotMatchingException, ParseException {
 
         Pattern pattern = Pattern.compile("(.*);(.*);(.*?);(.*?);(([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9]?[0-9][0-9]));(.*)");
-        Matcher matcher = pattern.matcher(MoodDetails);
+        Matcher matcher = pattern.matcher(moodDetails);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
@@ -43,12 +46,57 @@ public class Mood {
             this.date = new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(5));
             this.username = matcher.group(9);
         } else {
-            throw new MoodConstructException("Mood not properly defined. Certain field are not using the expected format.");
+            throw new PatternNotMatchingException("Mood not properly defined. Certain fields are not using the expected format.\nRejected record is: " + moodDetails);
         }
     }
 
+    public Integer getDayRating() {
+        return dayRating;
+    }
 
+    public void setDayRating(Integer dayRating) {
+        this.dayRating = dayRating;
+    }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getPreviousDayChange() {
+        return previousDayChange;
+    }
+
+    public void setPreviousDayChange(String previousDayChange) {
+        this.previousDayChange = previousDayChange;
+    }
+
+    public String getImprovementIdea() {
+        return improvementIdea;
+    }
+
+    public void setImprovementIdea(String improvementIdea) {
+        this.improvementIdea = improvementIdea;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     @Override
     public String toString() {

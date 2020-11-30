@@ -17,12 +17,12 @@ public class Main {
 
         FileImporterValidator fileImporterValidator = new FileImporterValidator();
         fileImporterValidator.validateData(FileImporter.ImportTypeEnum.MOOD);
+        fileImporterValidator.validateData(FileImporter.ImportTypeEnum.USER);
+        fileImporterValidator.validateData(FileImporter.ImportTypeEnum.PROJECT);
 
-
-        MoodData md = new MoodData();
+//        MoodData md = new MoodData();
 //        md.loadMoodDataFromFile("MoodSampleFile.csv");
-        md.displayMoodData();
-
+//        md.displayMoodData();
 
 
     }
