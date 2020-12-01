@@ -15,7 +15,7 @@ public class User {
         this.projectName = projectName;
     }
 
-    public User(String userDetails){
+    public User(){
         //TO DO
     }
 

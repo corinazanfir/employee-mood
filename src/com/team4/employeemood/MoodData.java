@@ -12,30 +12,14 @@ import java.util.List;
 public class MoodData {
 
     public static List<Mood> moodList = new ArrayList<>();
+    public static List<User> userList = new ArrayList<>();        //temporary solution to keep a list of loaded instances from file
+    public static List<Project> projectList = new ArrayList<>();  //temporary solution to keep a list of loaded instances from file
 
-    public void loadMoodDataFromFile(String filePath) {
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            String line = reader.readLine();
-            while (line != null) {
-                Mood mood = new Mood(line);
-                MoodData.moodList.add(mood);
+    public <T> void displayList(Iterable<T> inputList) {
 
-                //System.out.println(line); //kept for debugging
-
-                line = reader.readLine();
-            }
-            reader.close();
-        } catch (IOException | ParseException | PatternNotMatchingException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void displayMoodData() {
-        System.out.println("\nDisplay Mood data:");
-        for (Mood m : MoodData.moodList) {
-            System.out.println(m);
+        System.out.println("\nDisplay data for the list - " + inputList.toString().substring(0,inputList.toString().indexOf("{")) + "]\n" + ("-").repeat(50));
+        for (Object element : inputList) {
+            System.out.println(element);
         }
     }
 
