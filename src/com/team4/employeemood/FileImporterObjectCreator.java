@@ -47,8 +47,18 @@ public class FileImporterObjectCreator {
         if (matcher.find()) {
             user.setFirstName(matcher.group(1));
             user.setLastName(matcher.group(2));
-            user.setBirthDate(matcher.group(3));
-            user.setEmploymentDate(matcher.group(4));
+            //user.setBirthDate(matcher.group(3));
+            try {
+                user.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(3)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            //user.setEmploymentDate(matcher.group(4));
+            try {
+                user.setEmploymentDate(new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(4)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             user.setProjectName(matcher.group(5));
 
         } else {
