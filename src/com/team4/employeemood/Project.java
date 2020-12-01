@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Project {
     String projectName;
-    int projectBudget;
+    Integer projectBudget;
     Date projectDueDate;
     String projectManager;
 
@@ -13,6 +13,10 @@ public class Project {
         this.projectBudget = projectBudget;
         this.projectDueDate = projectDueDate;
         this.projectManager = projectManager;
+    }
+
+    public Project(){
+
     }
 
     public String getProjectName() {
