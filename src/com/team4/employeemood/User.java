@@ -67,6 +67,9 @@ public class User {
         this.username= this.getFirstName().toLowerCase()+"."+this.getLastName().toLowerCase()+"@moodproject";
     }
 
+    public String getUsername() {
+        return username;
+    }
 
     @Override
     public String toString() {

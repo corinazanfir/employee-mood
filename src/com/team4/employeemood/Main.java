@@ -4,6 +4,7 @@ import com.team4.employeemood.FileImporter.FileImporter;
 import com.team4.employeemood.FileImporter.FileImporterObjectCreator;
 import com.team4.employeemood.FileImporter.FileImporterValidator;
 import com.team4.employeemood.FileImporter.Util;
+import com.team4.employeemood.Reports.ReportUtil;
 
 import java.text.ParseException;
 
@@ -37,23 +38,18 @@ public class Main {
 
         MoodData md = new MoodData();
 
-//        md.displayList(MoodData.moodList);
+        md.displayList(MoodData.moodList);
 //        md.displayList(MoodData.userList);
 //        md.displayList(MoodData.projectList);
 
 
-        for (Project project: MoodData.projectList) {
+        ReportUtil reportUtil = new ReportUtil();
 
-            System.out.println("\nProject: " + project);
-            System.out.println("Team members:");
+        System.out.println("Total number of team members: " + reportUtil.getTotalNumberOfTeamMembers("project a"));
+        System.out.println("Unique team member that have sent feedback: " + reportUtil.getNumberOfTeamMembersWithFeedbackSent("project a"));
+        System.out.println("Rating Average for user catalin.gheorghe@moodproject - " + reportUtil.getAverageRatingForUser("catalin.gheorghe@moodproject"));
+        System.out.println("Number of mood submissions for Project A - " + reportUtil.getNumberOfMoodSubmissionsByProject("project a"));
 
-            for (User user : MoodData.userList) {
-              if (project.getProjectName().equals(user.getProjectName())){
-                  System.out.println(user);
-              }
-
-            }
-        }
 
     }
 }

@@ -1,13 +1,6 @@
 package com.team4.employeemood;
 
-import com.team4.employeemood.exceptions.PatternNotMatchingException;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class MoodData {
