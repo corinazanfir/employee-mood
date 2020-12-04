@@ -31,9 +31,10 @@ public class Main {
 
 
         MoodData md = new MoodData();
+        UserData ud = new UserData();
 
         md.displayList(MoodData.moodList);
-        md.displayList(MoodData.userList);
+        ud.displayList(UserData.userList);
         md.displayList(MoodData.projectList);
 
     }

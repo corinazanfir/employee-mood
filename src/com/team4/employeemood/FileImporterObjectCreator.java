@@ -55,11 +55,11 @@ public class FileImporterObjectCreator {
             }
             //user.setEmploymentDate(matcher.group(4));
             try {
-                user.setEmploymentDate(new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(4)));
+                user.setEmploymentDate(new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(7)));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            user.setProjectName(matcher.group(5));
+            user.setProjectName(matcher.group(11));
 
         } else {
             try {
@@ -69,7 +69,7 @@ public class FileImporterObjectCreator {
             }
         }
         //TO DO - Store instances in a list
-        MoodData.userList.add(user);
+        UserData.userList.add(user);
     }
 
     private void instantiateProject(String inputString) {

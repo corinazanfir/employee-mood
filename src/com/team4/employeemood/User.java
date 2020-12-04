@@ -21,6 +21,8 @@ public class User {
         this.birthDate = birthDate;
         this.employmentDate = employmentDate;
         this.projectName = projectName;
+
+        UserData.userList.add(this);
     }
 
     public User(){
@@ -38,8 +40,8 @@ public class User {
             this.firstName = matcher.group(1);
             this.lastName = matcher.group(2);
             this.birthDate = new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(3));
-            this.employmentDate = new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(4));
-            this.projectName = matcher.group(5);
+            this.employmentDate = new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(7));
+            this.projectName = matcher.group(11);
         } else {
             throw new PatternNotMatchingException("User not properly defined. Certain fields are not using the expected format.\nRejected record is: " + userDetails);
         }

@@ -12,7 +12,7 @@ import java.util.List;
 public class MoodData {
 
     public static List<Mood> moodList = new ArrayList<>();
-    public static List<User> userList = new ArrayList<>();        //temporary solution to keep a list of loaded instances from file
+    //public static List<User> userList = new ArrayList<>();        //temporary solution to keep a list of loaded instances from file
     public static List<Project> projectList = new ArrayList<>();  //temporary solution to keep a list of loaded instances from file
 
     public <T> void displayList(Iterable<T> inputList) {
