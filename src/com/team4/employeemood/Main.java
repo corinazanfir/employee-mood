@@ -1,5 +1,10 @@
 package com.team4.employeemood;
 
+import com.team4.employeemood.FileImporter.FileImporter;
+import com.team4.employeemood.FileImporter.FileImporterObjectCreator;
+import com.team4.employeemood.FileImporter.FileImporterValidator;
+import com.team4.employeemood.FileImporter.Util;
+
 import java.text.ParseException;
 
 public class Main {
@@ -8,33 +13,33 @@ public class Main {
 
         FileImporter fileImporter = new FileImporter();
 
-        fileImporter.loadDataFromFile("MoodSampleFile.csv", FileImporter.ImportTypeEnum.MOOD);
-        fileImporter.loadDataFromFile("MoodSampleFile2.csv", FileImporter.ImportTypeEnum.MOOD);
-        fileImporter.loadDataFromFile("ProjectSampleFile.csv", FileImporter.ImportTypeEnum.PROJECT);
-        fileImporter.loadDataFromFile("UsersSampleFile.csv", FileImporter.ImportTypeEnum.USER);
+        fileImporter.loadDataFromFile("MoodSampleFile.csv", Util.ImportTypeEnum.MOOD);
+        fileImporter.loadDataFromFile("MoodSampleFile2.csv", Util.ImportTypeEnum.MOOD);
+        fileImporter.loadDataFromFile("ProjectSampleFile.csv", Util.ImportTypeEnum.PROJECT);
+        fileImporter.loadDataFromFile("UsersSampleFile.csv", Util.ImportTypeEnum.USER);
 
-        fileImporter.displayRecordsFromRawDataMap();
+//        fileImporter.displayRecordsFromRawDataMap();
 //        Display RawData only for a particular import type using method overload
 //        fileImporter.displayRecordsFromRawDataMap(FileImporter.ImportTypeEnum.MOOD);
 
         //Validate import files
         FileImporterValidator fileImporterValidator = new FileImporterValidator();
-        fileImporterValidator.validateData(FileImporter.ImportTypeEnum.MOOD);
-        fileImporterValidator.validateData(FileImporter.ImportTypeEnum.USER);
-        fileImporterValidator.validateData(FileImporter.ImportTypeEnum.PROJECT);
+//        fileImporterValidator.validateData(Util.ImportTypeEnum.MOOD);
+//        fileImporterValidator.validateData(Util.ImportTypeEnum.USER);
+//        fileImporterValidator.validateData(Util.ImportTypeEnum.PROJECT);
 
         //Create objects from loaded data
         FileImporterObjectCreator fileImporterObjectCreator = new FileImporterObjectCreator();
-        fileImporterObjectCreator.createObjectInstanceFromData(FileImporter.ImportTypeEnum.MOOD);
-        fileImporterObjectCreator.createObjectInstanceFromData(FileImporter.ImportTypeEnum.USER);
-        fileImporterObjectCreator.createObjectInstanceFromData(FileImporter.ImportTypeEnum.PROJECT);
+        fileImporterObjectCreator.createObjectInstanceFromData(Util.ImportTypeEnum.MOOD);
+        fileImporterObjectCreator.createObjectInstanceFromData(Util.ImportTypeEnum.USER);
+        fileImporterObjectCreator.createObjectInstanceFromData(Util.ImportTypeEnum.PROJECT);
 
 
         MoodData md = new MoodData();
 
-        md.displayList(MoodData.moodList);
-        md.displayList(MoodData.userList);
-        md.displayList(MoodData.projectList);
+//        md.displayList(MoodData.moodList);
+//        md.displayList(MoodData.userList);
+//        md.displayList(MoodData.projectList);
 
 
         for (Project project: MoodData.projectList) {
