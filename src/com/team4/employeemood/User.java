@@ -8,6 +8,7 @@ public class User {
     private Date birthDate;
     private Date employmentDate;
     private String projectName;
+    private String username;
 
     public User(String firstName, String lastName, Date birthDate, Date employmentDate, String projectName) {
         this.firstName = firstName;
@@ -15,7 +16,7 @@ public class User {
         this.birthDate = birthDate;
         this.employmentDate = employmentDate;
         this.projectName = projectName;
-
+        this.username = firstName.toLowerCase()+"."+lastName.toLowerCase()+"@moodproject";
     }
 
     public User(){
@@ -64,12 +65,13 @@ public class User {
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                ", employmentDate='" + employmentDate + '\'' +
+                ", birthDate=" + birthDate +
+                ", employmentDate=" + employmentDate +
                 ", projectName='" + projectName + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

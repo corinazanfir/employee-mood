@@ -1,6 +1,12 @@
 First Name; Last Name; Birthday; Hire date; Project Name - table header that is ignored
-Catalin;Gheorghe;16/01/1988;01/04/2019;projectName
-Ana;Anastasescu;22/02/1987;05/05/2018;projectName
-Emilia;Fazan;10/10/1995;06/06/2012;projectName
-Radu;Mazare;17/01/1988;02/04/2019;projectName2
-Valentina;Popescu;18/01/1988;03/04/2019;projectName2
+Catalin;Gheorghe;16/01/1988;04/01/2019;Project A
+Ana;Anastasescu;22/02/1987;05/05/2018;Project A
+Emilia;Fazan;10/10/1995;06/06/2012;Project A
+Radu;Mazare;17/01/1988;04/02/2019;Project A
+Valentina;Popescu;18/01/1988;04/03/2019;Project B
+Razvan;Ionescu;20/04/1981;05/05/2011;Project B
+Cristian;Dumitrache;14/08/1993;05/01/2020;Project B
+Cosmina;Isar;09/02/1996;10/10/2017;Project B
+Paula;Avram;06/05/1971;01/05/2003;Project B
+Alexandra;Preda;01/01/1985;01/01/2016;Project A
+Iustin;Tarachiu;01/01/1982;01/01/2014;Project B
