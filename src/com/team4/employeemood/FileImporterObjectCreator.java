@@ -87,7 +87,7 @@ public class FileImporterObjectCreator {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            project.setProjectManager(matcher.group(4));
+            project.setProjectManager(matcher.group(7));
 
         } else {
             try {
