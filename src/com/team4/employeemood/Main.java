@@ -36,5 +36,19 @@ public class Main {
         md.displayList(MoodData.userList);
         md.displayList(MoodData.projectList);
 
+
+        for (Project project: MoodData.projectList) {
+
+            System.out.println("\nProject: " + project);
+            System.out.println("Team members:");
+
+            for (User user : MoodData.userList) {
+              if (project.getProjectName().equals(user.getProjectName())){
+                  System.out.println(user);
+              }
+
+            }
+        }
+
     }
 }
