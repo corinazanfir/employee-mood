@@ -27,6 +27,7 @@ public class TeamAverageReport {
         System.out.println(title);
         System.out.println("-".repeat(title.length()));
         System.out.println("General team mood rating is - " + ReportUtil.df2.format(teamRatingAverage));
+        System.out.println("Total number of project members - "+reportUtil.getTotalNumberOfTeamMembers(projectName));
         System.out.println("Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName));
         System.out.println("Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName));
         System.out.println("Current project manager - " + reportUtil.getManagerByProject(projectName));
