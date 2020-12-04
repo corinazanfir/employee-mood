@@ -5,6 +5,7 @@ import com.team4.employeemood.FileImporter.FileImporterObjectCreator;
 import com.team4.employeemood.FileImporter.FileImporterValidator;
 import com.team4.employeemood.FileImporter.Util;
 import com.team4.employeemood.Reports.ReportUtil;
+import com.team4.employeemood.Reports.TeamAverageReport;
 
 import java.text.ParseException;
 
@@ -35,20 +36,26 @@ public class Main {
         fileImporterObjectCreator.createObjectInstanceFromData(Util.ImportTypeEnum.USER);
         fileImporterObjectCreator.createObjectInstanceFromData(Util.ImportTypeEnum.PROJECT);
 
-
         MoodData md = new MoodData();
 
-        md.displayList(MoodData.moodList);
+//        md.displayList(MoodData.moodList);
 //        md.displayList(MoodData.userList);
 //        md.displayList(MoodData.projectList);
 
 
         ReportUtil reportUtil = new ReportUtil();
 
+//      reusable methods for creating necessary report
+
         System.out.println("Total number of team members: " + reportUtil.getTotalNumberOfTeamMembers("project a"));
         System.out.println("Unique team member that have sent feedback: " + reportUtil.getNumberOfTeamMembersWithFeedbackSent("project a"));
         System.out.println("Rating Average for user catalin.gheorghe@moodproject - " + reportUtil.getAverageRatingForUser("catalin.gheorghe@moodproject"));
         System.out.println("Number of mood submissions for Project A - " + reportUtil.getNumberOfMoodSubmissionsByProject("project a"));
+        System.out.println("Total Rating Accumulator for Project A - "+reportUtil.getTotalRatingValueForSubmissionsByProject("project a"));
+
+
+        TeamAverageReport teamAverageReport =new TeamAverageReport();
+        teamAverageReport.generateReport("project a");
 
 
     }
