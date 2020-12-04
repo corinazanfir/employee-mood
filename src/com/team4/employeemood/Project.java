@@ -50,4 +50,14 @@ public class Project {
     public void setProjectManager(String projectManager) {
         this.projectManager = projectManager;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectName='" + projectName + '\'' +
+                ", projectBudget=" + projectBudget +
+                ", projectDueDate=" + projectDueDate +
+                ", projectManager='" + projectManager + '\'' +
+                '}';
+    }
 }
