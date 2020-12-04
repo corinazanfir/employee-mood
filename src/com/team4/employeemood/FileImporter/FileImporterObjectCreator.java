@@ -1,5 +1,6 @@
-package com.team4.employeemood;
+package com.team4.employeemood.FileImporter;
 
+import com.team4.employeemood.*;
 import com.team4.employeemood.exceptions.PatternNotMatchingException;
 
 import java.text.ParseException;
@@ -9,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class FileImporterObjectCreator {
 
-    public void createObjectInstanceFromData(FileImporter.ImportTypeEnum importTypeEnum) {
+    public void createObjectInstanceFromData(Util.ImportTypeEnum importTypeEnum) {
 
         int recordCounter = 0; //Added a counter to display the number of processed records for each import type
         if (!FileImporter.importRawDataMap.containsKey(importTypeEnum)) {
@@ -58,14 +59,16 @@ public class FileImporterObjectCreator {
                 e.printStackTrace();
             }
             user.setProjectName(matcher.group(11));
+            user.setUsername();
 
         } else {
             try {
-                throw new PatternNotMatchingException(FileImporter.ImportTypeEnum.USER + " data not properly defined. Certain fields are not using the expected format.\nRejected record is: " + inputString);
+                throw new PatternNotMatchingException(Util.ImportTypeEnum.USER + " data not properly defined. Certain fields are not using the expected format.\nRejected record is: " + inputString);
             } catch (PatternNotMatchingException e) {
                 e.printStackTrace();
             }
         }
+
         //TO DO - Store instances in a list
         MoodData.userList.add(user);
     }
@@ -91,7 +94,7 @@ public class FileImporterObjectCreator {
 
         } else {
             try {
-                throw new PatternNotMatchingException(FileImporter.ImportTypeEnum.PROJECT + " data not properly defined. Certain fields are not using the expected format.\nRejected record is: " + inputString);
+                throw new PatternNotMatchingException(Util.ImportTypeEnum.PROJECT + " data not properly defined. Certain fields are not using the expected format.\nRejected record is: " + inputString);
             } catch (PatternNotMatchingException e) {
                 e.printStackTrace();
             }
@@ -122,7 +125,7 @@ public class FileImporterObjectCreator {
             mood.setUsername(matcher.group(9));
         } else {
             try {
-                throw new PatternNotMatchingException(FileImporter.ImportTypeEnum.MOOD + " data not properly defined. Certain fields are not using the expected format.\nRejected record is: " + inputString);
+                throw new PatternNotMatchingException(Util.ImportTypeEnum.MOOD + " data not properly defined. Certain fields are not using the expected format.\nRejected record is: " + inputString);
             } catch (PatternNotMatchingException e) {
                 e.printStackTrace();
             }

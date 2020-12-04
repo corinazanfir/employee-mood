@@ -63,6 +63,11 @@ public class User {
         this.projectName = projectName;
     }
 
+    public void setUsername(){
+        this.username= this.getFirstName().toLowerCase()+"."+this.getLastName().toLowerCase()+"@moodproject";
+    }
+
+
     @Override
     public String toString() {
         return "User{" +

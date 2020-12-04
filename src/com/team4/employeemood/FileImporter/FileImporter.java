@@ -1,4 +1,4 @@
-package com.team4.employeemood;
+package com.team4.employeemood.FileImporter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,16 +14,9 @@ public class FileImporter {
     //# This class is designed ONLY to read data from CSV files and populate the data in a map.
 
 
-    //define predefined import types by adding an additional import type to the enum
-    enum ImportTypeEnum {
-        MOOD,
-        USER,
-        PROJECT
-    }
+    public static Map<Util.ImportTypeEnum, List<String>> importRawDataMap = new HashMap<>();
 
-    public static Map<ImportTypeEnum, List<String>> importRawDataMap = new HashMap<>();
-
-    public void loadDataFromFile(String filePath, ImportTypeEnum typeOfImport) {
+    public void loadDataFromFile(String filePath, Util.ImportTypeEnum typeOfImport) {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(filePath));
@@ -51,10 +44,10 @@ public class FileImporter {
     }
 
     //Method overload to be able to filter based an import type.
-    public void displayRecordsFromRawDataMap(ImportTypeEnum importType) {
+    public void displayRecordsFromRawDataMap(Util.ImportTypeEnum importType) {
 
         System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
-        for (ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
+        for (Util.ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
             if (importTypeEnum.equals(importType)) {
                 System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
                 for (String value : importRawDataMap.get(importTypeEnum)) {
@@ -67,7 +60,7 @@ public class FileImporter {
     public void displayRecordsFromRawDataMap() {
 
         System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
-        for (ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
+        for (Util.ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
             System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
             for (String value : importRawDataMap.get(importTypeEnum)) {
                 System.out.println("value:" + value);
