@@ -27,6 +27,7 @@ public class FileImporter {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(filePath));
+            reader.readLine();
             String line = reader.readLine();
 
             List<String> importTypeData = new ArrayList<>(); //create ArrayList that will be populated with line by line data from file
