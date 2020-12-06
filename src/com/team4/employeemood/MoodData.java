@@ -1,11 +1,5 @@
 package com.team4.employeemood;
 
-import com.team4.employeemood.exceptions.PatternNotMatchingException;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +11,17 @@ public class MoodData {
 
     public <T> void displayList(Iterable<T> inputList) {
 
-        System.out.println("\nDisplay data for the list - " + inputList.toString().substring(0,inputList.toString().indexOf("{")) + "]\n" + ("-").repeat(50));
+        //workaround to display warning for classes that do not have a toString method defined
+        try {
+            System.out.println("\nDisplay data for the list - " + inputList.toString().substring(0, inputList.toString().indexOf("{")) + "]\n" + ("-").repeat(50));
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("### WARNING ### You must define a toString method for the class " + inputList.toString().substring(0,inputList.toString().indexOf("@")) + "] that contains '{' character.");
+            return;
+        }
+
         for (Object element : inputList) {
             System.out.println(element);
         }
     }
-
 }
+

@@ -1,18 +1,22 @@
 package com.team4.employeemood;
 
+import java.util.Date;
+
 public class User {
     private String firstName;
     private String lastName;
-    private String birthDate;
-    private String employmentDate;
+    private Date birthDate;
+    private Date employmentDate;
     private String projectName;
+    private String username;
 
-    public User(String firstName, String lastName, String birthDate, String employmentDate, String projectName) {
+    public User(String firstName, String lastName, Date birthDate, Date employmentDate, String projectName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.employmentDate = employmentDate;
         this.projectName = projectName;
+        this.username = firstName.toLowerCase()+"."+lastName.toLowerCase()+"@moodproject";
     }
 
     public User(){
@@ -35,19 +39,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
-    public String getEmploymentDate() {
+    public Date getEmploymentDate() {
         return employmentDate;
     }
 
-    public void setEmploymentDate(String employmentDate) {
+    public void setEmploymentDate(Date employmentDate) {
         this.employmentDate = employmentDate;
     }
 
@@ -59,14 +63,23 @@ public class User {
         this.projectName = projectName;
     }
 
+    public void setUsername(){
+        this.username= this.getFirstName().toLowerCase()+"."+this.getLastName().toLowerCase()+"@moodproject";
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
     @Override
     public String toString() {
-        return "Users{" +
+        return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                ", employmentDate='" + employmentDate + '\'' +
+                ", birthDate=" + birthDate +
+                ", employmentDate=" + employmentDate +
                 ", projectName='" + projectName + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }
