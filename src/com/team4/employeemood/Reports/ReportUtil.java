@@ -1,14 +1,12 @@
 package com.team4.employeemood.Reports;
 
-import com.team4.employeemood.Mood;
-import com.team4.employeemood.MoodData;
-import com.team4.employeemood.Project;
-import com.team4.employeemood.User;
+import com.team4.employeemood.*;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class ReportUtil {
@@ -31,7 +29,7 @@ public class ReportUtil {
     public int getTotalNumberOfTeamMembers(String projectName) {
 
         int counter = 0;
-        for (User user : MoodData.userList) {
+        for (User user : UserData.userList) {
             if (user.getProjectName().toLowerCase().equals(projectName.toLowerCase())) {
                 counter++;
             }
@@ -44,7 +42,7 @@ public class ReportUtil {
         int counter = 0;
         Set uniqueUsers = new HashSet();
 
-        for (User user : MoodData.userList) {
+        for (User user : UserData.userList) {
             if (user.getProjectName().toLowerCase().equals(projectName.toLowerCase())) {
 
                 for (Mood mood : MoodData.moodList) {
@@ -76,7 +74,7 @@ public class ReportUtil {
 
         int counter = 0;
 
-        for (User user : MoodData.userList) {
+        for (User user : UserData.userList) {
             if (user.getProjectName().toLowerCase().equals(projectName.toLowerCase())) {
                 for (Mood mood : MoodData.moodList) {
                     if (mood.getUsername().toLowerCase().equals(user.getUsername().toLowerCase())) {
@@ -92,7 +90,7 @@ public class ReportUtil {
 
         int totalRatingAcc = 0;
 
-        for (User user : MoodData.userList) {
+        for (User user : UserData.userList) {
             if (user.getProjectName().toLowerCase().equals(projectName.toLowerCase())) {
                 for (Mood mood : MoodData.moodList) {
                     if (mood.getUsername().toLowerCase().equals(user.getUsername().toLowerCase())) {
@@ -106,12 +104,31 @@ public class ReportUtil {
 
     public String getManagerByProject(String projectName) {
 
-        for (Project project : MoodData.projectList) {
+        for (Project project : ProjectData.projectList) {
             if (project.getProjectName().toLowerCase().equals(projectName.toLowerCase())) {
                 return project.getProjectManager();
             }
         }
         return null;
+    }
+
+    public Double getAverageMoodRatingForProject(String projectName) {
+
+        ReportUtil reportUtil = new ReportUtil();
+
+
+        Double result = null;
+        for (Project project : ProjectData.projectList) {
+            if (project.getProjectName().toLowerCase().equals(projectName.toLowerCase())) {
+                int totalRating = reportUtil.getTotalRatingValueForSubmissionsByProject(project.getProjectName());
+                int numberOfSubmissions = reportUtil.getNumberOfMoodSubmissionsByProject(project.getProjectName());
+                result = (double) totalRating / numberOfSubmissions;
+            }
+        }
+
+        return result;
+
+
     }
 }
 

@@ -11,18 +11,9 @@ public class UserData {
 
     public static List<User> userList = new ArrayList<>();
 
-    public <T> void displayList(Iterable<T> inputList) {
-
-        //workaround to display warning for classes that do not have a toString method defined
-        try {
-            System.out.println("\nDisplay data for the list - " + inputList.toString().substring(0, inputList.toString().indexOf("{")) + "]\n" + ("-").repeat(50));
-        } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("### WARNING ### You must define a toString method for the class " + inputList.toString().substring(0,inputList.toString().indexOf("@")) + "] that contains '{' character.");
-            return;
-        }
-
-        for (Object element : inputList) {
-            System.out.println(element);
+    public void displayList() {
+        for (User user : userList) {
+            System.out.println(user);
         }
     }
 }
