@@ -6,6 +6,7 @@ import com.team4.employeemood.Project;
 import com.team4.employeemood.User;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,8 @@ import java.util.Set;
 public class ReportUtil {
 
     public static DecimalFormat df2 = new DecimalFormat("#.##");
+    public static SimpleDateFormat timestampDateFormat = new SimpleDateFormat("dd.MM.yyyy hh-mm-ss");
+
 //    Trebuie să existe posibilitatea unui mini raport, care să spună în primă fază care este media generală
 //    a stării de spirit a echipei și numărul de intrări. Acest mini raport trebuie să afișeze într-un fișier
 //    “General team mood is ..., ... employees have given mood information” și să pună media, care poate fi un
