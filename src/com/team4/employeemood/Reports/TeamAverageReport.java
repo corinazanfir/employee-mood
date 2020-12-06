@@ -2,6 +2,11 @@ package com.team4.employeemood.Reports;
 
 import org.w3c.dom.ls.LSOutput;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+
 public class TeamAverageReport {
 
     private Integer numberOfMoodSubmissions;
@@ -15,7 +20,7 @@ public class TeamAverageReport {
 //    număr rațional cu două zecimale, plus numărul de angajați care au dat informații.
 
 
-    public void generateReport(String projectName) {
+    public void generateReport(String projectName, boolean writeToConsole, boolean writeToFile) throws IOException {
 
         ReportUtil reportUtil = new ReportUtil();
 
@@ -23,15 +28,34 @@ public class TeamAverageReport {
         this.totalRating = reportUtil.getTotalRatingValueForSubmissionsByProject(projectName);
         this.teamRatingAverage = (double) totalRating / numberOfMoodSubmissions;
 
+        String[] reportLines = new String[8];
         String title = "----------[ Mood statistics for " + projectName.toUpperCase() + " ]----------";
-        System.out.println(title);
-        System.out.println("-".repeat(title.length()));
-        System.out.println("General team mood rating is - " + ReportUtil.df2.format(teamRatingAverage));
-        System.out.println("Total number of project members - "+reportUtil.getTotalNumberOfTeamMembers(projectName));
-        System.out.println("Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName));
-        System.out.println("Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName));
-        System.out.println("Current project manager - " + reportUtil.getManagerByProject(projectName));
-        System.out.println("-".repeat(title.length()));
+
+        reportLines[0] = title;
+        reportLines[1] = "-".repeat(title.length());
+        reportLines[2] = "General team mood rating is - " + ReportUtil.df2.format(teamRatingAverage);
+        reportLines[3] = "Total number of project members - " + reportUtil.getTotalNumberOfTeamMembers(projectName);
+        reportLines[4] = "Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName);
+        reportLines[5] = "Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName);
+        reportLines[6] = "Current project manager - " + reportUtil.getManagerByProject(projectName);
+        reportLines[7] = "-".repeat(title.length());
+
+        //check flag for printing to console
+        if (writeToConsole == true) {
+            for (String line : reportLines) {
+                System.out.println(line);
+            }
+        }
+
+        //check flag for printing to file
+        if (writeToFile == true) {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Team Average Mood Statistics Report - " + projectName.toUpperCase() + " " + ReportUtil.timestampDateFormat.format(new Date()) + ".txt", false));
+            for (String line : reportLines) {
+                writer.append(line);
+                writer.append("\n");
+            }
+            writer.close();
+        }
     }
 
 
