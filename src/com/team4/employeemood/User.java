@@ -17,6 +17,8 @@ public class User {
         this.employmentDate = employmentDate;
         this.projectName = projectName;
         this.username = firstName.toLowerCase()+"."+lastName.toLowerCase()+"@moodproject";
+
+        UserData.userList.add(this);
     }
 
     public User(){
