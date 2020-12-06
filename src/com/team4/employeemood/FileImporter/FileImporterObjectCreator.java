@@ -69,8 +69,7 @@ public class FileImporterObjectCreator {
             }
         }
 
-        //TO DO - Store instances in a list
-        MoodData.userList.add(user);
+        UserData.userList.add(user);
     }
 
     private void instantiateProject(String inputString) {
@@ -99,8 +98,7 @@ public class FileImporterObjectCreator {
                 e.printStackTrace();
             }
         }
-        //TO DO - Store instances in a list
-        MoodData.projectList.add(project);
+        ProjectData.projectList.add(project);
     }
 
     public void instantiateMood(String inputString) {

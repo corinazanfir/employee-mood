@@ -4,6 +4,7 @@ import com.team4.employeemood.FileImporter.FileImporter;
 import com.team4.employeemood.FileImporter.FileImporterObjectCreator;
 import com.team4.employeemood.FileImporter.FileImporterValidator;
 import com.team4.employeemood.FileImporter.Util;
+import com.team4.employeemood.Reports.HappiestProjectsReport;
 import com.team4.employeemood.Reports.ReportUtil;
 import com.team4.employeemood.Reports.TeamAverageReport;
 
@@ -57,8 +58,10 @@ public class Main {
 
 
         TeamAverageReport teamAverageReport = new TeamAverageReport();
-        teamAverageReport.generateReport("project a", true, true);
+//        teamAverageReport.generateReport("project a", true, true);
 
-
+        HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
+        happiestProjectsReport.generateReport();
+        happiestProjectsReport.displayMap();
     }
 }
