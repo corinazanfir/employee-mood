@@ -38,6 +38,7 @@ public class Main {
         fileImporterObjectCreator.createObjectInstanceFromData(Util.ImportTypeEnum.PROJECT);
 
         MoodData md = new MoodData();
+        UserData ud = new UserData();
 
 //        md.displayList(MoodData.moodList);
 //        md.displayList(MoodData.userList);
