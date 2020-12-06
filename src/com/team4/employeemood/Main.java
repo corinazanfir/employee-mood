@@ -7,11 +7,12 @@ import com.team4.employeemood.FileImporter.Util;
 import com.team4.employeemood.Reports.ReportUtil;
 import com.team4.employeemood.Reports.TeamAverageReport;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 public class Main {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, IOException {
 
         FileImporter fileImporter = new FileImporter();
 
@@ -51,11 +52,11 @@ public class Main {
         System.out.println("Unique team member that have sent feedback: " + reportUtil.getNumberOfTeamMembersWithFeedbackSent("project a"));
         System.out.println("Rating Average for user catalin.gheorghe@moodproject - " + reportUtil.getAverageRatingForUser("catalin.gheorghe@moodproject"));
         System.out.println("Number of mood submissions for Project A - " + reportUtil.getNumberOfMoodSubmissionsByProject("project a"));
-        System.out.println("Total Rating Accumulator for Project A - "+reportUtil.getTotalRatingValueForSubmissionsByProject("project a"));
+        System.out.println("Total Rating Accumulator for Project A - " + reportUtil.getTotalRatingValueForSubmissionsByProject("project a"));
 
 
-        TeamAverageReport teamAverageReport =new TeamAverageReport();
-        teamAverageReport.generateReport("project a");
+        TeamAverageReport teamAverageReport = new TeamAverageReport();
+        teamAverageReport.generateReport("project a", true, true);
 
 
     }
