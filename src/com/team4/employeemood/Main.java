@@ -56,12 +56,10 @@ public class Main {
         System.out.println("Number of mood submissions for Project A - " + reportUtil.getNumberOfMoodSubmissionsByProject("project a"));
         System.out.println("Total Rating Accumulator for Project A - " + reportUtil.getTotalRatingValueForSubmissionsByProject("project a"));
 
-
         TeamAverageReport teamAverageReport = new TeamAverageReport();
-        teamAverageReport.generateReport("project a", true, false);
+        teamAverageReport.generateReport("project a", true, true);
 
         HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
-        happiestProjectsReport.generateReport();
-        happiestProjectsReport.displayMap();
+        happiestProjectsReport.generateReport(true,true);
     }
 }

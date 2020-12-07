@@ -12,8 +12,6 @@ import java.util.Map;
 public class FileImporter {
 
     //# This class is designed ONLY to read data from CSV files and populate the data in a map.
-
-
     public static Map<Util.ImportTypeEnum, List<String>> importRawDataMap = new HashMap<>();
 
     public void loadDataFromFile(String filePath, Util.ImportTypeEnum typeOfImport) {

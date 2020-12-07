@@ -1,11 +1,11 @@
 package com.team4.employeemood.Reports;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class TeamAverageReport {
 
@@ -18,17 +18,17 @@ public class TeamAverageReport {
 
         ReportUtil reportUtil = new ReportUtil();
 
-        String[] reportLines = new String[8];
         String title = "----------[ Mood statistics for " + projectName.toUpperCase() + " ]----------";
+        List<String> reportLines = new ArrayList<>();
 
-        reportLines[0] = title;
-        reportLines[1] = "-".repeat(title.length());
-        reportLines[2] = "General team mood rating is - " + ReportUtil.df2.format(reportUtil.getAverageMoodRatingForProject(projectName));
-        reportLines[3] = "Total number of project members - " + reportUtil.getTotalNumberOfTeamMembers(projectName);
-        reportLines[4] = "Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName);
-        reportLines[5] = "Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName);
-        reportLines[6] = "Current project manager - " + reportUtil.getManagerByProject(projectName);
-        reportLines[7] = "-".repeat(title.length());
+        reportLines.add(title);
+        reportLines.add("-".repeat(title.length()));
+        reportLines.add("General team mood rating is - " + ReportUtil.df2.format(reportUtil.getAverageMoodRatingForProject(projectName)));
+        reportLines.add("Total number of project members - " + reportUtil.getTotalNumberOfTeamMembers(projectName));
+        reportLines.add("Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName));
+        reportLines.add("Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName));
+        reportLines.add("Current project manager - " + reportUtil.getManagerByProject(projectName));
+        reportLines.add("-".repeat(title.length()));
 
         //check flag for printing to console
         if (writeToConsole == true) {
@@ -41,7 +41,7 @@ public class TeamAverageReport {
         }
     }
 
-    private void writeToFile(String projectName, String[] reportLines) throws IOException {
+    private void writeToFile(String projectName, List<String> reportLines) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("Team Average Mood Statistics Report - " + projectName.toUpperCase() +
                 " " + ReportUtil.timestampDateFormat.format(new Date()) + ".txt", false));
         for (String line : reportLines) {
@@ -51,7 +51,7 @@ public class TeamAverageReport {
         writer.close();
     }
 
-    private void writeToConsole(String[] reportLines) {
+    private void writeToConsole(List<String> reportLines) {
         for (String line : reportLines) {
             System.out.println(line);
         }
