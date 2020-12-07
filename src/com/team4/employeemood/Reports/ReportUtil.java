@@ -20,6 +20,7 @@ public class ReportUtil {
 
     public static DecimalFormat df2 = new DecimalFormat("#.##");
     public static SimpleDateFormat timestampDateFormat = new SimpleDateFormat("dd.MM.yyyy hh-mm-ss");
+    public static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     // DONE
 //    Trebuie să existe posibilitatea unui mini raport, care să spună în primă fază care este media generală
@@ -74,12 +75,6 @@ public class ReportUtil {
 
         predefinedReportingPeriodsMap.put(PredefinedReportingPeriodsEnum.PreviousWeek.toString(), previousWeekDateRange);
 
-//        //Current Week Start to Today
-//        System.out.println("Current Week Start " + sdf.format(currentWeekStart));
-//        //Previous Week
-//        System.out.println("Previous Week End " + sdf.format(previousWeekEnd));
-//        System.out.println("Previous Week Start " + sdf.format(previousWeekStart));
-
     }
 
 
@@ -87,7 +82,7 @@ public class ReportUtil {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        System.out.println("\nCalculated time period are:");
+        System.out.println("\nCalculated time periods are:");
         for (Map.Entry<String, List<Date>> entry : predefinedReportingPeriodsMap.entrySet()) {
             String key = entry.getKey();
             System.out.println(key);

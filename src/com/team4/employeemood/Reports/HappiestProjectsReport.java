@@ -14,13 +14,14 @@ public class HappiestProjectsReport {
     //create a map store the projectname and the previously calculated average project mood rating
     Map<String, Double> averageMoodRating = new HashMap<>();
 
-    public void generateReport(boolean writeToConsole, boolean writeToFile) throws IOException {
+    public void generateReport(boolean writeToConsole, boolean writeToFile, Date fromDate, Date toDate) throws IOException {
 
-        precalculateDataForReport();
+        precalculateDataForReport(fromDate, toDate);
 
         List<String> reportLines = new ArrayList<>();
 
         reportLines.add("---------------[ Top Projects by Mood Rating ]---------------");
+        reportLines.add("Reporting period: " + ReportUtil.sdf.format(fromDate) + " to " + ReportUtil.sdf.format(toDate));
         reportLines.add("The project with the highest employee mood rating are: \n");
         reportLines.add("Project Name | Average rating value");
         reportLines.add("-".repeat("Project Name | Average rating value".length()));
@@ -36,15 +37,15 @@ public class HappiestProjectsReport {
 
         //check flag for printing to file
         if (writeToFile == true) {
-            writeToFile(reportLines);
+            writeToFile(reportLines, fromDate, toDate);
         }
 
     }
 
-    private void precalculateDataForReport() {
+    private void precalculateDataForReport(Date fromDate, Date toDate) {
         ReportUtil reportUtil = new ReportUtil();
         for (Project project : ProjectData.projectList) {
-            double averageRating = reportUtil.getAverageMoodRatingForProject(project.getProjectName());
+            double averageRating = reportUtil.getAverageMoodRatingForProject(project.getProjectName(), fromDate, toDate);
             averageMoodRating.put(project.getProjectName(), averageRating);
         }
 
@@ -65,9 +66,9 @@ public class HappiestProjectsReport {
         }
     }
 
-    private void writeToFile(List<String> reportLines) throws IOException {
+    private void writeToFile(List<String> reportLines, Date fromDate, Date toDate) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("Top Mood Rating Projects - " +
-                " " + ReportUtil.timestampDateFormat.format(new Date()) + ".txt", false));
+                " " + ReportUtil.sdf.format(fromDate) + "-" + ReportUtil.sdf.format(toDate) + ".txt", false));
         for (String line : reportLines) {
             writer.append(line);
             writer.append("\n");

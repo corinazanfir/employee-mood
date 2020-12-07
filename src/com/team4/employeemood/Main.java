@@ -4,7 +4,9 @@ import com.team4.employeemood.FileImporter.FileImporter;
 import com.team4.employeemood.FileImporter.FileImporterObjectCreator;
 import com.team4.employeemood.FileImporter.FileImporterValidator;
 import com.team4.employeemood.FileImporter.Util;
+import com.team4.employeemood.Reports.HappiestProjectsReport;
 import com.team4.employeemood.Reports.ReportUtil;
+import com.team4.employeemood.Reports.TeamAverageReport;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -73,11 +75,11 @@ public class Main {
         System.out.println("Average Mood Rating for Project A - " + reportUtil.getAverageMoodRatingForProject("project a"));
         System.out.println("Average Mood Rating for Project A for records from - " + sdf.format(sdf.parse("25/11/2020")) + " to " + sdf.format(sdf.parse("15/12/2020")) + " is - " + reportUtil.getAverageMoodRatingForProject("project a", sdf.parse("25/11/2020"), sdf.parse("15/12/2020")));
 
-//        TeamAverageReport teamAverageReport = new TeamAverageReport();
-//        teamAverageReport.generateReport("project a", true, true);
-//
-//        HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
-//        happiestProjectsReport.generateReport(true, true);
+        TeamAverageReport teamAverageReport = new TeamAverageReport();
+        teamAverageReport.generateReport("project a", true, true, sdf.parse("15/11/2020"), sdf.parse("05/12/2020"));
+
+        HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
+        happiestProjectsReport.generateReport(true, true, sdf.parse("15/11/2020"), sdf.parse("05/12/2020"));
 
         reportUtil.calculatePredefinedPeriods();
         reportUtil.displayPredefinedPeriodsCalculation();

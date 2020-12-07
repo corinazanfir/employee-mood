@@ -14,7 +14,7 @@ public class TeamAverageReport {
 //    “General team mood is ..., ... employees have given mood information” și să pună media, care poate fi un
 //    număr rațional cu două zecimale, plus numărul de angajați care au dat informații.
 
-    public void generateReport(String projectName, boolean writeToConsole, boolean writeToFile) throws IOException {
+    public void generateReport(String projectName, boolean writeToConsole, boolean writeToFile, Date fromDate, Date toDate) throws IOException {
 
         ReportUtil reportUtil = new ReportUtil();
 
@@ -23,10 +23,11 @@ public class TeamAverageReport {
 
         reportLines.add(title);
         reportLines.add("-".repeat(title.length()));
-        reportLines.add("General team mood rating is - " + ReportUtil.df2.format(reportUtil.getAverageMoodRatingForProject(projectName)));
-        reportLines.add("Total number of project members - " + reportUtil.getTotalNumberOfTeamMembers(projectName));
-        reportLines.add("Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName));
-        reportLines.add("Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName));
+        reportLines.add("Reporting period: " + ReportUtil.sdf.format(fromDate) + " to " + ReportUtil.sdf.format(toDate));
+        reportLines.add("General team mood rating is - " + ReportUtil.df2.format(reportUtil.getAverageMoodRatingForProject(projectName, fromDate, toDate)));
+        reportLines.add("Total number of project members - " + reportUtil.getTotalNumberOfTeamMembers(projectName, fromDate, toDate));
+        reportLines.add("Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName, fromDate, toDate));
+        reportLines.add("Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName, fromDate, toDate));
         reportLines.add("Current project manager - " + reportUtil.getManagerByProject(projectName));
         reportLines.add("-".repeat(title.length()));
 
@@ -37,13 +38,13 @@ public class TeamAverageReport {
 
         //check flag for printing to file
         if (writeToFile == true) {
-            writeToFile(projectName, reportLines);
+            writeToFile(projectName, reportLines, fromDate, toDate);
         }
     }
 
-    private void writeToFile(String projectName, List<String> reportLines) throws IOException {
+    private void writeToFile(String projectName, List<String> reportLines, Date fromDate, Date toDate) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("Team Average Mood Statistics Report - " + projectName.toUpperCase() +
-                " " + ReportUtil.timestampDateFormat.format(new Date()) + ".txt", false));
+                " " + ReportUtil.sdf.format(fromDate) + "-" + ReportUtil.sdf.format(toDate) + ".txt", false));
         for (String line : reportLines) {
             writer.append(line);
             writer.append("\n");
