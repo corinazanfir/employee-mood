@@ -16,18 +16,15 @@ public class HappiestProjectsReport {
 
     public void generateReport() {
 
-        //calculate average mood ratings by project and store them in a temporary map
-        Map<String, Double> tempMap = new HashMap<>();
-
         ReportUtil reportUtil = new ReportUtil();
         for (Project project : ProjectData.projectList) {
             Double averageRating = 0d;
             averageRating = reportUtil.getAverageMoodRatingForProject(project.getProjectName());
-            tempMap.put(project.getProjectName(), averageRating);
+            averageMoodRating.put(project.getProjectName(), averageRating);
         }
 
-        //sort temporary map by average rating descending order and push data to final map
-        averageMoodRating = tempMap.entrySet().stream()
+        //sort map in descending order by values
+        averageMoodRating = averageMoodRating.entrySet().stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -40,9 +37,5 @@ public class HappiestProjectsReport {
         for (Map.Entry entry : averageMoodRating.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
-
-
     }
-
-
 }
