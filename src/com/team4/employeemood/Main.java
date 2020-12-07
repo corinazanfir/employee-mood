@@ -58,7 +58,7 @@ public class Main {
 
 
         TeamAverageReport teamAverageReport = new TeamAverageReport();
-//        teamAverageReport.generateReport("project a", true, true);
+        teamAverageReport.generateReport("project a", true, false);
 
         HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
         happiestProjectsReport.generateReport();

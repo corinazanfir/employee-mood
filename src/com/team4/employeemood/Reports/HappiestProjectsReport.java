@@ -1,6 +1,5 @@
 package com.team4.employeemood.Reports;
 
-import com.team4.employeemood.MoodData;
 import com.team4.employeemood.Project;
 import com.team4.employeemood.ProjectData;
 
@@ -18,8 +17,7 @@ public class HappiestProjectsReport {
 
         ReportUtil reportUtil = new ReportUtil();
         for (Project project : ProjectData.projectList) {
-            Double averageRating = 0d;
-            averageRating = reportUtil.getAverageMoodRatingForProject(project.getProjectName());
+            double averageRating = reportUtil.getAverageMoodRatingForProject(project.getProjectName());
             averageMoodRating.put(project.getProjectName(), averageRating);
         }
 
