@@ -4,12 +4,13 @@ import com.team4.employeemood.FileImporter.FileImporter;
 import com.team4.employeemood.FileImporter.FileImporterObjectCreator;
 import com.team4.employeemood.FileImporter.FileImporterValidator;
 import com.team4.employeemood.FileImporter.Util;
-import com.team4.employeemood.Reports.HappiestProjectsReport;
 import com.team4.employeemood.Reports.ReportUtil;
-import com.team4.employeemood.Reports.TeamAverageReport;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Main {
 
@@ -50,16 +51,37 @@ public class Main {
 
 //      reusable methods for creating necessary report
 
-        System.out.println("Total number of team members: " + reportUtil.getTotalNumberOfTeamMembers("project a"));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//        Date date = sdf.parse("25/11/2020");
+//
+//        System.out.println(date);
+
+//        System.out.println("Total number of team members: " + reportUtil.getTotalNumberOfTeamMembers("project a"));
         System.out.println("Unique team member that have sent feedback: " + reportUtil.getNumberOfTeamMembersWithFeedbackSent("project a"));
-        System.out.println("Rating Average for user catalin.gheorghe@moodproject - " + reportUtil.getAverageRatingForUser("catalin.gheorghe@moodproject"));
+        System.out.println("Unique team member that have sent feedback: " + sdf.format(sdf.parse("25/11/2020")) + " to " + sdf.format(sdf.parse("15/12/2020")) + " is - "
+                + reportUtil.getNumberOfTeamMembersWithFeedbackSent("project a", sdf.parse("25/11/2020"), sdf.parse("15/12/2020")));
+
+
+        //        System.out.println("Rating Average for user catalin.gheorghe@moodproject - " + reportUtil.getAverageRatingForUser("catalin.gheorghe@moodproject"));
         System.out.println("Number of mood submissions for Project A - " + reportUtil.getNumberOfMoodSubmissionsByProject("project a"));
-        System.out.println("Total Rating Accumulator for Project A - " + reportUtil.getTotalRatingValueForSubmissionsByProject("project a"));
+        System.out.println("Number of mood submissions for Project A - " + sdf.format(sdf.parse("25/11/2020")) + " to " + sdf.format(sdf.parse("15/12/2020")) + " is - " + reportUtil.getNumberOfMoodSubmissionsByProject("project a", sdf.parse("25/11/2020"), sdf.parse("15/12/2020")));
 
-        TeamAverageReport teamAverageReport = new TeamAverageReport();
-        teamAverageReport.generateReport("project a", true, true);
+        System.out.println("Total Rating Accumulator for Project A for all records- " + reportUtil.getTotalRatingValueForSubmissionsByProject("project a"));
+        System.out.println("Total Rating Accumulator for Project A for records from - " + sdf.format(sdf.parse("19/11/2020")) + " to " + sdf.format(sdf.parse("19/12/2020")) + " is - "
+                + reportUtil.getTotalRatingValueForSubmissionsByProject("project a", sdf.parse("19/11/2020"), sdf.parse("19/11/2020")));
 
-        HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
-        happiestProjectsReport.generateReport(true,true);
+        System.out.println("Average Mood Rating for Project A - " + reportUtil.getAverageMoodRatingForProject("project a"));
+        System.out.println("Average Mood Rating for Project A for records from - " + sdf.format(sdf.parse("25/11/2020")) + " to " + sdf.format(sdf.parse("15/12/2020")) + " is - " + reportUtil.getAverageMoodRatingForProject("project a", sdf.parse("25/11/2020"), sdf.parse("15/12/2020")));
+
+//        TeamAverageReport teamAverageReport = new TeamAverageReport();
+//        teamAverageReport.generateReport("project a", true, true);
+//
+//        HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
+//        happiestProjectsReport.generateReport(true, true);
+
+        reportUtil.calculatePredefinedPeriods();
+        reportUtil.displayPredefinedPeriodsCalculation();
+
     }
 }
+

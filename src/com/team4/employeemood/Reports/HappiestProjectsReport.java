@@ -16,7 +16,6 @@ public class HappiestProjectsReport {
 
     public void generateReport(boolean writeToConsole, boolean writeToFile) throws IOException {
 
-
         precalculateDataForReport();
 
         List<String> reportLines = new ArrayList<>();
@@ -58,7 +57,6 @@ public class HappiestProjectsReport {
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
     }
 
-
     //used for testing
     public void displayMap() {
         System.out.println("\nDisplay Map key & values:");
@@ -82,6 +80,4 @@ public class HappiestProjectsReport {
             System.out.println(line);
         }
     }
-
-
 }
