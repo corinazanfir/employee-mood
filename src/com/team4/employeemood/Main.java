@@ -18,6 +18,7 @@ public class Main {
 
     public static void main(String[] args) throws ParseException, IOException {
 
+
         FileImporter fileImporter = new FileImporter();
 
         fileImporter.loadDataFromFile("MoodSampleFile.csv", Util.ImportTypeEnum.MOOD);
