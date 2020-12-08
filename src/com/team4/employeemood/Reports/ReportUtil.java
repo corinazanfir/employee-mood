@@ -22,6 +22,11 @@ public class ReportUtil {
     public static SimpleDateFormat timestampDateFormat = new SimpleDateFormat("dd.MM.yyyy hh-mm-ss");
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
+    public ReportUtil() {
+        //Determine dynamically calculated date ranges - current week / previous week / current month
+        calculatePredefinedPeriods();
+    }
+
     // DONE
 //    Trebuie să existe posibilitatea unui mini raport, care să spună în primă fază care este media generală
 //    a stării de spirit a echipei și numărul de intrări. Acest mini raport trebuie să afișeze într-un fișier
@@ -40,7 +45,53 @@ public class ReportUtil {
 
     public void calculatePredefinedPeriods() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        List currentWeekDateRange = new ArrayList();
+        currentWeekDateRange.add(getCurrentWeekStart());
+        currentWeekDateRange.add(getCurrentDate());
+        predefinedReportingPeriodsMap.put(PredefinedReportingPeriodsEnum.CurrentWeek.toString(), currentWeekDateRange);
+
+        List previousWeekDateRange = new ArrayList();
+        previousWeekDateRange.add(getPreviousWeekStart());
+        previousWeekDateRange.add(getPreviousWeekEnd());
+        predefinedReportingPeriodsMap.put(PredefinedReportingPeriodsEnum.PreviousWeek.toString(), previousWeekDateRange);
+
+        List currentMonthDateRange = new ArrayList();
+        currentMonthDateRange.add(getCurrentMonthStart());
+        currentMonthDateRange.add(getCurrentDate());
+        predefinedReportingPeriodsMap.put(PredefinedReportingPeriodsEnum.CurrentMonth.toString(), currentMonthDateRange);
+    }
+
+    public void displayPredefinedPeriodsCalculation() {
+
+        System.out.println("\nDynamically calculated time periods are:");
+        for (Map.Entry<String, List<Date>> entry : predefinedReportingPeriodsMap.entrySet()) {
+            String key = entry.getKey();
+            System.out.println(key);
+            System.out.println("    from " + sdf.format(entry.getValue().get(0)) + " to " + sdf.format(entry.getValue().get(1)));
+        }
+    }
+
+    public Date getPredefinedPeriodStartDate(PredefinedReportingPeriodsEnum predefinedPeriod) {
+        for (Map.Entry<String, List<Date>> entry : predefinedReportingPeriodsMap.entrySet()) {
+            String key = entry.getKey();
+            if (key.equalsIgnoreCase(predefinedPeriod.toString())) {
+                return entry.getValue().get(0);
+            }
+        }
+        return null;
+    }
+
+    public Date getPredefinedPeriodEndDate(PredefinedReportingPeriodsEnum predefinedPeriod) {
+        for (Map.Entry<String, List<Date>> entry : predefinedReportingPeriodsMap.entrySet()) {
+            String key = entry.getKey();
+            if (key.equalsIgnoreCase(predefinedPeriod.toString())) {
+                return entry.getValue().get(1);
+            }
+        }
+        return null;
+    }
+
+    public Date getCurrentDate() {
 
         // get today and clear time of day
         Calendar cal = Calendar.getInstance();
@@ -50,44 +101,67 @@ public class ReportUtil {
         cal.clear(Calendar.MILLISECOND);
 
         Date currentDate = cal.getTime();
+        return currentDate;
+    }
 
-        // get start of this week in milliseconds
+    public Date getCurrentWeekStart() {
+
+        // get today and clear time of day
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+        cal.clear(Calendar.MINUTE);
+        cal.clear(Calendar.SECOND);
+        cal.clear(Calendar.MILLISECOND);
+
         cal.setFirstDayOfWeek(Calendar.MONDAY);
         cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
 
         Date currentWeekStart = cal.getTime();
 
-        List currentWeekDateRange = new ArrayList();
-        currentWeekDateRange.add(currentWeekStart);
-        currentWeekDateRange.add(currentDate);
+        return currentWeekStart;
+    }
 
-        predefinedReportingPeriodsMap.put(PredefinedReportingPeriodsEnum.CurrentWeek.toString(), currentWeekDateRange);
+    public Date getPreviousWeekStart() {
 
+        // get today and clear time of day
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+        cal.clear(Calendar.MINUTE);
+        cal.clear(Calendar.SECOND);
+        cal.clear(Calendar.MILLISECOND);
+
+        cal.setFirstDayOfWeek(Calendar.MONDAY);
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        cal.add(Calendar.DATE, -7);
+        Date previousWeekStart = cal.getTime();
+
+        return previousWeekStart;
+    }
+
+    public Date getPreviousWeekEnd() {
+
+        // get today and clear time of day
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+        cal.clear(Calendar.MINUTE);
+        cal.clear(Calendar.SECOND);
+        cal.clear(Calendar.MILLISECOND);
+
+        cal.setFirstDayOfWeek(Calendar.MONDAY);
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
         cal.add(Calendar.DATE, -1);
         Date previousWeekEnd = cal.getTime();
 
-        cal.add(Calendar.DATE, -6);
-        Date previousWeekStart = cal.getTime();
-
-        List previousWeekDateRange = new ArrayList();
-        previousWeekDateRange.add(previousWeekStart);
-        previousWeekDateRange.add(previousWeekEnd);
-
-        predefinedReportingPeriodsMap.put(PredefinedReportingPeriodsEnum.PreviousWeek.toString(), previousWeekDateRange);
-
+        return previousWeekEnd;
     }
 
+    public Date getCurrentMonthStart() {
 
-    public void displayPredefinedPeriodsCalculation() {
+        Calendar cal = Calendar.getInstance();   // this takes current date
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        Date currentMonthStart = cal.getTime();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-        System.out.println("\nCalculated time periods are:");
-        for (Map.Entry<String, List<Date>> entry : predefinedReportingPeriodsMap.entrySet()) {
-            String key = entry.getKey();
-            System.out.println(key);
-            System.out.println("    from " + sdf.format(entry.getValue().get(0)) + " to " + sdf.format(entry.getValue().get(1)));
-        }
+        return currentMonthStart;
     }
 
 
@@ -111,6 +185,11 @@ public class ReportUtil {
             }
         }
         return counter;
+    }
+
+    public int getTotalNumberOfTeamMembers(String projectName, PredefinedReportingPeriodsEnum predefinedPeriod) {
+
+        return getTotalNumberOfTeamMembers(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
     public int getNumberOfTeamMembersWithFeedbackSent(String projectName) {
@@ -149,6 +228,11 @@ public class ReportUtil {
         return uniqueUsers.size();
     }
 
+    public int getNumberOfTeamMembersWithFeedbackSent(String projectName, PredefinedReportingPeriodsEnum predefinedPeriod) {
+
+        return getNumberOfTeamMembersWithFeedbackSent(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
+    }
+
     public double getAverageRatingForUser(String username) {
         int countMoodSubmissions = 0;
         int ratingAcc = 0;
@@ -177,6 +261,10 @@ public class ReportUtil {
         }
         result = Double.parseDouble(df2.format((double) ratingAcc / countMoodSubmissions));
         return result;
+    }
+
+    public double getAverageRatingForUser(String username, PredefinedReportingPeriodsEnum predefinedPeriod) {
+        return getAverageRatingForUser(username, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
     public int getNumberOfMoodSubmissionsByProject(String projectName) {
@@ -211,6 +299,10 @@ public class ReportUtil {
         return counter;
     }
 
+    public int getNumberOfMoodSubmissionsByProject(String projectName, PredefinedReportingPeriodsEnum predefinedPeriod) {
+        return getNumberOfMoodSubmissionsByProject(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
+    }
+
     public int getTotalRatingValueForSubmissionsByProject(String projectName) {
 
         int totalRatingAcc = 0;
@@ -241,6 +333,10 @@ public class ReportUtil {
             }
         }
         return totalRatingAcc;
+    }
+
+    public int getTotalRatingValueForSubmissionsByProject(String projectName, PredefinedReportingPeriodsEnum predefinedPeriod) {
+        return getTotalRatingValueForSubmissionsByProject(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
     public String getManagerByProject(String projectName) {
@@ -281,6 +377,10 @@ public class ReportUtil {
             }
         }
         return result;
+    }
+
+    public Double getAverageMoodRatingForProject(String projectName, PredefinedReportingPeriodsEnum predefinedPeriod) {
+        return getAverageMoodRatingForProject(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 }
 

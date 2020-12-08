@@ -42,6 +42,11 @@ public class HappiestProjectsReport {
 
     }
 
+    public void generateReport(boolean writeToConsole, boolean writeToFile, ReportUtil.PredefinedReportingPeriodsEnum predefinedPeriod) throws IOException {
+        ReportUtil ru = new ReportUtil();
+        generateReport(writeToConsole, writeToFile, ru.getPredefinedPeriodStartDate(predefinedPeriod), ru.getPredefinedPeriodEndDate(predefinedPeriod));
+    }
+
     private void precalculateDataForReport(Date fromDate, Date toDate) {
         ReportUtil reportUtil = new ReportUtil();
         for (Project project : ProjectData.projectList) {

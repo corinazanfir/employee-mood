@@ -75,14 +75,28 @@ public class Main {
         System.out.println("Average Mood Rating for Project A - " + reportUtil.getAverageMoodRatingForProject("project a"));
         System.out.println("Average Mood Rating for Project A for records from - " + sdf.format(sdf.parse("25/11/2020")) + " to " + sdf.format(sdf.parse("15/12/2020")) + " is - " + reportUtil.getAverageMoodRatingForProject("project a", sdf.parse("25/11/2020"), sdf.parse("15/12/2020")));
 
+
+        //REPORTING
         TeamAverageReport teamAverageReport = new TeamAverageReport();
+        //with custom date range
         teamAverageReport.generateReport("project a", true, true, sdf.parse("15/11/2020"), sdf.parse("05/12/2020"));
 
+        //with predefined date range
+        teamAverageReport.generateReport("project a", true, true, ReportUtil.PredefinedReportingPeriodsEnum.CurrentWeek);
+
         HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
+        //with custom date range
         happiestProjectsReport.generateReport(true, true, sdf.parse("15/11/2020"), sdf.parse("05/12/2020"));
+        //with predefined date range
+        happiestProjectsReport.generateReport(true, true, ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth);
 
         reportUtil.calculatePredefinedPeriods();
         reportUtil.displayPredefinedPeriodsCalculation();
+
+        //testing fore predefined reporting periods
+//        System.out.println(reportUtil.getPredefinedPeriodStartDate(ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth));
+//        System.out.println(reportUtil.getPredefinedPeriodEndDate(ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth));
+
 
     }
 }

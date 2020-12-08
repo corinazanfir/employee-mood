@@ -41,6 +41,11 @@ public class TeamAverageReport {
             writeToFile(projectName, reportLines, fromDate, toDate);
         }
     }
+    public void generateReport(String projectName, boolean writeToConsole, boolean writeToFile, ReportUtil.PredefinedReportingPeriodsEnum predefinedPeriod) throws IOException {
+        ReportUtil ru = new ReportUtil();
+        generateReport(projectName,writeToConsole, writeToFile,  ru.getPredefinedPeriodStartDate(predefinedPeriod),ru.getPredefinedPeriodEndDate(predefinedPeriod));
+    }
+
 
     private void writeToFile(String projectName, List<String> reportLines, Date fromDate, Date toDate) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("Team Average Mood Statistics Report - " + projectName.toUpperCase() +
