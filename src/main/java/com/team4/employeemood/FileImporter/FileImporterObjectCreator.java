@@ -52,7 +52,7 @@ public class FileImporterObjectCreator {
                 user.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(matcher.group(3)));
             } catch (ParseException e) {
                 e.printStackTrace();
-            };
+            }
             try {
                 user.setEmploymentDate(new SimpleDateFormat("dd/MM/yyyy").parse( matcher.group(7)));
             } catch (ParseException e) {

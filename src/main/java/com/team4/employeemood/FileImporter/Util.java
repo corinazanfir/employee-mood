@@ -6,7 +6,7 @@ public class Util {
     public enum ImportTypeEnum {
         MOOD,
         USER,
-        PROJECT;
+        PROJECT
     }
 
     final static String userImportPattern = "(.*);(.*);(([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9]?[0-9][0-9]));(([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9]?[0-9][0-9]));(.*)";

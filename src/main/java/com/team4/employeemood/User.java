@@ -1,7 +1,9 @@
 package com.team4.employeemood;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+//@Entity
 public class User {
     private String firstName;
     private String lastName;

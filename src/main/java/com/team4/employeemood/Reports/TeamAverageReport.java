@@ -14,7 +14,7 @@ public class TeamAverageReport {
 //    “General team mood is ..., ... employees have given mood information” și să pună media, care poate fi un
 //    număr rațional cu două zecimale, plus numărul de angajați care au dat informații.
 
-    public void generateReport(String projectName, boolean writeToConsole, boolean writeToFile, Date fromDate, Date toDate) throws IOException {
+    public List<String> generateReport(String projectName, boolean writeToConsole, boolean writeToFile, Date fromDate, Date toDate) throws IOException {
 
         ReportUtil reportUtil = new ReportUtil();
 
@@ -23,8 +23,8 @@ public class TeamAverageReport {
 
         reportLines.add(title);
         reportLines.add("-".repeat(title.length()));
-        reportLines.add("Reporting period: " + ReportUtil.sdf.format(fromDate) + " to " + ReportUtil.sdf.format(toDate));
-        reportLines.add("General team mood rating is - " + ReportUtil.df2.format(reportUtil.getAverageMoodRatingForProject(projectName, fromDate, toDate)));
+        reportLines.add("Reporting period: from " + ReportUtil.sdf.format(fromDate) + " to " + ReportUtil.sdf.format(toDate));
+        reportLines.add("General team mood rating is - " + ReportUtil.df2.format(reportUtil.getAverageMoodRatingForProject(projectName, fromDate, toDate))+" out of 5");
         reportLines.add("Total number of project members - " + reportUtil.getTotalNumberOfTeamMembers(projectName, fromDate, toDate));
         reportLines.add("Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName, fromDate, toDate));
         reportLines.add("Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName, fromDate, toDate));
@@ -40,10 +40,16 @@ public class TeamAverageReport {
         if (writeToFile == true) {
             writeToFile(projectName, reportLines, fromDate, toDate);
         }
+
+        return reportLines;
+
     }
-    public void generateReport(String projectName, boolean writeToConsole, boolean writeToFile, ReportUtil.PredefinedReportingPeriodsEnum predefinedPeriod) throws IOException {
+
+    public List<String> generateReport(String projectName, boolean writeToConsole, boolean writeToFile, ReportUtil.PredefinedReportingPeriodsEnum predefinedPeriod) throws IOException {
         ReportUtil ru = new ReportUtil();
-        generateReport(projectName,writeToConsole, writeToFile,  ru.getPredefinedPeriodStartDate(predefinedPeriod),ru.getPredefinedPeriodEndDate(predefinedPeriod));
+        List<String> reportLines = generateReport(projectName, writeToConsole, writeToFile, ru.getPredefinedPeriodStartDate(predefinedPeriod), ru.getPredefinedPeriodEndDate(predefinedPeriod));
+
+        return reportLines;
     }
 
 

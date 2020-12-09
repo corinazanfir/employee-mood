@@ -58,17 +58,17 @@ public class EmployeemoodApplication {
 //      reusable methods for creating necessary report
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//        Date date = sdf.parse("25/11/2020");
-//
-//        System.out.println(date);
+        //Date date = sdf.parse("25/11/2020");
 
-//        System.out.println("Total number of team members: " + reportUtil.getTotalNumberOfTeamMembers("project a"));
+        //System.out.println(date);
+
+        //System.out.println("Total number of team members: " + reportUtil.getTotalNumberOfTeamMembers("project a"));
         System.out.println("Unique team member that have sent feedback: " + reportUtil.getNumberOfTeamMembersWithFeedbackSent("project a"));
         System.out.println("Unique team member that have sent feedback: " + sdf.format(sdf.parse("25/11/2020")) + " to " + sdf.format(sdf.parse("15/12/2020")) + " is - "
                 + reportUtil.getNumberOfTeamMembersWithFeedbackSent("project a", sdf.parse("25/11/2020"), sdf.parse("15/12/2020")));
 
 
-        //        System.out.println("Rating Average for user catalin.gheorghe@moodproject - " + reportUtil.getAverageRatingForUser("catalin.gheorghe@moodproject"));
+        // System.out.println("Rating Average for user catalin.gheorghe@moodproject - " + reportUtil.getAverageRatingForUser("catalin.gheorghe@moodproject"));
         System.out.println("Number of mood submissions for Project A - " + reportUtil.getNumberOfMoodSubmissionsByProject("project a"));
         System.out.println("Number of mood submissions for Project A - " + sdf.format(sdf.parse("25/11/2020")) + " to " + sdf.format(sdf.parse("15/12/2020")) + " is - " + reportUtil.getNumberOfMoodSubmissionsByProject("project a", sdf.parse("25/11/2020"), sdf.parse("15/12/2020")));
 
@@ -98,8 +98,8 @@ public class EmployeemoodApplication {
         reportUtil.displayPredefinedPeriodsCalculation();
 
         //testing fore predefined reporting periods
-//        System.out.println(reportUtil.getPredefinedPeriodStartDate(ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth));
-//        System.out.println(reportUtil.getPredefinedPeriodEndDate(ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth));
+        //System.out.println(reportUtil.getPredefinedPeriodStartDate(ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth));
+        //System.out.println(reportUtil.getPredefinedPeriodEndDate(ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth));
 
     }
 

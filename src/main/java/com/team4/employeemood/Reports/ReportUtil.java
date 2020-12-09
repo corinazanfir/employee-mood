@@ -12,7 +12,7 @@ public class ReportUtil {
         CurrentWeek,
         PreviousWeek,
         CurrentMonth,
-        PreviousMonth;
+        PreviousMonth
     }
 
     Map<String, List<Date>> predefinedReportingPeriodsMap = new HashMap<>();
@@ -180,7 +180,7 @@ public class ReportUtil {
 
         int counter = 0;
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName) && !user.getEmploymentDate().before(fromDate) && !user.getEmploymentDate().after(toDate)) {
+            if (user.getProjectName().equalsIgnoreCase(projectName) && user.getEmploymentDate().before(fromDate) && !user.getEmploymentDate().after(toDate)) {
                 counter++;
             }
         }
