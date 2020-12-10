@@ -319,14 +319,14 @@ public class ReportUtil {
         return totalRatingAcc;
     }
 
-    public int getTotalRatingValueForSubmissionsByProject(String projectName, Date fromDaate, Date toDate) {
+    public int getTotalRatingValueForSubmissionsByProject(String projectName, Date fromDate, Date toDate) {
 
         int totalRatingAcc = 0;
 
         for (User user : UserData.userList) {
             if (user.getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUsername().equalsIgnoreCase(user.getUsername()) && !mood.getDate().before(fromDaate) && !mood.getDate().after(toDate)) {
+                    if (mood.getUsername().equalsIgnoreCase(user.getUsername()) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         totalRatingAcc = totalRatingAcc + mood.getDayRating();
                     }
                 }

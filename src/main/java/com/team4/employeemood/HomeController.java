@@ -19,11 +19,11 @@ public class HomeController {
                 "font-family: Arial;\">" +
                 "<h1>Employee Mood Project</h1></br>" +
                 "</div>" +
-                "<h4>Please select the desired report that you wish to generate<h4></br>" +
+                "<h4>Please select the desired report you wish to generate<h4></br>" +
                 "<table>" +
                 "<tr>" +
                 "<td>" +
-                "<form action=\"/api/v1/TeamAverageReport\">\n" +
+                "<form action=\"/api/v1/TeamAverageReport?projectName=project b&fromDate=10/11/2020&toDate=15/12/2020\">\n" +
                 "    <input type=\"submit\" value=\"Team Mood Average Report\" />\n" +
                 "</form>" +
                 "</td>" +

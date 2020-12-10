@@ -32,7 +32,8 @@ public class FileImporterValidator {
                 patternCheck(string, importTypeEnum);
                 recordCounter++;
             }
-            System.out.println("[Records processed: " + recordCounter + " ]");
+            System.out.println(("-").repeat(150)+"\n[Records processed: " + recordCounter + " ]");
+
         }
     }
 

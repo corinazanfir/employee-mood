@@ -24,7 +24,6 @@ public class User {
     }
 
     public User(){
-        //TO DO
     }
 
     public String getFirstName() {

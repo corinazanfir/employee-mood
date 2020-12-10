@@ -1,8 +1,8 @@
 Day rating;today's comment; previousDayChange; Improvement Idea; Date; Username - table header that is ignored
-1;comment76;previousDayChange;improvementIdea;02/12/2020;catalin.gheorghe@moodproject
-3;comment11;previousDayChange2;improvementIdea2;01/12/2020;catalin.gheorghe@moodproject
-2;comment99;previousDayChange3;improvementIdea3;30/11/2020;catalin.gheorghe@moodproject
-4;comment66;previousDayChange4;improvementIdea4;29/11/2020;catalin.gheorghe@moodproject
+1;comment76;previousDayChange;improvementIdea;10/12/2020;catalin.gheorghe@moodproject
+3;comment11;previousDayChange2;improvementIdea2;09/12/2020;catalin.gheorghe@moodproject
+2;comment99;previousDayChange3;improvementIdea3;07/11/2020;catalin.gheorghe@moodproject
+4;comment66;previousDayChange4;improvementIdea4;12/11/2020;catalin.gheorghe@moodproject
 4;comment99;previousDayChange;improvementIdea;28/11/2020;catalin.gheorghe@moodproject
 4;comment85;previousDayChange5;improvementIdea5;27/11/2020;catalin.gheorghe@moodproject
 2;comment87;previousDayChange6;improvementIdea6;26/11/2020;catalin.gheorghe@moodproject
@@ -32,7 +32,7 @@ Day rating;today's comment; previousDayChange; Improvement Idea; Date; Username 
 5;comment18;previousDayChange24;improvementIdea24;02/11/2020;catalin.gheorghe@moodproject
 3;comment40;previousDayChange25;improvementIdea25;02/12/2020;ana.anastasescu@moodproject
 1;comment42;previousDayChange;improvementIdea;01/12/2020;ana.anastasescu@moodproject
-1;comment87;previousDayChange26;improvementIdea26;30/11/2020;ana.anastasescu@moodproject
+1;comment87;previousDayChange26;improvementIdea26;11/12/2020;ana.anastasescu@moodproject
 4;comment57;previousDayChange27;improvementIdea27;29/11/2020;ana.anastasescu@moodproject
 1;comment47;previousDayChange28;improvementIdea28;28/11/2020;ana.anastasescu@moodproject
 1;comment27;previousDayChange;improvementIdea;27/11/2020;ana.anastasescu@moodproject
@@ -96,7 +96,7 @@ Day rating;today's comment; previousDayChange; Improvement Idea; Date; Username 
 4;comment84;previousDayChange72;improvementIdea72;01/12/2020;ana.anastasescu@moodproject
 2;comment75;previousDayChange73;improvementIdea73;30/11/2020;ana.anastasescu@moodproject
 5;comment93;previousDayChange;improvementIdea;29/11/2020;ana.anastasescu@moodproject
-1;comment88;previousDayChange74;improvementIdea74;28/11/2020;ana.anastasescu@moodproject
+4;comment88;previousDayChange74;improvementIdea74;28/11/2020;ana.anastasescu@moodproject
 2;comment34;previousDayChange75;improvementIdea75;27/11/2020;ana.anastasescu@moodproject
 2;comment9;previousDayChange76;improvementIdea76;26/11/2020;ana.anastasescu@moodproject
 1;comment30;previousDayChange;improvementIdea;25/11/2020;ana.anastasescu@moodproject

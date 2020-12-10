@@ -15,6 +15,28 @@ public class FileImporter {
     //# This class is designed ONLY to read data from CSV files and populate the data in a map.
     public static Map<Util.ImportTypeEnum, List<String>> importRawDataMap = new HashMap<>();
 
+    public List<String> listFilesFromFolder(File folder) {
+
+        List<String> filePathList = new ArrayList<>();
+
+        for (File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                listFilesFromFolder(fileEntry);
+            } else {
+                filePathList.add(fileEntry.getPath());
+            }
+        }
+        return filePathList;
+    }
+
+    public void loadDataFromFolder(String path, Util.ImportTypeEnum importTypeEnum) {
+
+        List<String> filePathList = listFilesFromFolder(new File(path));
+
+        for (String pathString : filePathList) {
+            loadDataFromFile(pathString, importTypeEnum);
+        }
+    }
     public void loadDataFromFile(String filePath, Util.ImportTypeEnum typeOfImport) {
         BufferedReader reader;
         try {
@@ -43,17 +65,20 @@ public class FileImporter {
     }
 
     //Method overload to be able to filter based an import type.
-    public void displayRecordsFromRawDataMap(Util.ImportTypeEnum importType) {
 
+    public void displayRecordsFromRawDataMap(Util.ImportTypeEnum importType) {
+        int counter = 0;
         System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
         for (Util.ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
             if (importTypeEnum.equals(importType)) {
-                System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
+                System.out.println("Display raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
                 for (String value : importRawDataMap.get(importTypeEnum)) {
                     System.out.println("value:" + value);
+                    counter++;
                 }
             }
         }
+        System.out.println(("-").repeat(50) + "\nTotal number of records: " + counter + "\n");
     }
 
     public void displayRecordsFromRawDataMap() {
@@ -67,29 +92,6 @@ public class FileImporter {
             }
         }
         System.out.println(("-").repeat(50) + "\nTotal number of records: " + counter + "\n");
-    }
-
-    public void loadDataFromFolder(String path, Util.ImportTypeEnum importTypeEnum) {
-
-        List<String> filePathList = listFilesForFolder(new File(path));
-
-        for (String pathString : filePathList) {
-            loadDataFromFile(pathString, importTypeEnum);
-        }
-    }
-
-    public List<String> listFilesForFolder(File folder) {
-
-        List<String> filePathList = new ArrayList<>();
-
-        for (File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry);
-            } else {
-                filePathList.add(fileEntry.getPath());
-            }
-        }
-        return filePathList;
     }
 }
 
