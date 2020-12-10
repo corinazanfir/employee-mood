@@ -21,7 +21,7 @@ public class TeamMoodAverageReportController {
     @GetMapping("/api/v1/TeamAverageReport")
     @ResponseBody
     @ResponseStatus()
-    public String teamAverageReport(@RequestParam(required = true) String projectName, @RequestParam String fromDate, @RequestParam String toDate) throws IOException, ParseException {
+    public String teamAverageReport(@RequestParam String projectName, @RequestParam String fromDate, @RequestParam String toDate) throws IOException, ParseException {
         TeamAverageReport teamAverageReport = new TeamAverageReport();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

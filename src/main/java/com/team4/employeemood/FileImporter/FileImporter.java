@@ -1,6 +1,7 @@
 package com.team4.employeemood.FileImporter;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,18 +57,41 @@ public class FileImporter {
     }
 
     public void displayRecordsFromRawDataMap() {
-
+        int counter = 0;
         System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
         for (Util.ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
             System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
             for (String value : importRawDataMap.get(importTypeEnum)) {
                 System.out.println("value:" + value);
+                counter++;
             }
         }
+        System.out.println(("-").repeat(50) + "\nTotal number of records: " + counter + "\n");
+    }
+
+    public void loadDataFromFolder(String path, Util.ImportTypeEnum importTypeEnum) {
+
+        List<String> filePathList = listFilesForFolder(new File(path));
+
+        for (String pathString : filePathList) {
+            loadDataFromFile(pathString, importTypeEnum);
+        }
+    }
+
+    public List<String> listFilesForFolder(File folder) {
+
+        List<String> filePathList = new ArrayList<>();
+
+        for (File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                listFilesForFolder(fileEntry);
+            } else {
+                filePathList.add(fileEntry.getPath());
+            }
+        }
+        return filePathList;
     }
 }
-
-
 
 
 
