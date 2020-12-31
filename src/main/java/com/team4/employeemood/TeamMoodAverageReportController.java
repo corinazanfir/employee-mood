@@ -26,10 +26,10 @@ public class TeamMoodAverageReportController {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        Date fromDateParsed = sdf.parse(fromDate);
-        Date toDateParsed = sdf.parse(toDate);
+        Date fromDateParsed = sdf.parse("07/12/2020");
+        Date toDateParsed = sdf.parse("10/12/2020");
 
-        List<String> reportLines = teamAverageReport.generateReport(projectName, false, false, fromDateParsed, toDateParsed); //ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth);
+        List<String> reportLines = teamAverageReport.generateReport("project a", false, false, fromDateParsed, toDateParsed); //ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth);
 
         StringBuffer stringBuffer = new StringBuffer();
         reportLines.forEach(line -> stringBuffer.append(line + "</br>"));

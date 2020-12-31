@@ -2,6 +2,7 @@ package com.team4.employeemood;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -23,7 +24,7 @@ public class HomeController {
                 "<table>" +
                 "<tr>" +
                 "<td>" +
-                "<form action=\"/api/v1/TeamAverageReport?projectName=project b&fromDate=10/11/2020&toDate=15/12/2020\">\n" +
+                "<form action=\"/api/v1/TeamAverageReport\">\n" +
                 "    <input type=\"submit\" value=\"Team Mood Average Report\" />\n" +
                 "</form>" +
                 "</td>" +
@@ -34,4 +35,5 @@ public class HomeController {
                 "</td></tr></table>";
 
     }
+
 }

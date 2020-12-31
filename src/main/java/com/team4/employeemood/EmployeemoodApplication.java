@@ -55,8 +55,8 @@ public class EmployeemoodApplication {
         TeamAverageReport teamAverageReport = new TeamAverageReport();
 
         //with custom date range
-//        System.out.println();
-//        teamAverageReport.generateReport("project a", true, true, sdf.parse("15/11/2020"),sdf.parse("05/12/2020"));
+        System.out.println();
+        teamAverageReport.generateReport("project a", true, true, sdf.parse("15/11/2020"),sdf.parse("05/12/2020"));
 
         //with predefined date range
         System.out.println();
@@ -69,7 +69,7 @@ public class EmployeemoodApplication {
         //with predefined date range
         happiestProjectsReport.generateReport(true, true, ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth);
 
-
+        //Dynamically calculated timeframes
         ReportUtil reportUtil = new ReportUtil();
         reportUtil.calculatePredefinedPeriods();
         reportUtil.displayPredefinedPeriodsCalculation();
