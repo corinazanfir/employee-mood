@@ -1,0 +1,10 @@
+---------------[ Top Projects by Mood Rating ]---------------
+Reporting period: 01-12-2020 to 10-12-2020
+The project with the highest employee mood rating are: 
+
+Project Name | Average rating value
+-----------------------------------
+Project B    | 5
+Project C    | 4
+Project A    | 2.43
+Project D    | 1

@@ -1,0 +1,9 @@
+----------[ Mood statistics for PROJECT A ]----------
+-----------------------------------------------------
+Reporting period: from 28-12-2020 to 31-12-2020
+General team mood rating is - NaN out of 5
+Total number of project members - 6
+Number of users that have provided feedback - 0
+Number of feedback submissions received - 0
+Current project manager - Ion Preda
+-----------------------------------------------------
