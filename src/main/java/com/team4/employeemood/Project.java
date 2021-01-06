@@ -1,22 +1,32 @@
 package com.team4.employeemood;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.*;
 
-public class Project {
-    String projectName;
-    Integer projectBudget;
-    Date projectDueDate;
-    String projectManager;
 
-    public Project(String projectName, int projectBudget, Date projectDueDate, String projectManager) {
+@Entity
+public class Project {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String projectName;
+    private Integer projectBudget;
+    private Date projectDueDate;
+    private String projectManager;
+
+    public Project(String projectName, int projectBudget, Date projectDueDate, String projectManager, Long id) {
         this.projectName = projectName;
         this.projectBudget = projectBudget;
         this.projectDueDate = projectDueDate;
         this.projectManager = projectManager;
+        this.id = id;
     }
 
-    public Project(){
-
+    public Project() {
     }
 
     public String getProjectName() {

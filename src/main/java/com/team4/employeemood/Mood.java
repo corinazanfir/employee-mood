@@ -1,14 +1,16 @@
 package com.team4.employeemood;
 
-import com.team4.employeemood.Exceptions.PatternNotMatchingException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+@Entity
 public class Mood {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private Integer dayRating;
     private String comment;
@@ -17,13 +19,14 @@ public class Mood {
     private Date date;
     private String username;
 
-    public Mood(Integer dayRating, String comment, String previousDayChange, String improvementIdea, Date date, String username) {
+    public Mood(Integer dayRating, String comment, String previousDayChange, String improvementIdea, Date date, String username, Long id) {
         this.dayRating = dayRating;
         this.comment = comment;
         this.previousDayChange = previousDayChange;
         this.improvementIdea = improvementIdea;
         this.date = date;
         this.username = username;
+        this.id = id;
 
         MoodData.moodList.add(this);
     }
@@ -90,5 +93,13 @@ public class Mood {
                 ", date=" + date +
                 ", username='" + username + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

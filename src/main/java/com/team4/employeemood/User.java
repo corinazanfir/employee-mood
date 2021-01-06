@@ -1,10 +1,17 @@
 package com.team4.employeemood;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
-//@Entity
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String firstName;
     private String lastName;
     private Date birthDate;
@@ -12,18 +19,19 @@ public class User {
     private String projectName;
     private String username;
 
-    public User(String firstName, String lastName, Date birthDate, Date employmentDate, String projectName) {
+    public User(String firstName, String lastName, Date birthDate, Date employmentDate, String projectName, Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.employmentDate = employmentDate;
         this.projectName = projectName;
-        this.username = firstName.toLowerCase()+"."+lastName.toLowerCase()+"@moodproject";
+        this.username = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@moodproject";
+        this.id = id;
 
         UserData.userList.add(this);
     }
 
-    public User(){
+    public User() {
     }
 
     public String getFirstName() {
@@ -66,8 +74,8 @@ public class User {
         this.projectName = projectName;
     }
 
-    public void setUsername(){
-        this.username= this.getFirstName().toLowerCase()+"."+this.getLastName().toLowerCase()+"@moodproject";
+    public void setUsername() {
+        this.username = this.getFirstName().toLowerCase() + "." + this.getLastName().toLowerCase() + "@moodproject";
     }
 
     public String getUsername() {
@@ -84,5 +92,17 @@ public class User {
                 ", projectName='" + projectName + '\'' +
                 ", username='" + username + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
