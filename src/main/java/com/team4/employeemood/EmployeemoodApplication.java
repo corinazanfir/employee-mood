@@ -28,8 +28,6 @@ public class EmployeemoodApplication {
     public static void main(String[] args) throws IOException, ParseException {
         SpringApplication.run(EmployeemoodApplication.class, args);
 
-
-
 //        FileImporter fileImporter = new FileImporter();
 //
 //        fileImporter.loadDataFromFile("SampleData/MoodSampleFile.csv", Util.ImportTypeEnum.MOOD);
@@ -81,8 +79,6 @@ public class EmployeemoodApplication {
 //        ReportUtil reportUtil = new ReportUtil();
 //        reportUtil.calculatePredefinedPeriods();
 //        reportUtil.displayPredefinedPeriodsCalculation();
-
-
 
     }
 }

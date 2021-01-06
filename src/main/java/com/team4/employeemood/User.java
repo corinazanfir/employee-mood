@@ -14,7 +14,7 @@ public class User {
 
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private Date birthdate;
     private Date employmentDate;
     private String projectName;
     private String username;
@@ -22,7 +22,7 @@ public class User {
     public User(String firstName, String lastName, Date birthDate, Date employmentDate, String projectName, Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.birthdate = birthdate;
         this.employmentDate = employmentDate;
         this.projectName = projectName;
         this.username = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@moodproject";
@@ -51,11 +51,11 @@ public class User {
     }
 
     public Date getBirthDate() {
-        return birthDate;
+        return birthdate;
     }
 
     public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+        this.birthdate = birthDate;
     }
 
     public Date getEmploymentDate() {
@@ -87,7 +87,7 @@ public class User {
         return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthDate=" + birthdate +
                 ", employmentDate=" + employmentDate +
                 ", projectName='" + projectName + '\'' +
                 ", username='" + username + '\'' +
