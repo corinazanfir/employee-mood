@@ -15,7 +15,6 @@ public class Mood {
     private String previousDayChange;
     private String improvementIdea;
     private Date date;
-//    private String username; //not required anymore as we are using user_id to create a relationship between user and mood
 
     @ManyToOne()
     @JoinColumn(name="userId")
@@ -78,26 +77,18 @@ public class Mood {
         this.date = date;
     }
 
-//    public String getUsername() {
-//        return username;
-//    }
-
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
-
     @Override
     public String toString() {
         return "Mood{" +
-                "dayRating=" + dayRating +
+                "id=" + id +
+                ", dayRating=" + dayRating +
                 ", comment='" + comment + '\'' +
                 ", previousDayChange='" + previousDayChange + '\'' +
                 ", improvementIdea='" + improvementIdea + '\'' +
                 ", date=" + date +
-//                ", username='" + username + '\'' +
+                ", user=" + user +
                 '}';
     }
-
 
     public User getUser() {
         return user;

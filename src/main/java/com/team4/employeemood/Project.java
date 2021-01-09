@@ -19,16 +19,6 @@ public class Project {
     @JoinColumn(name="project_manager_id")
     private User user;
 
-//    private String projectManager;
-
-    public Project(String projectName, int projectBudget, Date projectDueDate, String projectManager, Long id) {
-        this.projectName = projectName;
-        this.projectBudget = projectBudget;
-        this.projectDueDate = projectDueDate;
-//        this.projectManager = projectManager;
-        this.id = id;
-    }
-
     public Project() {
     }
 
@@ -56,13 +46,6 @@ public class Project {
         this.projectDueDate = projectDueDate;
     }
 
-//    public String getProjectManager() {
-//        return projectManager;
-//    }
-
-//    public void setProjectManager(String projectManager) {
-//        this.projectManager = projectManager;
-//    }
 
 
     public Long getId() {
@@ -77,14 +60,6 @@ public class Project {
         this.projectBudget = projectBudget;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
     @Override
     public String toString() {
         return "Project{" +
@@ -92,7 +67,7 @@ public class Project {
                 ", projectName='" + projectName + '\'' +
                 ", projectBudget=" + projectBudget +
                 ", projectDueDate=" + projectDueDate +
-//                ", user=" + user +
+                ", user=" + user +
                 '}';
     }
 }

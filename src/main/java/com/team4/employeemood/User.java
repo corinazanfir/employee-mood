@@ -25,20 +25,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Mood> moods = new ArrayList<>();
 
-//    private String username;
-
-    public User(String firstName, String lastName, Date birthDate, Date employmentDate, String projectName, Long id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthdate = birthdate;
-        this.employmentDate = employmentDate;
-//        this.projectName = projectName;
-//        this.username = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@moodproject";
-        this.id = this.id;
-
-        UserData.userList.add(this);
-    }
-
     public User() {
     }
 
@@ -74,13 +60,7 @@ public class User {
         this.employmentDate = employmentDate;
     }
 
-//    public String getProjectName() {
-//        return projectName;
-//    }
-//
-//    public void setProjectName(String projectName) {
-//        this.projectName = projectName;
-//    }
+
 
     public Long getId() {
         return id;
@@ -112,5 +92,18 @@ public class User {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthdate=" + birthdate +
+                ", employmentDate=" + employmentDate +
+                ", project=" + project +
+                ", moods=" + moods +
+                '}';
     }
 }
