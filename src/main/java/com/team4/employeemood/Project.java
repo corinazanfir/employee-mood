@@ -1,12 +1,10 @@
 package com.team4.employeemood;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.*;
 
 
-@Entity
+@Entity(name="projects")
 public class Project {
 
     @Id
@@ -16,13 +14,18 @@ public class Project {
     private String projectName;
     private Integer projectBudget;
     private Date projectDueDate;
-    private String projectManager;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="project_manager_id")
+    private User user;
+
+//    private String projectManager;
 
     public Project(String projectName, int projectBudget, Date projectDueDate, String projectManager, Long id) {
         this.projectName = projectName;
         this.projectBudget = projectBudget;
         this.projectDueDate = projectDueDate;
-        this.projectManager = projectManager;
+//        this.projectManager = projectManager;
         this.id = id;
     }
 
@@ -53,21 +56,43 @@ public class Project {
         this.projectDueDate = projectDueDate;
     }
 
-    public String getProjectManager() {
-        return projectManager;
+//    public String getProjectManager() {
+//        return projectManager;
+//    }
+
+//    public void setProjectManager(String projectManager) {
+//        this.projectManager = projectManager;
+//    }
+
+
+    public Long getId() {
+        return id;
     }
 
-    public void setProjectManager(String projectManager) {
-        this.projectManager = projectManager;
+    public void setId(Long id) {
+        this.id = id;
     }
+
+    public void setProjectBudget(Integer projectBudget) {
+        this.projectBudget = projectBudget;
+    }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     @Override
     public String toString() {
         return "Project{" +
-                "projectName='" + projectName + '\'' +
+                "id=" + id +
+                ", projectName='" + projectName + '\'' +
                 ", projectBudget=" + projectBudget +
                 ", projectDueDate=" + projectDueDate +
-                ", projectManager='" + projectManager + '\'' +
+//                ", user=" + user +
                 '}';
     }
 }

@@ -59,7 +59,7 @@ public class FileImporterObjectCreator {
                 e.printStackTrace();
             }
             user.setProjectName(matcher.group(11));
-            user.setUsername();
+//            user.setUsername();
 
         } else {
             try {
@@ -89,7 +89,7 @@ public class FileImporterObjectCreator {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            project.setProjectManager(matcher.group(7));
+//            project. (matcher.group(7)));
 
         } else {
             try {
@@ -120,7 +120,7 @@ public class FileImporterObjectCreator {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            mood.setUsername(matcher.group(9));
+//            mood.setUsername(matcher.group(9));
         } else {
             try {
                 throw new PatternNotMatchingException(Util.ImportTypeEnum.MOOD + " data not properly defined. Certain fields are not using the expected format.\nRejected record is: " + inputString);

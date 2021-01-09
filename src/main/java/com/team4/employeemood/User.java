@@ -1,11 +1,11 @@
 package com.team4.employeemood;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Entity
+@Entity(name="users")
 public class User {
 
     @Id
@@ -17,7 +17,11 @@ public class User {
     private Date birthdate;
     private Date employmentDate;
     private String projectName;
-    private String username;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Mood> moods = new ArrayList<>();
+
+//    private String username;
 
     public User(String firstName, String lastName, Date birthDate, Date employmentDate, String projectName, Long id) {
         this.firstName = firstName;
@@ -25,7 +29,7 @@ public class User {
         this.birthdate = birthdate;
         this.employmentDate = employmentDate;
         this.projectName = projectName;
-        this.username = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@moodproject";
+//        this.username = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@moodproject";
         this.id = id;
 
         UserData.userList.add(this);
@@ -74,13 +78,13 @@ public class User {
         this.projectName = projectName;
     }
 
-    public void setUsername() {
-        this.username = this.getFirstName().toLowerCase() + "." + this.getLastName().toLowerCase() + "@moodproject";
-    }
+//    public void setUsername() {
+//        this.username = this.getFirstName().toLowerCase() + "." + this.getLastName().toLowerCase() + "@moodproject";
+//    }
 
-    public String getUsername() {
-        return username;
-    }
+//    public String getUsername() {
+//        return username;
+//    }
 
     @Override
     public String toString() {
@@ -90,7 +94,7 @@ public class User {
                 ", birthDate=" + birthdate +
                 ", employmentDate=" + employmentDate +
                 ", projectName='" + projectName + '\'' +
-                ", username='" + username + '\'' +
+//                ", username='" + username + '\'' +
                 '}';
     }
 
@@ -102,7 +106,7 @@ public class User {
         this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
 }
