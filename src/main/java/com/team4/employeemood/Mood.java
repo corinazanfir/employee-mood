@@ -18,7 +18,7 @@ public class Mood {
 //    private String username; //not required anymore as we are using user_id to create a relationship between user and mood
 
     @ManyToOne()
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="userId")
     private User user;
 
 

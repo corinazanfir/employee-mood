@@ -165,22 +165,22 @@ public class ReportUtil {
     }
 
 
-    public int getTotalNumberOfTeamMembers(String projectName) {
-
-        int counter = 0;
-        for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
-                counter++;
-            }
-        }
-        return counter;
-    }
+//    public int getTotalNumberOfTeamMembers(String projectName) {
+//
+//        int counter = 0;
+//        for (User user : UserData.userList) {
+////            if (user().equalsIgnoreCase(projectName)) {
+//                counter++;
+//            }
+//        }
+//        return counter;
+//    }
 
     public int getTotalNumberOfTeamMembers(String projectName, Date fromDate, Date toDate) {
 
         int counter = 0;
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName) && user.getEmploymentDate().before(fromDate) && !user.getEmploymentDate().after(toDate)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName) && user.getEmploymentDate().before(fromDate) && !user.getEmploymentDate().after(toDate)) {
                 counter++;
             }
         }
@@ -198,7 +198,7 @@ public class ReportUtil {
         Set uniqueUsers = new HashSet();
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
 
                 for (Mood mood : MoodData.moodList) {
                     if (mood.getUser().getId().equals(user.getId())) {  // to replace user.getUserName with user.getID
@@ -210,13 +210,13 @@ public class ReportUtil {
         return uniqueUsers.size();
     }
 
-    public int getNumberOfTeamMembersWithFeedbackSent(String projectName, Date fromDate, Date toDate) {
+    public static int getNumberOfTeamMembersWithFeedbackSent(String projectName, Date fromDate, Date toDate) {
 
         int counter = 0;
         Set uniqueUsers = new HashSet();
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
 
                 for (Mood mood : MoodData.moodList) {
                     if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
@@ -272,7 +272,7 @@ public class ReportUtil {
         int counter = 0;
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
                     if (mood.getUser().getId() == user.getId()) {
                         counter++;
@@ -288,7 +288,7 @@ public class ReportUtil {
         int counter = 0;
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
                     if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         counter++;
@@ -308,7 +308,7 @@ public class ReportUtil {
         int totalRatingAcc = 0;
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
                     if (mood.getUser().getId() == user.getId()) {
                         totalRatingAcc = totalRatingAcc + mood.getDayRating();
@@ -324,7 +324,7 @@ public class ReportUtil {
         int totalRatingAcc = 0;
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
                     if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         totalRatingAcc = totalRatingAcc + mood.getDayRating();

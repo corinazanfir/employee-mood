@@ -16,7 +16,11 @@ public class User {
     private String lastName;
     private Date birthdate;
     private Date employmentDate;
-    private String projectName;
+//    private String projectName;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="project_id")
+    private Project project;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Mood> moods = new ArrayList<>();
@@ -28,9 +32,9 @@ public class User {
         this.lastName = lastName;
         this.birthdate = birthdate;
         this.employmentDate = employmentDate;
-        this.projectName = projectName;
+//        this.projectName = projectName;
 //        this.username = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@moodproject";
-        this.id = id;
+        this.id = this.id;
 
         UserData.userList.add(this);
     }
@@ -70,33 +74,13 @@ public class User {
         this.employmentDate = employmentDate;
     }
 
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-//    public void setUsername() {
-//        this.username = this.getFirstName().toLowerCase() + "." + this.getLastName().toLowerCase() + "@moodproject";
+//    public String getProjectName() {
+//        return projectName;
 //    }
-
-//    public String getUsername() {
-//        return username;
+//
+//    public void setProjectName(String projectName) {
+//        this.projectName = projectName;
 //    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthdate +
-                ", employmentDate=" + employmentDate +
-                ", projectName='" + projectName + '\'' +
-//                ", username='" + username + '\'' +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -106,7 +90,27 @@ public class User {
         this.id = id;
     }
 
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public List<Mood> getMoods() {
+        return moods;
+    }
+
+    public void setMoods(List<Mood> moods) {
+        this.moods = moods;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }

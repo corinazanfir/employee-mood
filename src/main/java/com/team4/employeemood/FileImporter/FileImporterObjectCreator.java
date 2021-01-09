@@ -58,7 +58,7 @@ public class FileImporterObjectCreator {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            user.setProjectName(matcher.group(11));
+//            user.setProjectName(matcher.group(11));
 //            user.setUsername();
 
         } else {
