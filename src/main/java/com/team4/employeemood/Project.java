@@ -1,5 +1,7 @@
 package com.team4.employeemood;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -16,6 +18,7 @@ public class Project {
     private Date projectDueDate;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name="project_manager_id")
     private User user;
 

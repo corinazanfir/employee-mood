@@ -1,5 +1,7 @@
 package com.team4.employeemood;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +24,9 @@ public class User {
     @JoinColumn(name="project_id")
     private Project project;
 
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Mood> moods = new ArrayList<>();
 
     public User() {
@@ -106,4 +110,7 @@ public class User {
                 ", moods=" + moods +
                 '}';
     }
+
+
+
 }

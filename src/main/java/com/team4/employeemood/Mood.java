@@ -1,5 +1,7 @@
 package com.team4.employeemood;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,6 +19,7 @@ public class Mood {
     private Date date;
 
     @ManyToOne()
+    @JsonIgnore
     @JoinColumn(name="userId")
     private User user;
 
@@ -100,5 +103,9 @@ public class Mood {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
