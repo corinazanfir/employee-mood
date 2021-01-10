@@ -165,22 +165,22 @@ public class ReportUtil {
     }
 
 
-    public int getTotalNumberOfTeamMembers(String projectName) {
-
-        int counter = 0;
-        for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
-                counter++;
-            }
-        }
-        return counter;
-    }
+//    public int getTotalNumberOfTeamMembers(String projectName) {
+//
+//        int counter = 0;
+//        for (User user : UserData.userList) {
+////            if (user().equalsIgnoreCase(projectName)) {
+//                counter++;
+//            }
+//        }
+//        return counter;
+//    }
 
     public int getTotalNumberOfTeamMembers(String projectName, Date fromDate, Date toDate) {
 
         int counter = 0;
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName) && user.getEmploymentDate().before(fromDate) && !user.getEmploymentDate().after(toDate)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName) && user.getEmploymentDate().before(fromDate) && !user.getEmploymentDate().after(toDate)) {
                 counter++;
             }
         }
@@ -198,10 +198,10 @@ public class ReportUtil {
         Set uniqueUsers = new HashSet();
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
 
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUsername().equals(user.getUsername())) {
+                    if (mood.getUser().getId().equals(user.getId())) {  // to replace user.getUserName with user.getID
                         uniqueUsers.add(user);
                     }
                 }
@@ -210,16 +210,16 @@ public class ReportUtil {
         return uniqueUsers.size();
     }
 
-    public int getNumberOfTeamMembersWithFeedbackSent(String projectName, Date fromDate, Date toDate) {
+    public static int getNumberOfTeamMembersWithFeedbackSent(String projectName, Date fromDate, Date toDate) {
 
         int counter = 0;
         Set uniqueUsers = new HashSet();
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
 
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUsername().equals(user.getUsername()) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
+                    if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         uniqueUsers.add(user);
                     }
                 }
@@ -233,13 +233,13 @@ public class ReportUtil {
         return getNumberOfTeamMembersWithFeedbackSent(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
-    public double getAverageRatingForUser(String username) {
+    public double getAverageRatingForUser(Long userId) {
         int countMoodSubmissions = 0;
         int ratingAcc = 0;
         double result = 0;
 
         for (Mood mood : MoodData.moodList) {
-            if (mood.getUsername().equals(username)) {
+            if (mood.getUser().getId() == userId) {
                 countMoodSubmissions++;
                 ratingAcc = ratingAcc + mood.getDayRating();
             }
@@ -248,13 +248,13 @@ public class ReportUtil {
         return result;
     }
 
-    public double getAverageRatingForUser(String username, Date fromDate, Date toDate) {
+    public double getAverageRatingForUser(Long userId, Date fromDate, Date toDate) {
         int countMoodSubmissions = 0;
         int ratingAcc = 0;
         double result = 0;
 
         for (Mood mood : MoodData.moodList) {
-            if (mood.getUsername().equals(username) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
+            if (mood.getUser().getId() == userId && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                 countMoodSubmissions++;
                 ratingAcc = ratingAcc + mood.getDayRating();
             }
@@ -263,8 +263,8 @@ public class ReportUtil {
         return result;
     }
 
-    public double getAverageRatingForUser(String username, PredefinedReportingPeriodsEnum predefinedPeriod) {
-        return getAverageRatingForUser(username, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
+    public double getAverageRatingForUser(Long userId, PredefinedReportingPeriodsEnum predefinedPeriod) {
+        return getAverageRatingForUser(userId, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
     public int getNumberOfMoodSubmissionsByProject(String projectName) {
@@ -272,9 +272,9 @@ public class ReportUtil {
         int counter = 0;
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUsername().equalsIgnoreCase(user.getUsername())) {
+                    if (mood.getUser().getId() == user.getId()) {
                         counter++;
                     }
                 }
@@ -288,9 +288,9 @@ public class ReportUtil {
         int counter = 0;
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUsername().equalsIgnoreCase(user.getUsername()) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
+                    if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         counter++;
                     }
                 }
@@ -308,9 +308,9 @@ public class ReportUtil {
         int totalRatingAcc = 0;
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUsername().equalsIgnoreCase(user.getUsername())) {
+                    if (mood.getUser().getId() == user.getId()) {
                         totalRatingAcc = totalRatingAcc + mood.getDayRating();
                     }
                 }
@@ -324,9 +324,9 @@ public class ReportUtil {
         int totalRatingAcc = 0;
 
         for (User user : UserData.userList) {
-            if (user.getProjectName().equalsIgnoreCase(projectName)) {
+            if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUsername().equalsIgnoreCase(user.getUsername()) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
+                    if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         totalRatingAcc = totalRatingAcc + mood.getDayRating();
                     }
                 }
@@ -339,11 +339,11 @@ public class ReportUtil {
         return getTotalRatingValueForSubmissionsByProject(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
-    public String getManagerByProject(String projectName) {
+    public Long getManagerByProject(String projectName) {
 
         for (Project project : ProjectData.projectList) {
             if (project.getProjectName().equalsIgnoreCase(projectName)) {
-                return project.getProjectManager();
+//                return project.getUser().getId();
             }
         }
         return null;

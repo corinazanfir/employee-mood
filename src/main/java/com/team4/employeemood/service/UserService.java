@@ -23,6 +23,10 @@ public class UserService {
     public List<User> listUsers() {
 
         return userRepository.findAll();
+    }
 
+    public List<User> listUsersByFirstName(String firstName){
+
+        return userRepository.findAllByFirstName(firstName);
     }
 }

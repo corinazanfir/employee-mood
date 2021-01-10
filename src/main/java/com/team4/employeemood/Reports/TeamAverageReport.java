@@ -26,7 +26,7 @@ public class TeamAverageReport {
         reportLines.add("Reporting period: from " + ReportUtil.sdf.format(fromDate) + " to " + ReportUtil.sdf.format(toDate));
         reportLines.add("General team mood rating is - " + ReportUtil.df2.format(reportUtil.getAverageMoodRatingForProject(projectName, fromDate, toDate))+" out of 5");
         reportLines.add("Total number of project members - " + reportUtil.getTotalNumberOfTeamMembers(projectName, fromDate, toDate));
-        reportLines.add("Number of users that have provided feedback - " + reportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName, fromDate, toDate));
+        reportLines.add("Number of users that have provided feedback - " + ReportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName, fromDate, toDate));
         reportLines.add("Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName, fromDate, toDate));
         reportLines.add("Current project manager - " + reportUtil.getManagerByProject(projectName));
         reportLines.add("-".repeat(title.length()));

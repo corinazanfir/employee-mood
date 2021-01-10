@@ -7,6 +7,7 @@ import com.team4.employeemood.FileImporter.Util;
 import com.team4.employeemood.Reports.HappiestProjectsReport;
 import com.team4.employeemood.Reports.ReportUtil;
 import com.team4.employeemood.Reports.TeamAverageReport;
+import com.team4.employeemood.repository.MoodRepository;
 import com.team4.employeemood.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -54,7 +55,7 @@ public class EmployeemoodApplication {
 //
 //
 //
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 //
 //        // REPORTING
 //        // TEAM AVERAGE MOOD REPORT
@@ -70,15 +71,19 @@ public class EmployeemoodApplication {
 //
 //
 //        HappiestProjectsReport happiestProjectsReport = new HappiestProjectsReport();
-//        //with custom date range
+        //with custom date range
 //        happiestProjectsReport.generateReport(true, true, sdf.parse("15/11/2020"), sdf.parse("05/12/2020"));
-//        //with predefined date range
+        //with predefined date range
 //        happiestProjectsReport.generateReport(true, true, ReportUtil.PredefinedReportingPeriodsEnum.CurrentMonth);
 //
-//        //Dynamically calculated timeframes
-//        ReportUtil reportUtil = new ReportUtil();
-//        reportUtil.calculatePredefinedPeriods();
-//        reportUtil.displayPredefinedPeriodsCalculation();
+
+
+
+        //Dynamically calculated timeframes
+        ReportUtil reportUtil = new ReportUtil();
+        reportUtil.calculatePredefinedPeriods();
+        reportUtil.displayPredefinedPeriodsCalculation();
+
 
     }
 }

@@ -1,11 +1,11 @@
 package com.team4.employeemood;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Entity(name="moods")
 public class Mood {
 
     @Id
@@ -17,7 +17,12 @@ public class Mood {
     private String previousDayChange;
     private String improvementIdea;
     private Date date;
-    private String username;
+
+    @ManyToOne()
+    @JsonIgnore
+    @JoinColumn(name="userId")
+    private User user;
+
 
     public Mood(Integer dayRating, String comment, String previousDayChange, String improvementIdea, Date date, String username, Long id) {
         this.dayRating = dayRating;
@@ -25,7 +30,7 @@ public class Mood {
         this.previousDayChange = previousDayChange;
         this.improvementIdea = improvementIdea;
         this.date = date;
-        this.username = username;
+//        this.username = username;
         this.id = id;
 
         MoodData.moodList.add(this);
@@ -75,24 +80,21 @@ public class Mood {
         this.date = date;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     @Override
     public String toString() {
         return "Mood{" +
-                "dayRating=" + dayRating +
+                "id=" + id +
+                ", dayRating=" + dayRating +
                 ", comment='" + comment + '\'' +
                 ", previousDayChange='" + previousDayChange + '\'' +
                 ", improvementIdea='" + improvementIdea + '\'' +
                 ", date=" + date +
-                ", username='" + username + '\'' +
+                ", user=" + user +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public Long getId() {
@@ -101,5 +103,9 @@ public class Mood {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

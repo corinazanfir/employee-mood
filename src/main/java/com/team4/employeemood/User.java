@@ -1,11 +1,13 @@
 package com.team4.employeemood;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Entity(name="users")
 public class User {
 
     @Id
@@ -16,20 +18,16 @@ public class User {
     private String lastName;
     private Date birthdate;
     private Date employmentDate;
-    private String projectName;
-    private String username;
+//    private String projectName;
 
-    public User(String firstName, String lastName, Date birthDate, Date employmentDate, String projectName, Long id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthdate = birthdate;
-        this.employmentDate = employmentDate;
-        this.projectName = projectName;
-        this.username = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@moodproject";
-        this.id = id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="project_id")
+    private Project project;
 
-        UserData.userList.add(this);
-    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Mood> moods = new ArrayList<>();
 
     public User() {
     }
@@ -66,33 +64,7 @@ public class User {
         this.employmentDate = employmentDate;
     }
 
-    public String getProjectName() {
-        return projectName;
-    }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public void setUsername() {
-        this.username = this.getFirstName().toLowerCase() + "." + this.getLastName().toLowerCase() + "@moodproject";
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthdate +
-                ", employmentDate=" + employmentDate +
-                ", projectName='" + projectName + '\'' +
-                ", username='" + username + '\'' +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -102,7 +74,43 @@ public class User {
         this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Date getBirthdate() {
+        return birthdate;
     }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public List<Mood> getMoods() {
+        return moods;
+    }
+
+    public void setMoods(List<Mood> moods) {
+        this.moods = moods;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthdate=" + birthdate +
+                ", employmentDate=" + employmentDate +
+                ", project=" + project +
+                ", moods=" + moods +
+                '}';
+    }
+
+
+
 }
