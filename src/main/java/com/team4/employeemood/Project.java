@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.*;
 
 
-@Entity(name="projects")
+@Entity(name = "projects")
 public class Project {
 
     @Id
@@ -19,8 +19,8 @@ public class Project {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonIgnore
-    @JoinColumn(name="project_manager_id")
-    private User user;
+    @JoinColumn(name = "project_manager_id")
+    private User projectManager;
 
     public Project() {
     }
@@ -50,7 +50,6 @@ public class Project {
     }
 
 
-
     public Long getId() {
         return id;
     }
@@ -70,7 +69,15 @@ public class Project {
                 ", projectName='" + projectName + '\'' +
                 ", projectBudget=" + projectBudget +
                 ", projectDueDate=" + projectDueDate +
-                ", user=" + user +
+//                ", user=" + user +
                 '}';
+    }
+
+    public User getProjectManager() {
+        return projectManager;
+    }
+
+    public void setProjectManager(User projectManager) {
+        this.projectManager = projectManager;
     }
 }

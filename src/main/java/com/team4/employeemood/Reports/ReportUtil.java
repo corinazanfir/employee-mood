@@ -187,6 +187,14 @@ public class ReportUtil {
         return counter;
     }
 
+
+
+
+
+
+
+
+
     public int getTotalNumberOfTeamMembers(String projectName, PredefinedReportingPeriodsEnum predefinedPeriod) {
 
         return getTotalNumberOfTeamMembers(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
