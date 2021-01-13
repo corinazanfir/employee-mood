@@ -7,13 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TopMoodProjectsReportRepresentation {
-
+    private final String name = "Top Mood Projects Report";
     private Date startDate;
     private Date endDate;
     Map<Project, Double> topMoodProjects = new HashMap<>();
 
 
-    public TopMoodProjectsReportRepresentation(){
+    public TopMoodProjectsReportRepresentation() {
     }
 
     public Date getStartDate() {
@@ -39,4 +39,9 @@ public class TopMoodProjectsReportRepresentation {
     public void setTopMoodProjects(Map<Project, Double> topMoodProjects) {
         this.topMoodProjects = topMoodProjects;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

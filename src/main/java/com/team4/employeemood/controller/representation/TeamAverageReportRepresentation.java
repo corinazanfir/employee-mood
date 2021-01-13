@@ -3,7 +3,7 @@ package com.team4.employeemood.controller.representation;
 import java.util.Date;
 
 public class TeamAverageReportRepresentation {
-
+    private final String name = "Team Average Mood Report";
     private Date startDate;
     private Date endDate;
     private Double averageRating;
@@ -81,6 +81,7 @@ public class TeamAverageReportRepresentation {
         this.projectManager = projectManager;
     }
 
-
-
+    public String getName() {
+        return name;
+    }
 }
