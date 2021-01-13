@@ -6,16 +6,13 @@ import com.team4.employeemood.controller.representation.TeamAverageReportReprese
 import com.team4.employeemood.controller.representation.TopMoodProjectsReportRepresentation;
 import com.team4.employeemood.repository.MoodRepository;
 import com.team4.employeemood.repository.ProjectRepository;
-import com.team4.employeemood.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class ReportService {
@@ -65,13 +62,6 @@ public class ReportService {
     }
 
 
-    private Double calculateTeamMoodAverage(List<Mood> filteredMoodsByUserAndDates) {
-        Double averageRating = filteredMoodsByUserAndDates.stream()
-                .mapToDouble(Mood::getDayRating)
-                .average().orElse(0);
-        return averageRating;
-    }
-
     public TopMoodProjectsReportRepresentation generateTopMoodProjectsReport(Date startDate, Date endDate) {
 
         TopMoodProjectsReportRepresentation report = new TopMoodProjectsReportRepresentation();
@@ -95,5 +85,12 @@ public class ReportService {
         report.setTopMoodProjects(topMoodProjectsMap);
 
         return report;
+    }
+
+    private Double calculateTeamMoodAverage(List<Mood> filteredMoodsByUserAndDates) {
+        Double averageRating = filteredMoodsByUserAndDates.stream()
+                .mapToDouble(Mood::getDayRating)
+                .average().orElse(0);
+        return averageRating;
     }
 }

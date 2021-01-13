@@ -2,9 +2,7 @@ package com.team4.employeemood.controller;
 
 import com.team4.employeemood.controller.representation.TeamAverageReportRepresentation;
 import com.team4.employeemood.controller.representation.TopMoodProjectsReportRepresentation;
-import com.team4.employeemood.repository.MoodRepository;
 import com.team4.employeemood.service.ReportService;
-import com.team4.employeemood.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +25,6 @@ public class ReportController {
 
         return reportService.generateTeamAverageReport(projectId, sdf.parse(startDate), sdf.parse(endDate));
     }
-
 
     //Sample to test - localhost:8080/api/v1/reports/topMood?startDate=2018-01-01&endDate=2021-02-01
     @GetMapping("/api/v1/reports/topMood")
