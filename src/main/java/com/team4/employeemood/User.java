@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity(name="users")
+@Entity(name = "users")
 public class User {
 
     @Id
@@ -18,10 +18,9 @@ public class User {
     private String lastName;
     private Date birthdate;
     private Date employmentDate;
-//    private String projectName;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="project_id")
+    @JoinColumn(name = "project_id")
     private Project project;
 
 
@@ -65,7 +64,6 @@ public class User {
     }
 
 
-
     public Long getId() {
         return id;
     }
@@ -106,11 +104,15 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
                 ", employmentDate=" + employmentDate +
-                ", project=" + project +
-                ", moods=" + moods +
+//                ", project=" + project +
+//                ", moods=" + moods +
                 '}';
     }
 
+    @Transient
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 
 
 }

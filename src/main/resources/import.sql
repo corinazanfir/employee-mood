@@ -8,15 +8,15 @@ insert into PROJECTS values(3,55000,'2021-09-30','Project C',null);
 --add users
 insert into USERS values(1,'1988-01-16','2018-04-01','Catalin','Gheorghe',1);
 insert into USERS values(2,'1988-01-16','2018-04-01','Catalin','Popescu',1);
+insert into USERS values(8,'1988-01-01','2019-04-01','Iustin','Tarachiu',1);
 
 
 insert into USERS values(3,'1988-01-01','2018-04-01','Liviu','Iliescu',2);
-insert into USERS values(4,'1988-01-01','2018-04-01','Andreea','Badila',2);
+insert into USERS values(4,'1988-01-01','2018-04-10','Andreea','Badila',2);
+insert into USERS values(7,'1988-01-01','2019-04-01','Alexandra','Preda',2);
 
 insert into USERS values(5,'1988-01-01','2018-04-01','Corina','Zanfir',3);
-insert into USERS values(6,'1988-01-01','2018-04-01','Radu','Mihartescu',3);
-insert into USERS values(7,'1988-01-01','2019-04-01','Alexandra','Preda',2);
-insert into USERS values(8,'1988-01-01','2019-04-01','Iustin','Tarachiu',1);
+insert into USERS values(6,'1988-01-01','2019-04-01','Radu','Mihartescu',3);
 
 --assign project managers
 UPDATE PROJECTS SET PROJECT_MANAGER_ID = 1 WHERE ID = 1;
@@ -367,15 +367,3 @@ insert into MOODS values (333,'Comments','2021-02-25',3,'Improvement Idea','Prev
 insert into MOODS values (334,'Comments','2021-02-26',1,'Improvement Idea','Previous day comments',6)
 insert into MOODS values (335,'Comments','2021-02-27',2,'Improvement Idea','Previous day comments',6)
 insert into MOODS values (336,'Comments','2021-02-28',2,'Improvement Idea','Previous day comments',6)
-
---insert into MOODS values (1,'comment1','2021-01-04',5,'improvement idea1','previous day1',1)
---insert into MOODS values (2,'comment2','2021-01-05',2,'improvement idea2','previous day2',1)
---insert into MOODS values (3,'comment3','2021-01-06',2,'improvement idea3','previous day3',1)
---insert into MOODS values (4,'comment4','2021-01-07',3,'improvement idea4','previous day4',1)
---insert into MOODS values (5,'comment5','2021-01-08',4,'improvement idea5','previous day5',1)
---
---insert into MOODS values (6,'comment1','2021-01-04',1,'improvement idea1','previous day1',2)
---insert into MOODS values (7,'comment2','2021-01-05',3,'improvement idea2','previous day2',2)
---insert into MOODS values (8,'comment3','2021-01-06',3,'improvement idea3','previous day3',2)
---insert into MOODS values (9,'comment4','2021-01-07',5,'improvement idea4','previous day4',2)
---insert into MOODS values (10,'comment5','2021-01-08',4,'improvement idea5','previous day5',2)

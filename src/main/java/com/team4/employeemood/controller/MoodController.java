@@ -1,15 +1,20 @@
 package com.team4.employeemood.controller;
 
 import com.team4.employeemood.Mood;
+import com.team4.employeemood.User;
 import com.team4.employeemood.repository.MoodRepository;
+import com.team4.employeemood.repository.UserRepository;
 import javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class MoodController {
@@ -17,20 +22,21 @@ public class MoodController {
     @Autowired
     private MoodRepository moodRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/api/v1/moods")
     @ResponseBody
-    public List<Mood> getMood(@RequestParam(required = false) Long id) {
+    public List<Mood> getMoodsForProjectBetweenDates(@RequestParam Long projectId, @RequestParam String startDate, @RequestParam String endDate) throws ParseException {
 
-        if (id == null) {
-            return moodRepository.findAll();
-        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        List<Mood> moods = new ArrayList<>();
-        Optional<Mood> mood = Optional.of(moodRepository.findById(id).get());
+        List<User> byProjectIdAndEmploymentDateBetween = userRepository.findByProjectIdAndEmploymentDateBetween(projectId, sdf.parse(startDate), sdf.parse(endDate));
+        System.out.println(byProjectIdAndEmploymentDateBetween);
 
-        moods.add(mood.get());
+        List<Long> userIdsForProjectForDates = byProjectIdAndEmploymentDateBetween.stream().map(user -> user.getId()).collect(Collectors.toList());
+        System.out.println(userIdsForProjectForDates);
 
-        return moods;
-
+        return moodRepository.findByUserIdIn(userIdsForProjectForDates);
     }
 }
