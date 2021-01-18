@@ -1,12 +1,14 @@
 package com.team4.employeemood.FileImporter;
 
-import com.team4.employeemood.*;
 import com.team4.employeemood.Exceptions.PatternNotMatchingException;
+import com.team4.employeemood.model.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.team4.employeemood.FileImporter.Util.repeatString;
 
 public class FileImporterObjectCreator {
 
@@ -16,7 +18,7 @@ public class FileImporterObjectCreator {
         if (!FileImporter.importRawDataMap.containsKey(importTypeEnum)) {
             System.out.println("\nWARNING: Unable to create object instances. No data available for the import type: " + importTypeEnum);
         } else {
-            System.out.println(("-").repeat(25) + "[ Object creation for " + importTypeEnum + " data]" + ("-").repeat(25));
+            System.out.println(repeatString("-", 25) + "[ Object creation for " + importTypeEnum + " data]" + repeatString("-", 25));
             for (String string : FileImporter.importRawDataMap.get(importTypeEnum)) {
 
                 switch (importTypeEnum) {
@@ -42,8 +44,6 @@ public class FileImporterObjectCreator {
 
         Pattern pattern = Pattern.compile(fileImporterValidator.getUserImportPattern());
         Matcher matcher = pattern.matcher(inputString);
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         if (matcher.find()) {
             user.setFirstName(matcher.group(1));
@@ -107,8 +107,6 @@ public class FileImporterObjectCreator {
 
         Pattern pattern = Pattern.compile(fileImporterValidator.getMoodImportPattern());
         Matcher matcher = pattern.matcher(inputString);
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         if (matcher.find()) {
             mood.setDayRating(Integer.parseInt(matcher.group(1)));

@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.team4.employeemood.FileImporter.Util.repeatString;
+
 
 public class FileImporter {
 
@@ -68,30 +70,30 @@ public class FileImporter {
 
     public void displayRecordsFromRawDataMap(Util.ImportTypeEnum importType) {
         int counter = 0;
-        System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
+        System.out.println(repeatString("-", 25) + "[ RAW DATA IMPORTER ]" + repeatString("-", 25));
         for (Util.ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
             if (importTypeEnum.equals(importType)) {
-                System.out.println("Display raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
+                System.out.println("Display raw data list for the import type: " + importTypeEnum + "\n" + repeatString("-", 70));
                 for (String value : importRawDataMap.get(importTypeEnum)) {
                     System.out.println("value:" + value);
                     counter++;
                 }
             }
         }
-        System.out.println(("-").repeat(50) + "\nTotal number of records: " + counter + "\n");
+        System.out.println(repeatString("-", 50) + "\nTotal number of records: " + counter + "\n");
     }
 
     public void displayRecordsFromRawDataMap() {
         int counter = 0;
-        System.out.println(("-").repeat(25) + "[ RAW DATA IMPORTER ]" + ("-").repeat(25));
+        System.out.println(repeatString("-", 25) + "[ RAW DATA IMPORTER ]" + repeatString("-", 25));
         for (Util.ImportTypeEnum importTypeEnum : importRawDataMap.keySet()) {
-            System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + ("-").repeat(70));
+            System.out.println("\nDisplay raw data list for the import type: " + importTypeEnum + "\n" + repeatString("-", 70));
             for (String value : importRawDataMap.get(importTypeEnum)) {
                 System.out.println("value:" + value);
                 counter++;
             }
         }
-        System.out.println(("-").repeat(50) + "\nTotal number of records: " + counter + "\n");
+        System.out.println(repeatString("-", 50) + "\nTotal number of records: " + counter + "\n");
     }
 }
 

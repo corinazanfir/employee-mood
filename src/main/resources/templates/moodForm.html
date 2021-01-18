@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Mood of the day</title>
+    <script>
+        function buttonClicked(rating) {
+            document.getElementById('top_image').src='/images/scale_' + rating + '.jpg';
+            document.getElementById("dayRating").setAttribute('value', rating);
+        }
+    </script>
+</head>
+
+<body>
+<img th:src="@{/images/no_scale.jpg}" id="top_image" style="width: 200px; display: block; margin: auto"/>
+
+<form method="POST" th:object="${Mood}">
+    <h3>How do you feel today?</h3>
+    <div >
+        <img th:each="i: ${#numbers.sequence(1, 5)}" th:src="'/images/option_' + ${i} + '.jpg'" th:onclick="'buttonClicked(' + ${i} + ')'">
+    </div>
+    <input type="hidden" name="dayRating" id="dayRating">
+    <h3>Would you like to explain?</h3>
+    <textarea name="comment"></textarea>
+    <h3>What changed since yesterday or the previous workday?</h3>
+    <textarea name="previousDayChange"></textarea>
+    <h3>What can be improved and how?</h3>
+    <textarea name="improvementIdea"></textarea>
+    <input type="submit" value="Submit my answers" />
+</form>
+</body>
+</html>

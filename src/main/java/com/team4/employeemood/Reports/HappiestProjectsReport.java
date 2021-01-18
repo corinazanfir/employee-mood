@@ -1,7 +1,7 @@
 package com.team4.employeemood.Reports;
 
-import com.team4.employeemood.Project;
-import com.team4.employeemood.ProjectData;
+import com.team4.employeemood.model.Project;
+import com.team4.employeemood.model.ProjectData;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.team4.employeemood.FileImporter.Util.repeatString;
+
 public class HappiestProjectsReport {
 
     //create a map store the projectname and the previously calculated average project mood rating
-    Map<String, Double> averageMoodRating = new HashMap<>();
+    private Map<String, Double> averageMoodRating = new HashMap<>();
 
     public void generateReport(boolean writeToConsole, boolean writeToFile, Date fromDate, Date toDate) throws IOException {
 
@@ -24,19 +26,19 @@ public class HappiestProjectsReport {
         reportLines.add("Reporting period: " + ReportUtil.sdf.format(fromDate) + " to " + ReportUtil.sdf.format(toDate));
         reportLines.add("The project with the highest employee mood rating are: \n");
         reportLines.add("Project Name | Average rating value");
-        reportLines.add("-".repeat("Project Name | Average rating value".length()));
+        reportLines.add(repeatString("-", "Project Name | Average rating value".length()));
         for (Map.Entry entry : averageMoodRating.entrySet()) {
-            reportLines.add(entry.getKey() + " ".repeat(13 - entry.getKey().toString().length()) + "| " + ReportUtil.df2.format(entry.getValue()));
+            reportLines.add(entry.getKey() + repeatString(" ",13 - entry.getKey().toString().length()) + "| " + ReportUtil.df2.format(entry.getValue()));
         }
 
 
         //check flag for printing to console
-        if (writeToConsole == true) {
+        if (writeToConsole) {
             writeToConsole(reportLines);
         }
 
         //check flag for printing to file
-        if (writeToFile == true) {
+        if (writeToFile) {
             writeToFile(reportLines, fromDate, toDate);
         }
 

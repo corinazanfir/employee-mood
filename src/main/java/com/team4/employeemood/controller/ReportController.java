@@ -2,6 +2,7 @@ package com.team4.employeemood.controller;
 
 import com.team4.employeemood.controller.representation.TeamAverageReportRepresentation;
 import com.team4.employeemood.controller.representation.TopMoodProjectsReportRepresentation;
+import com.team4.employeemood.model.MoodData;
 import com.team4.employeemood.service.EmailService;
 import com.team4.employeemood.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class ReportController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         TeamAverageReportRepresentation report = reportService.generateTeamAverageReport(projectId, sdf.parse(startDate), sdf.parse(endDate));
-        if (sendEmail == true && !toEmailAddress.isEmpty()) {
+        if (sendEmail && !toEmailAddress.isEmpty()) {
             emailService.sendSimpleMessage(toEmailAddress, report.getName() , "This is an automatically generated email.");
          //TODO generate report as file so it can be attached to the email
             emailService.sendMessageWithAttachment(toEmailAddress, report.getName(), "This is an automatically generated email.","TestFile.txt","myAttachmentFile.txt");
@@ -57,10 +58,15 @@ public class ReportController {
 
         TopMoodProjectsReportRepresentation report = reportService.generateTopMoodProjectsReport(sdf.parse(startDate), sdf.parse(endDate));
 
-        if (sendEmail == true && !toEmailAddress.isEmpty()) {
+        if (sendEmail && !toEmailAddress.isEmpty()) {
             emailService.sendSimpleMessage(toEmailAddress, report.getName() , "This is an automatically generated email.");
         }
         return report;
 
     }
+
+//    @GetMapping('/moods')
+//    public MoodData getMoods() {
+//
+//    }
 }
