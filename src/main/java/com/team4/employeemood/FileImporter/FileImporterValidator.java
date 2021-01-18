@@ -5,6 +5,8 @@ import com.team4.employeemood.Exceptions.PatternNotMatchingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.team4.employeemood.FileImporter.Util.repeatString;
+
 public class FileImporterValidator {
 
     // This class is used to verify if the import files have the corresponding pattern format
@@ -27,12 +29,13 @@ public class FileImporterValidator {
         if (!FileImporter.importRawDataMap.containsKey(importTypeEnum)) {
             System.out.println("\nWARNING: Unable to perform data validation. No data available for the import type: " + importTypeEnum);
         } else {
-            System.out.println(("-").repeat(25) + "[ Pattern validation for " + importTypeEnum + " data]" + ("-").repeat(25));
+            System.out.println(repeatString("-", 25) + "[ Pattern validation for " + importTypeEnum + " data]" + repeatString("-",25));
+            System.out.println(repeatString("-", 25) + "[ Pattern validation for " + importTypeEnum + " data]" + repeatString("-", 25));
             for (String string : FileImporter.importRawDataMap.get(importTypeEnum)) {
                 patternCheck(string, importTypeEnum);
                 recordCounter++;
             }
-            System.out.println(("-").repeat(150)+"\n[Records processed: " + recordCounter + " ]");
+            System.out.println(repeatString("-", 150)+"\n[Records processed: " + recordCounter + " ]");
 
         }
     }

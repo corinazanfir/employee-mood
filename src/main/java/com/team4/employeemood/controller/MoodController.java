@@ -1,22 +1,19 @@
 package com.team4.employeemood.controller;
 
-import com.team4.employeemood.Mood;
-import com.team4.employeemood.User;
+import com.team4.employeemood.model.Mood;
+import com.team4.employeemood.model.User;
 import com.team4.employeemood.repository.MoodRepository;
 import com.team4.employeemood.repository.UserRepository;
-import javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RestController
+@Controller
 public class MoodController {
 
     @Autowired
@@ -38,5 +35,16 @@ public class MoodController {
         System.out.println(userIdsForProjectForDates);
 
         return moodRepository.findByUserIdIn(userIdsForProjectForDates);
+    }
+
+    @GetMapping("/moodForm")
+    public String getMoodForm() {
+        return "moodForm";
+}
+
+    @PostMapping("/moodForm")
+    public String addMood(Mood mood) {
+        System.out.println(mood);
+        return "redirect:/";
     }
 }

@@ -1,9 +1,9 @@
 package com.team4.employeemood.service;
 
-import com.team4.employeemood.Mood;
-import com.team4.employeemood.Project;
 import com.team4.employeemood.controller.representation.TeamAverageReportRepresentation;
 import com.team4.employeemood.controller.representation.TopMoodProjectsReportRepresentation;
+import com.team4.employeemood.model.Mood;
+import com.team4.employeemood.model.Project;
 import com.team4.employeemood.repository.MoodRepository;
 import com.team4.employeemood.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;

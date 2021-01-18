@@ -1,4 +1,4 @@
-package com.team4.employeemood;
+package com.team4.employeemood.model;
 
 import java.util.ArrayList;
 import java.util.List;

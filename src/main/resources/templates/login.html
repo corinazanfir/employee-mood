@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Mood of the day</title>
+</head>
+
+<body>
+<img th:src="@{/images/no_scale.jpg}" id="top_image" style="width: 200px; display: block; margin: auto"/>
+
+<form method="POST" th:object="${User}">
+    <h3>First Name:</h3>
+    <input type="text" name="firstName" />
+    <h3>Last Name:</h3>
+    <input type="text" name="lastName" />
+    <h3>Password</h3>
+    <input type="password" />
+    <input type="submit" value="Login" />
+</form>
+</body>
+</html>

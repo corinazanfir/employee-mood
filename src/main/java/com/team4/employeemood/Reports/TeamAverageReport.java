@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.team4.employeemood.FileImporter.Util.repeatString;
+
 public class TeamAverageReport {
 
 //    Trebuie să existe posibilitatea unui mini raport, care să spună în primă fază care este media generală
@@ -22,22 +24,22 @@ public class TeamAverageReport {
         List<String> reportLines = new ArrayList<>();
 
         reportLines.add(title);
-        reportLines.add("-".repeat(title.length()));
+        reportLines.add(repeatString("-", title.length()));
         reportLines.add("Reporting period: from " + ReportUtil.sdf.format(fromDate) + " to " + ReportUtil.sdf.format(toDate));
         reportLines.add("General team mood rating is - " + ReportUtil.df2.format(reportUtil.getAverageMoodRatingForProject(projectName, fromDate, toDate))+" out of 5");
         reportLines.add("Total number of project members - " + reportUtil.getTotalNumberOfTeamMembers(projectName, fromDate, toDate));
         reportLines.add("Number of users that have provided feedback - " + ReportUtil.getNumberOfTeamMembersWithFeedbackSent(projectName, fromDate, toDate));
         reportLines.add("Number of feedback submissions received - " + reportUtil.getNumberOfMoodSubmissionsByProject(projectName, fromDate, toDate));
         reportLines.add("Current project manager - " + reportUtil.getManagerByProject(projectName));
-        reportLines.add("-".repeat(title.length()));
+        reportLines.add(repeatString("-", title.length()));
 
         //check flag for printing to console
-        if (writeToConsole == true) {
+        if (writeToConsole) {
             writeToConsole(reportLines);
         }
 
         //check flag for printing to file
-        if (writeToFile == true) {
+        if (writeToFile) {
             writeToFile(projectName, reportLines, fromDate, toDate);
         }
 
@@ -47,9 +49,7 @@ public class TeamAverageReport {
 
     public List<String> generateReport(String projectName, boolean writeToConsole, boolean writeToFile, ReportUtil.PredefinedReportingPeriodsEnum predefinedPeriod) throws IOException {
         ReportUtil ru = new ReportUtil();
-        List<String> reportLines = generateReport(projectName, writeToConsole, writeToFile, ru.getPredefinedPeriodStartDate(predefinedPeriod), ru.getPredefinedPeriodEndDate(predefinedPeriod));
-
-        return reportLines;
+        return generateReport(projectName, writeToConsole, writeToFile, ru.getPredefinedPeriodStartDate(predefinedPeriod), ru.getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
 

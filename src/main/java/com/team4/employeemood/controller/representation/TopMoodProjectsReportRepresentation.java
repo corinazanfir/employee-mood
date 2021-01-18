@@ -1,6 +1,7 @@
 package com.team4.employeemood.controller.representation;
 
-import com.team4.employeemood.Project;
+
+import com.team4.employeemood.model.Project;
 
 import java.util.Date;
 import java.util.HashMap;

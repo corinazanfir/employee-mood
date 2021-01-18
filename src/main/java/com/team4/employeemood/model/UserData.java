@@ -1,8 +1,4 @@
-package com.team4.employeemood;
-
-import com.team4.employeemood.Mood;
-import com.team4.employeemood.Project;
-import com.team4.employeemood.User;
+package com.team4.employeemood.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.team4.employeemood.service;
 
-import com.team4.employeemood.User;
-import com.team4.employeemood.UserData;
+import com.team4.employeemood.model.User;
 import com.team4.employeemood.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
