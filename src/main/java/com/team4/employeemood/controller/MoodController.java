@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,11 +41,23 @@ public class MoodController {
     @GetMapping("/moodForm")
     public String getMoodForm() {
         return "moodForm";
-}
+    }
 
     @PostMapping("/moodForm")
     public String addMood(Mood mood) {
-        System.out.println(mood);
+
+        System.out.println("Received Mood: " + mood);
+        //TODO - form validation backend/frontend ???
+
+
+        mood.setDate(new Date());
+
+        //hardcoded user - no login available
+        mood.setUser(userRepository.findById(1L).get());
+
+        mood = moodRepository.save(mood);
+        System.out.println("Persisted mood: " + mood);
+
         return "redirect:/";
     }
 }
