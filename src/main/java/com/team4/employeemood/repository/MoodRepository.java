@@ -8,13 +8,13 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface MoodRepository extends JpaRepository<Mood, Long> {
+public interface MoodRepository extends JpaRepository<Mood, Integer> {
 
     List<Mood> findByUserId(Long userId);
 
-    List<Mood> findByUserIdIn(List<Long> userIds);
+    List<Mood> findByUserIdIn(List<Integer> userIds);
 
-    List<Mood> findByUserIdInAndDateBetween(List<Long> userIds, Date startDate, Date endDate);
+    List<Mood> findByUserIdInAndDateBetween(List<Integer> userIds, Date startDate, Date endDate);
 
 
 }

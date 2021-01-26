@@ -29,7 +29,7 @@ public class UserService {
         return userRepository.findAllByFirstName(firstName);
     }
 
-    public List<Long> getListOfUsersAssignedToProjectBetweenDates(Long projectId, Date startDate, Date endDate) {
+    public List<Integer> getListOfUsersAssignedToProjectBetweenDates(Integer projectId, Date startDate, Date endDate) {
         List<User> users = userRepository.findByProjectIdAndEmploymentDateBetween(projectId, startDate, endDate);
 //        System.out.println(users);
 

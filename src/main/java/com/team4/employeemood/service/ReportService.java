@@ -26,7 +26,7 @@ public class ReportService {
     @Autowired
     private MoodRepository moodRepository;
 
-    public TeamAverageReportRepresentation generateTeamAverageReport(Long projectId, Date startDate, Date endDate) {
+    public TeamAverageReportRepresentation generateTeamAverageReport(Integer projectId, Date startDate, Date endDate) {
 
         TeamAverageReportRepresentation report = new TeamAverageReportRepresentation();
 
@@ -35,7 +35,7 @@ public class ReportService {
         Project project = projectRepository.findById(projectId).get();
         report.setProjectManager(project.getProjectManager().getFullName());
 
-        List<Long> listOfUsersAssignedToProjectBetweenDates = userService.getListOfUsersAssignedToProjectBetweenDates(projectId, startDate, endDate);
+        List<Integer> listOfUsersAssignedToProjectBetweenDates = userService.getListOfUsersAssignedToProjectBetweenDates(projectId, startDate, endDate);
 
         report.setNoUsers(listOfUsersAssignedToProjectBetweenDates.size());
 
@@ -73,8 +73,8 @@ public class ReportService {
 
         for (Project project : projectRepository.findAll()) {
 
-            Long projectId = project.getId();
-            List<Long> listOfUsersAssignedToProjectBetweenDates = userService.getListOfUsersAssignedToProjectBetweenDates(projectId, startDate, endDate);
+            Integer projectId = project.getId();
+            List<Integer> listOfUsersAssignedToProjectBetweenDates = userService.getListOfUsersAssignedToProjectBetweenDates(projectId, startDate, endDate);
             List<Mood> filteredMoodsByUserAndDates = moodRepository.findByUserIdInAndDateBetween(listOfUsersAssignedToProjectBetweenDates, startDate, endDate);
 
             Double projectAverageMoodRating = calculateTeamMoodAverage(filteredMoodsByUserAndDates);

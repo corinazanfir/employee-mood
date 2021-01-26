@@ -6,8 +6,11 @@ import com.team4.employeemood.repository.MoodRepository;
 import com.team4.employeemood.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,15 +27,30 @@ public class MoodController {
     private UserRepository userRepository;
 
     @GetMapping("/api/v1/moods")
+    public String getAllMoods(Model model) {
+        List<Mood> moods = moodRepository.findAll();
+        model.addAttribute("moods", moods);
+        return "moods";
+    }
+
+    @GetMapping("/api/v1/moods/{projectId}")
+    public String getAllMoodsForProject(@PathVariable Integer projectId, Model model) {
+        List<User> byProjectId = userRepository.findAllByProjectId(projectId);
+        List<Integer> userIdsForProjectForDates = byProjectId.stream().map(user -> user.getId()).collect(Collectors.toList());
+        model.addAttribute("moods", moodRepository.findByUserIdIn(userIdsForProjectForDates));
+        return "moods";
+    }
+
+    @GetMapping("/api/v1/moods/{projectId}/{startDate}/{endDate}")
     @ResponseBody
-    public List<Mood> getMoodsForProjectBetweenDates(@RequestParam Long projectId, @RequestParam String startDate, @RequestParam String endDate) throws ParseException {
+    public List<Mood> getMoodsForProjectBetweenDates(@PathVariable Integer projectId, @PathVariable String startDate, @PathVariable String endDate) throws ParseException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         List<User> byProjectIdAndEmploymentDateBetween = userRepository.findByProjectIdAndEmploymentDateBetween(projectId, sdf.parse(startDate), sdf.parse(endDate));
         System.out.println(byProjectIdAndEmploymentDateBetween);
 
-        List<Long> userIdsForProjectForDates = byProjectIdAndEmploymentDateBetween.stream().map(user -> user.getId()).collect(Collectors.toList());
+        List<Integer> userIdsForProjectForDates = byProjectIdAndEmploymentDateBetween.stream().map(user -> user.getId()).collect(Collectors.toList());
         System.out.println(userIdsForProjectForDates);
 
         return moodRepository.findByUserIdIn(userIdsForProjectForDates);
@@ -48,12 +66,10 @@ public class MoodController {
 
         System.out.println("Received Mood: " + mood);
         //TODO - form validation backend/frontend ???
-
-
         mood.setDate(new Date());
 
         //hardcoded user - no login available
-        mood.setUser(userRepository.findById(1L).get());
+        mood.setUser(userRepository.findById(1).get());
 
         mood = moodRepository.save(mood);
         System.out.println("Persisted mood: " + mood);

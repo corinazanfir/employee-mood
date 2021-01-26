@@ -48,7 +48,7 @@ public class EmployeemoodApplication {
 //
 //
 //
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 //
 //        // REPORTING
 //        // TEAM AVERAGE MOOD REPORT
@@ -73,9 +73,9 @@ public class EmployeemoodApplication {
 
 
         //Dynamically calculated timeframes
-        ReportUtil reportUtil = new ReportUtil();
-        reportUtil.calculatePredefinedPeriods();
-        reportUtil.displayPredefinedPeriodsCalculation();
+//        ReportUtil reportUtil = new ReportUtil();
+//        reportUtil.calculatePredefinedPeriods();
+//        reportUtil.displayPredefinedPeriodsCalculation();
 
 
     }
