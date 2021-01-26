@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Moods</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Employee name</th>
+        <th>Mood</th>
+        <th>Comment</th>
+        <th>Day change</th>
+        <th>Improvement Idea</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="mood: ${moods}">
+        <td th:text="${mood.user.firstName} + ' ' + ${mood.user.firstName}"></td>
+        <td th:text="${mood.dayRating}"></td>
+        <td th:text="${mood.comment}"></td>
+        <td th:text="${mood.previousDayChange}"></td>
+        <td th:text="${mood.improvementIdea}"></td>
+        <td th:text="${mood.date}"></td>
+    </tr>
+</table>
+</body>
+</html>

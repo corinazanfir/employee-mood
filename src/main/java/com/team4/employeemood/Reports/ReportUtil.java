@@ -227,7 +227,7 @@ public class ReportUtil {
             if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
 
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
+                    if (mood.getUser().getId().equals(user.getId()) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         uniqueUsers.add(user);
                     }
                 }
@@ -241,13 +241,13 @@ public class ReportUtil {
         return getNumberOfTeamMembersWithFeedbackSent(projectName, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
-    public double getAverageRatingForUser(Long userId) {
+    public double getAverageRatingForUser(Integer userId) {
         int countMoodSubmissions = 0;
         int ratingAcc = 0;
         double result = 0;
 
         for (Mood mood : MoodData.moodList) {
-            if (mood.getUser().getId() == userId) {
+            if (mood.getUser().getId().equals(userId)) {
                 countMoodSubmissions++;
                 ratingAcc = ratingAcc + mood.getDayRating();
             }
@@ -256,13 +256,13 @@ public class ReportUtil {
         return result;
     }
 
-    public double getAverageRatingForUser(Long userId, Date fromDate, Date toDate) {
+    public double getAverageRatingForUser(Integer userId, Date fromDate, Date toDate) {
         int countMoodSubmissions = 0;
         int ratingAcc = 0;
         double result = 0;
 
         for (Mood mood : MoodData.moodList) {
-            if (mood.getUser().getId() == userId && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
+            if (mood.getUser().getId().equals(userId) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                 countMoodSubmissions++;
                 ratingAcc = ratingAcc + mood.getDayRating();
             }
@@ -271,7 +271,7 @@ public class ReportUtil {
         return result;
     }
 
-    public double getAverageRatingForUser(Long userId, PredefinedReportingPeriodsEnum predefinedPeriod) {
+    public double getAverageRatingForUser(Integer userId, PredefinedReportingPeriodsEnum predefinedPeriod) {
         return getAverageRatingForUser(userId, getPredefinedPeriodStartDate(predefinedPeriod), getPredefinedPeriodEndDate(predefinedPeriod));
     }
 
@@ -282,7 +282,7 @@ public class ReportUtil {
         for (User user : UserData.userList) {
             if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUser().getId() == user.getId()) {
+                    if (mood.getUser().getId().equals(user.getId())) {
                         counter++;
                     }
                 }
@@ -298,7 +298,7 @@ public class ReportUtil {
         for (User user : UserData.userList) {
             if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
+                    if (mood.getUser().getId().equals(user.getId()) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         counter++;
                     }
                 }
@@ -334,7 +334,7 @@ public class ReportUtil {
         for (User user : UserData.userList) {
             if (user.getProject().getProjectName().equalsIgnoreCase(projectName)) {
                 for (Mood mood : MoodData.moodList) {
-                    if (mood.getUser().getId() == user.getId() && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
+                    if (mood.getUser().getId().equals(user.getId()) && !mood.getDate().before(fromDate) && !mood.getDate().after(toDate)) {
                         totalRatingAcc = totalRatingAcc + mood.getDayRating();
                     }
                 }

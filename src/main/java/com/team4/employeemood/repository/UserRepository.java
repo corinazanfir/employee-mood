@@ -8,12 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findAllByFirstName(String firstName);
     List<User> findAllByBirthdate(Date birthdate);
 
-    List<User> findByProjectIdAndEmploymentDateBetween(Long projectId, Date startDate, Date endDate);
+    List<User> findAllByProjectId(Integer projectId);
+
+    List<User> findByProjectIdAndEmploymentDateBetween(Integer projectId, Date startDate, Date endDate);
 
 //    @Query("Select * from User where employmentDate > $1")
 //    List<User> findAfterEmploymentDate(Date employmentDate);

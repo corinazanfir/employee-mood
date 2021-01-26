@@ -2,7 +2,6 @@ package com.team4.employeemood.controller;
 
 import com.team4.employeemood.controller.representation.TeamAverageReportRepresentation;
 import com.team4.employeemood.controller.representation.TopMoodProjectsReportRepresentation;
-import com.team4.employeemood.model.MoodData;
 import com.team4.employeemood.service.EmailService;
 import com.team4.employeemood.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class ReportController {
     // Sample to test - localhost:8080/api/v1/reports/teamAverage?projectId=1&startDate=2018-01-01&endDate=2021-01-15
     // Sample to test - localhost:8080/api/v1/reports/teamAverage?projectId=1&startDate=2018-01-01&endDate=2021-01-15&sendEmail=true&toEmailAddress=catalingheorghe111@gmail.com
     @GetMapping("/api/v1/reports/teamAverage")
-    public TeamAverageReportRepresentation generateTeamAverage(@RequestParam Long projectId,
+    public TeamAverageReportRepresentation generateTeamAverage(@RequestParam Integer projectId,
                                                                @RequestParam String startDate,
                                                                @RequestParam String endDate,
                                                                @RequestParam(required = false) boolean sendEmail,

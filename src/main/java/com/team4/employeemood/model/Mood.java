@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "moods")
+@Entity(name="moods")
 public class Mood {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private Integer dayRating;
     private String comment;
@@ -20,11 +20,11 @@ public class Mood {
 
     @ManyToOne()
     @JsonIgnore
-    @JoinColumn(name = "userId")
+    @JoinColumn(name="userId")
     private User user;
 
 
-    public Mood(Integer dayRating, String comment, String previousDayChange, String improvementIdea, Date date, String username, Long id) {
+    public Mood(Integer dayRating, String comment, String previousDayChange, String improvementIdea, Date date, String username, Integer id) {
         this.dayRating = dayRating;
         this.comment = comment;
         this.previousDayChange = previousDayChange;
@@ -97,11 +97,11 @@ public class Mood {
         return user;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
