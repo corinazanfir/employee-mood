@@ -12,22 +12,25 @@
     </script>
 </head>
 
-<body>
+<body style="font-family: Calibri; color: #303030">
 <img th:src="@{/images/no_scale.jpg}" id="top_image" style="width: 200px; display: block; margin: auto"/>
-
-<form method="POST" th:object="${Mood}">
-    <h3>How do you feel today?</h3>
-    <div >
-        <img th:each="i: ${#numbers.sequence(1, 5)}" th:src="'/images/option_' + ${i} + '.jpg'" th:onclick="'buttonClicked(' + ${i} + ')'">
+<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column ">
+    <div style = " padding: 30px 60px; border-radius: 5px; box-shadow: 0px 0px 20px 0px rgba(77,191,77,1); display: flex; justify-content: center; align-items: center; align-self: center">
+        <form style="display: flex; flex-direction: column;" method="POST" th:object="${Mood}">
+            <h3>How do you feel today?</h3>
+            <div >
+                <img style="width: 50px; margin-right: 10px;" th:each="i: ${#numbers.sequence(1, 5)}" th:src="'/images/option_' + ${i} + '.jpg'" th:onclick="'buttonClicked(' + ${i} + ')'">
+            </div>
+            <input type="hidden" name="dayRating" id="dayRating">
+            <h3>Would you like to explain?</h3>
+            <textarea name="comment"></textarea>
+            <h3>What changed since yesterday or the previous workday?</h3>
+            <textarea name="previousDayChange"></textarea>
+            <h3>What can be improved and how?</h3>
+            <textarea name="improvementIdea"></textarea> <br/>
+            <input style="border-radius: 15px; background-color:rgb(77,191,77); color:white; align-self: flex-end; margin-top: 10px; padding: 5px 10px" type="submit" value="Submit my answers" />
+        </form>
     </div>
-    <input type="hidden" name="dayRating" id="dayRating">
-    <h3>Would you like to explain?</h3>
-    <textarea name="comment"></textarea>
-    <h3>What changed since yesterday or the previous workday?</h3>
-    <textarea name="previousDayChange"></textarea>
-    <h3>What can be improved and how?</h3>
-    <textarea name="improvementIdea"></textarea>
-    <input type="submit" value="Submit my answers" />
-</form>
+</div>
 </body>
 </html>

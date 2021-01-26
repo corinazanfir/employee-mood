@@ -6,17 +6,21 @@
     <title>Employee Mood of the day</title>
 </head>
 
-<body>
+<body style="height: 60vh; font-family: Calibri; color: #303030">
 <img th:src="@{/images/no_scale.jpg}" id="top_image" style="width: 200px; display: block; margin: auto"/>
-
-<form method="POST" th:object="${User}">
-    <h3>First Name:</h3>
-    <input type="text" name="firstName" />
-    <h3>Last Name:</h3>
-    <input type="text" name="lastName" />
-    <h3>Password</h3>
-    <input type="password" />
-    <input type="submit" value="Login" />
-</form>
+<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column ">
+    <h2 style="color: rgba(77,191,77,1)">Employee Mood of the day</h2>
+    <div style = " padding: 30px 60px; border-radius: 5px; box-shadow: 0px 0px 20px 0px rgba(77,191,77,1); display: flex; justify-content: center; align-items: center; align-self: center">
+        <form style="display: flex; flex-direction: column;" method="POST" th:object="${User}">
+            <h3>First Name:</h3>
+            <input type="text" name="firstName" />
+            <h3>Last Name:</h3>
+            <input type="text" name="lastName" />
+            <h3>Password</h3>
+            <input type="password" /> <br/>
+            <input type="submit" value="Login" style="border-radius: 15px; background-color:rgb(77,191,77); color:white; align-self: flex-end; margin-top: 10px; padding: 5px 10px" />
+        </form>
+    </div>
+</div>
 </body>
 </html>

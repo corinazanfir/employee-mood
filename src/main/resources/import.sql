@@ -27,7 +27,7 @@ UPDATE PROJECTS SET PROJECT_MANAGER_ID = 3 WHERE ID = 3;
 --add mood data
 --(moodId, submissionDate, rating, improvement idea, previous day description, userId)
 insert into MOODS values (1,'Comments','2021-01-04',1,'Improvement Idea','Previous day comments',1)
-insert into MOODS values (2,'Comments','2021-01-05',5,'Improvement Idea','Previous day comments',1)
+    insert into MOODS values (2,'Comments','2021-01-05',5,'Improvement Idea','Previous day comments',1)
 insert into MOODS values (3,'Comments','2021-01-06',5,'Improvement Idea','Previous day comments',1)
 insert into MOODS values (4,'Comments','2021-01-07',4,'Improvement Idea','Previous day comments',1)
 insert into MOODS values (5,'Comments','2021-01-08',4,'Improvement Idea','Previous day comments',1)

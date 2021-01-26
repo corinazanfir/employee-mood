@@ -7,8 +7,14 @@
 </head>
 
 <body>
-<img th:src="@{/images/MoodScale.jpg}" style="width: 200px; display: block; margin: auto"/>
-<a href="/moodForm">Add your today's mood</a>
-<a href="/reports">Show reports</a>
+<img th:src="@{/images/MoodScale.jpg}" style="width:500px; display: block; margin: auto; padding-top: 50px; "/>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+    <div style="display: flex; justify-content: center; align-items: center; border-radius: 15px; background-color:rgb(77,191,77); color:white; margin-top: 10px; padding: 5px 10px; width: 300px">
+        <a href="/moodForm" style="text-decoration: none; color: white;">Add your today's mood</a>
+    </div>
+    <div style="display:flex; justify-content: center; align-items: center; border-radius: 15px; background-color:rgb(77,191,77); color:white; margin-top: 10px; padding: 5px 10px; width: 300px">
+        <a href="/reports" style="text-decoration: none; color: white">Show reports</a>
+    </div>
+</div>
 </body>
 </html>
