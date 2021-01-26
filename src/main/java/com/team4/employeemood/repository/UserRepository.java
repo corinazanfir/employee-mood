@@ -17,6 +17,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findByProjectIdAndEmploymentDateBetween(Integer projectId, Date startDate, Date endDate);
 
+    List<User> findAllByFirstNameAndLastName (String firstName, String lastName);
+
 //    @Query("Select * from User where employmentDate > $1")
 //    List<User> findAfterEmploymentDate(Date employmentDate);
 

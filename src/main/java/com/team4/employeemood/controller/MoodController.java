@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,8 +66,6 @@ public class MoodController {
 
         System.out.println("Received Mood: " + mood);
         //TODO - form validation backend/frontend ???
-
-
         mood.setDate(new Date());
 
         //hardcoded user - no login available
