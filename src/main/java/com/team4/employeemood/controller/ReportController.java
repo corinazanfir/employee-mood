@@ -7,6 +7,7 @@ import com.team4.employeemood.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,10 +31,17 @@ public class ReportController {
 
     // Sample to test - localhost:8080/reports/teamAverage?projectId=1&startDate=2018-01-01&endDate=2021-01-15
     // Sample to test - localhost:8080/reports/teamAverage?projectId=1&startDate=2018-01-01&endDate=2021-01-15&sendEmail=true&toEmailAddress=catalingheorghe111@gmail.com
+
     @GetMapping("/reports/teamAverage")
-    public TeamAverageReportRepresentation generateTeamAverage(@RequestParam Integer projectId,
-                                                               @RequestParam String startDate,
-                                                               @RequestParam String endDate,
+    public String getTeamAverageReportFilters(){
+        return "teamAverageReport";
+    }
+
+
+    @GetMapping("/reports/teamAverage/{projectId}/{startDate}/{endDate}")
+    public TeamAverageReportRepresentation generateTeamAverage(@PathVariable Integer projectId,
+                                                               @PathVariable String startDate,
+                                                               @PathVariable String endDate,
                                                                @RequestParam(required = false) boolean sendEmail,
                                                                @RequestParam(required = false) String toEmailAddress) throws ParseException, MessagingException {
 

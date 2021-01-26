@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Mood of the day</title>
+    <script>
+        function buttonClicked(rating) {
+            document.getElementById('top_image').src='/images/scale_' + rating + '.jpg';
+            document.getElementById("dayRating").setAttribute('value', rating);
+        }
+
+
+    </script>
+</head>
+
+<body style="font-family: Calibri; color: #303030">
+<img th:src="@{/images/no_scale.jpg}" id="top_image" style="width: 200px; display: block; margin: auto"/>
+<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column ">
+    <div style=" padding: 30px 60px; border-radius: 5px; box-shadow: 0px 0px 20px 0px rgba(77,191,77,1); display: flex; justify-content: center; align-items: center; align-self: center">
+        <form style="display: flex; flex-direction: column;" method="GET" th:object="${teamAverageReport}">
+            <h3>Team Average Mood Report</h3>
+            <h4>Select Project:</h4>
+            <select id="projectId" name="projectId">
+                <option value="1">Project 1</option>
+                <option value="2">Project 2</option>
+                <option value="3">Project 3</option>
+            </select>
+
+
+            <h4>Select reporting start date:</h4>
+            <input type="date" name="startDate" value="2020-01-01"><br>
+            <h4>Select reporting end date:</h4>
+            <input type="date" name="endDate" value="2020-01-15"><br>
+            <input style="border-radius: 15px; background-color:rgb(77,191,77); color:white; align-self: flex-end; margin-top: 10px; padding: 5px 10px"
+                   type="submit" value="Generate report"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
