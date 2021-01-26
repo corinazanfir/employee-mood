@@ -5,6 +5,7 @@ import com.team4.employeemood.controller.representation.TopMoodProjectsReportRep
 import com.team4.employeemood.service.EmailService;
 import com.team4.employeemood.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,7 @@ import javax.mail.MessagingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-@RestController
+@Controller
 public class ReportController {
 
     @Autowired
