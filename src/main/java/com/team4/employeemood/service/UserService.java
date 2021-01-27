@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public List<Integer> getListOfUsersAssignedToProjectBetweenDates(Integer projectId, Date startDate, Date endDate) {
-        List<User> users = userRepository.findByProjectIdAndEmploymentDateBetween(projectId, startDate, endDate);
+        List<User> users = userRepository.findHiredEmployeesDuringReportingPeriod(projectId, startDate, endDate);
 //        System.out.println(users);
 
         return users.stream()
