@@ -37,21 +37,33 @@ public class ReportController {
     // Sample to test - localhost:8080/reports/teamAverage?projectId=1&startDate=2018-01-01&endDate=2021-01-15&sendEmail=true&toEmailAddress=catalingheorghe111@gmail.com
 
     @GetMapping("/reports/teamAverage")
-    public String getTeamAverageReportFilters() {
-        return "teamAverageReport";
-    }
+    public String TeamAverageReport(@RequestParam(required = false) Integer projectId,
+                                    @RequestParam(required = false) String startDate,
+                                    @RequestParam(required = false) String endDate,
+                                    Model model) throws ParseException {
 
-    @GetMapping("/reports/teamAverage/{projectId}")
-
-    public String generateTeamAverage(@PathVariable Integer projectId, Model model) throws ParseException, MessagingException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         List<TeamAverageReportRepresentation> reportValues = new ArrayList<>();
-        reportValues.add(reportService.generateTeamAverageReport(projectId));
+
+        if (projectId == null)
+            return "teamAverageReport";
+
+        if (startDate != "" && endDate != "") {
+            reportValues.add(reportService.generateTeamAverageReport(projectId, sdf.parse(startDate), sdf.parse(endDate)));
+        } else if (startDate == "" && endDate != "") {
+            reportValues.add(reportService.generateTeamAverageReport(projectId, null, sdf.parse(endDate)));
+        } else if (endDate == "" && startDate != "") {
+            reportValues.add(reportService.generateTeamAverageReport(projectId, sdf.parse(startDate), null));
+        } else {
+            reportValues.add(reportService.generateTeamAverageReport(projectId, null, null));
+        }
 
         model.addAttribute("teamAverageReport", reportValues);
-
         return "teamAverageReportResults";
+
     }
+
 
     @GetMapping("/reports/teamAverage/{projectId}/{startDate}/{endDate}")
 
@@ -60,7 +72,7 @@ public class ReportController {
                                       @PathVariable String endDate,
                                       Model model) throws ParseException, MessagingException {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 
         List<TeamAverageReportRepresentation> reportValues = new ArrayList<>();
@@ -70,7 +82,6 @@ public class ReportController {
 
         return "teamAverageReportResults";
     }
-
 
 
     //TODO update topMood to return
