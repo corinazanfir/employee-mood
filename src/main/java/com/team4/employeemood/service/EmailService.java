@@ -16,17 +16,23 @@ import java.io.File;
 public class EmailService {
 
     @Scheduled
-    public void sendEmails (){
+    public void sendEmails() {
 
 //        sendMessageWithAttachment();
 
     }
+
     @Autowired
     private JavaMailSender javaMailSender;
 
 
     public void sendMessageWithAttachment(
-            String to, String subject, String text, String pathToAttachment, String attachmentFileName) throws MessagingException {
+            String to,
+            String subject,
+            String text
+//            String pathToAttachment,
+//            String attachmentFileName
+    ) throws MessagingException {
 
         MimeMessage message = javaMailSender.createMimeMessage();
 
@@ -35,11 +41,12 @@ public class EmailService {
         helper.setFrom("noreply@baeldung.com");
         helper.setTo(to);
         helper.setSubject(subject);
-        helper.setText(text);
+        helper.setText(text,true);
 
-        FileSystemResource file
-                = new FileSystemResource(new File(pathToAttachment));
-        helper.addAttachment(attachmentFileName, file);
+
+//        FileSystemResource file
+//                = new FileSystemResource(new File(pathToAttachment));
+//        helper.addAttachment(attachmentFileName, file);
 
         javaMailSender.send(message);
     }

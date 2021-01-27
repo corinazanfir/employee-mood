@@ -17,7 +17,7 @@
 }
 
 .styled-table thead tr {
-    background-color: #009879;
+    background-color: rgb(77,191,77);
     color: #ffffff;
     text-align: left;
 }
@@ -70,7 +70,7 @@
         <td th:text="${mood.comment}"></td>
         <td th:text="${mood.previousDayChange}"></td>
         <td th:text="${mood.improvementIdea}"></td>
-        <td th:text="${mood.date}"></td>
+        <td th:text="${#dates.format(mood.date, 'dd-MM-yyyy')}"></td>
     </tr>
 </table>
 </body>
