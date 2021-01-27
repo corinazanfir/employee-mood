@@ -33,52 +33,65 @@ public class ReportService {
     private UserRepository userRepository;
 
 
-    public TeamAverageReportRepresentation generateTeamAverageReport(Integer projectId) {
+//    public TeamAverageReportRepresentation generateTeamAverageReport(Integer projectId) {
+//        TeamAverageReportRepresentation report = new TeamAverageReportRepresentation();
+//
+//        List<User> users = userRepository.findAllByProjectId(projectId);
+//        List<Integer> usersIds = users.stream().map(user -> user.getId()).collect(Collectors.toList());
+//        List<Mood> moods = moodRepository.findByUserIdIn(usersIds);
+//
+//        Date reportingStartDate = moods.stream().map(Mood::getDate).min(Date::compareTo).get();
+//        Date reportingEndDate = moods.stream().map(Mood::getDate).max(Date::compareTo).get();
+//
+//        report.setStartDate(reportingStartDate);
+//        report.setEndDate(reportingEndDate);
+//
+//        Project project = projectRepository.findById(projectId).get();
+//        report.setProjectName(project.getProjectName());
+//        report.setProjectManager(project.getProjectManager().getFullName());
+//
+//        List<Integer> listOfUsersAssignedToProjectBetweenDates = userService.getListOfUsersAssignedToProjectBetweenDates(projectId, reportingStartDate, reportingEndDate);
+//
+//        report.setNoUsers(listOfUsersAssignedToProjectBetweenDates.size());
+//
+//        List<Mood> filteredMoodsByUserAndDates = moodRepository.findByUserIdInAndDateBetween(listOfUsersAssignedToProjectBetweenDates, reportingStartDate, reportingEndDate);
+//
+//        //Calculate average mood rating
+//        Double averageRating = calculateTeamMoodAverage(filteredMoodsByUserAndDates);
+//
+//        report.setAverageRating(averageRating);
+//
+//        //Calculate number of submissions for a given project between given dates
+//        Integer noSubmissions = filteredMoodsByUserAndDates.size();
+//        report.setNoSubmissions(noSubmissions);
+//
+//        //Calculate the number of distinct users that have submitted feedback for the respective project and between dates.
+//        Integer noUserFeedbackSubmitted = Math.toIntExact(filteredMoodsByUserAndDates.stream()
+//                .mapToInt(mood -> Math.toIntExact(mood.getUser().getId()))
+//                .distinct()
+//                .count());
+//
+//        report.setNoUsersFeedbackSubmitted(noUserFeedbackSubmitted);
+//
+//        return report;
+//    }
+
+    public TeamAverageReportRepresentation generateTeamAverageReport(Integer projectId, Date startDate, Date endDate) {
+
         TeamAverageReportRepresentation report = new TeamAverageReportRepresentation();
 
         List<User> users = userRepository.findAllByProjectId(projectId);
         List<Integer> usersIds = users.stream().map(user -> user.getId()).collect(Collectors.toList());
         List<Mood> moods = moodRepository.findByUserIdIn(usersIds);
 
-        Date reportingStartDate = moods.stream().map(Mood::getDate).min(Date::compareTo).get();
-        Date reportingEndDate = moods.stream().map(Mood::getDate).max(Date::compareTo).get();
 
-        report.setStartDate(reportingStartDate);
-        report.setEndDate(reportingEndDate);
+        if (startDate == null) {
+            startDate = moods.stream().map(Mood::getDate).min(Date::compareTo).get();
+        }
 
-        Project project = projectRepository.findById(projectId).get();
-        report.setProjectName(project.getProjectName());
-        report.setProjectManager(project.getProjectManager().getFullName());
-
-        List<Integer> listOfUsersAssignedToProjectBetweenDates = userService.getListOfUsersAssignedToProjectBetweenDates(projectId, reportingStartDate, reportingEndDate);
-
-        report.setNoUsers(listOfUsersAssignedToProjectBetweenDates.size());
-
-        List<Mood> filteredMoodsByUserAndDates = moodRepository.findByUserIdInAndDateBetween(listOfUsersAssignedToProjectBetweenDates, reportingStartDate, reportingEndDate);
-
-        //Calculate average mood rating
-        Double averageRating = calculateTeamMoodAverage(filteredMoodsByUserAndDates);
-
-        report.setAverageRating(averageRating);
-
-        //Calculate number of submissions for a given project between given dates
-        Integer noSubmissions = filteredMoodsByUserAndDates.size();
-        report.setNoSubmissions(noSubmissions);
-
-        //Calculate the number of distinct users that have submitted feedback for the respective project and between dates.
-        Integer noUserFeedbackSubmitted = Math.toIntExact(filteredMoodsByUserAndDates.stream()
-                .mapToInt(mood -> Math.toIntExact(mood.getUser().getId()))
-                .distinct()
-                .count());
-
-        report.setNoUsersFeedbackSubmitted(noUserFeedbackSubmitted);
-
-        return report;
-    }
-
-    public TeamAverageReportRepresentation generateTeamAverageReport(Integer projectId, Date startDate, Date endDate) {
-
-        TeamAverageReportRepresentation report = new TeamAverageReportRepresentation();
+        if (endDate == null) {
+            endDate = moods.stream().map(Mood::getDate).max(Date::compareTo).get();
+        }
 
         report.setStartDate(startDate);
         report.setEndDate(endDate);
