@@ -2,6 +2,7 @@ package com.team4.employeemood.repository;
 
 import com.team4.employeemood.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -19,8 +20,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findAllByFirstNameAndLastName (String firstName, String lastName);
 
-//    @Query("Select * from User where employmentDate > $1")
-//    List<User> findAfterEmploymentDate(Date employmentDate);
+    @Query(value = "SELECT * FROM USERS WHERE project_Id = ?1 and employment_Date <= ?2 and termination_Date >= ?3", nativeQuery = true)
+    List<User> findHiredEmployeesDuringReportingPeriod(Integer projectId,Date startDate, Date endDate);
 
 
 }

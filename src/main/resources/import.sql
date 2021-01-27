@@ -6,17 +6,17 @@ insert into PROJECTS values(2,70000,'2021-03-20','Project B',null);
 insert into PROJECTS values(3,55000,'2021-09-30','Project C',null);
 
 --add users
-insert into USERS values(1,'1988-01-16','2018-04-01','Catalin','Gheorghe',1);
-insert into USERS values(2,'1988-01-16','2018-04-01','Catalin','Popescu',1);
-insert into USERS values(8,'1988-01-01','2019-04-01','Iustin','Tarachiu',1);
+insert into USERS values(1,'1988-01-16','2018-04-01','Catalin','Gheorghe' ,'9999-01-01',1);
+insert into USERS values(2,'1988-01-16','2018-04-01','Catalin','Popescu','9999-01-01',1);
+insert into USERS values(8,'1988-01-01','2019-04-01','Iustin','Tarachiu','9999-01-01',1);
 
 
-insert into USERS values(3,'1988-01-01','2018-04-01','Liviu','Iliescu',2);
-insert into USERS values(4,'1988-01-01','2018-04-10','Andreea','Badila',2);
-insert into USERS values(7,'1988-01-01','2019-04-01','Alexandra','Preda',2);
+insert into USERS values(3,'1988-01-01','2018-04-01','Liviu','Iliescu','9999-01-01',2);
+insert into USERS values(4,'1988-01-01','2018-04-10','Andreea','Badila','9999-01-01',2);
+insert into USERS values(7,'1988-01-01','2019-04-01','Alexandra','Preda','9999-01-01',2);
 
-insert into USERS values(5,'1988-01-01','2018-04-01','Corina','Zanfir',3);
-insert into USERS values(6,'1988-01-01','2019-04-01','Radu','Mihartescu',3);
+insert into USERS values(5,'1988-01-01','2018-04-01','Corina','Zanfir','9999-01-01',3);
+insert into USERS values(6,'1988-01-01','2019-04-01','Radu','Mihartescu','9999-01-01',3);
 
 --assign project managers
 UPDATE PROJECTS SET PROJECT_MANAGER_ID = 1 WHERE ID = 1;

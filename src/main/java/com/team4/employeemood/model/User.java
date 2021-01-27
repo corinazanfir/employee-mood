@@ -18,6 +18,7 @@ public class User {
     private String lastName;
     private Date birthdate;
     private Date employmentDate;
+    private Date terminationDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id")
@@ -114,5 +115,11 @@ public class User {
         return firstName + " " + lastName;
     }
 
+    public Date getTerminationDate() {
+        return terminationDate;
+    }
 
+    public void setTerminationDate(Date terminationDate) {
+        this.terminationDate = terminationDate;
+    }
 }

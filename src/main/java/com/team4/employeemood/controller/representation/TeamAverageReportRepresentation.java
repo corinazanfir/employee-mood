@@ -11,6 +11,7 @@ public class TeamAverageReportRepresentation {
     private Integer noUsersFeedbackSubmitted;
     private Integer noSubmissions;
     private String projectManager;
+    private String projectName;
 
     public TeamAverageReportRepresentation(Date startDate, Date endDate, Double averageRating, Integer noUsers, Integer noUsersFeedbackSubmitted, Integer noSubmissions, String projectManager) {
         this.startDate = startDate;
@@ -20,9 +21,18 @@ public class TeamAverageReportRepresentation {
         this.noUsersFeedbackSubmitted = noUsersFeedbackSubmitted;
         this.noSubmissions = noSubmissions;
         this.projectManager = projectManager;
+        this.projectName = getProjectName();
     }
 
     public TeamAverageReportRepresentation() {
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public Date getStartDate() {

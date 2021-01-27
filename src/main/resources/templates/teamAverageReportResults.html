@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All Moods</title>
+    <title>Team Average Report</title>
 
     <style>
 
@@ -45,32 +45,35 @@
 }
 
 
-
     </style>
 </head>
 <body>
 <form>
     <input type="button" value="Back" onclick="history.back()">
 </form>
-
 <table class="styled-table">
     <thead>
     <tr>
-        <th>Employee name</th>
-        <th>Mood rating</th>
-        <th>Comment</th>
-        <th>Day change</th>
-        <th>Improvement Idea</th>
-        <th>Date</th>
+        <th>Project Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Average mood rating</th>
+        <th>No of users</th>
+        <th>Users with submitted feedback</th>
+        <th>No of submissions</th>
+        <th>Project Manager</th>
     </tr>
     </thead>
-    <tr th:each="mood: ${moods}">
-        <td th:text="${mood.user.firstName} + ' ' + ${mood.user.lastName}"></td>
-        <td th:text="${mood.dayRating}"></td>
-        <td th:text="${mood.comment}"></td>
-        <td th:text="${mood.previousDayChange}"></td>
-        <td th:text="${mood.improvementIdea}"></td>
-        <td th:text="${mood.date}"></td>
+    <tr th:each="teamAverage: ${teamAverageReport}">
+        <td th:text="${teamAverage.projectName}"></td>
+        <td th:text="${#dates.format(teamAverage.startDate, 'dd-MM-yyyy')}"></td>
+        <td th:text="${#dates.format(teamAverage.endDate, 'dd-MM-yyyy')}"></td>
+        <td th:text="${#numbers.formatDecimal(teamAverage.averageRating, 0, 'COMMA', 1, 'POINT')}"></td>
+        <td th:text="${teamAverage.noUsers}"></td>
+        <td th:text="${teamAverage.noUsersFeedbackSubmitted}"></td>
+        <td th:text="${teamAverage.noSubmissions}"></td>
+        <td th:text="${teamAverage.projectManager}"></td>
+
     </tr>
 </table>
 </body>
