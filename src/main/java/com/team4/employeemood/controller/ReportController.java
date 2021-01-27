@@ -40,7 +40,8 @@ public class ReportController {
     public String TeamAverageReport(@RequestParam(required = false) Integer projectId,
                                     @RequestParam(required = false) String startDate,
                                     @RequestParam(required = false) String endDate,
-                                    Model model) throws ParseException {
+                                    @RequestParam(required = false) String sendEmail,
+                                    Model model) throws ParseException, MessagingException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -60,31 +61,22 @@ public class ReportController {
         }
 
         model.addAttribute("teamAverageReport", reportValues);
+
+
+        TeamAverageReportRepresentation report = reportValues.get(0);
+
+        if (sendEmail != null) {
+            emailService.sendMessageWithAttachment("catalingheorghe111@gmail.com",
+                    report.getName() + " from: " +
+                            sdf.format(report.getStartDate()) + " to: " +
+                            sdf.format(reportValues.get(0).getEndDate()),
+                    "body");
+        }
+
         return "teamAverageReportResults";
 
     }
 
-
-    @GetMapping("/reports/teamAverage/{projectId}/{startDate}/{endDate}")
-
-    public String generateTeamAverage(@PathVariable Integer projectId,
-                                      @PathVariable String startDate,
-                                      @PathVariable String endDate,
-                                      Model model) throws ParseException, MessagingException {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-
-        List<TeamAverageReportRepresentation> reportValues = new ArrayList<>();
-        reportValues.add(reportService.generateTeamAverageReport(projectId, sdf.parse(startDate), sdf.parse(endDate)));
-
-        model.addAttribute("teamAverageReport", reportValues);
-
-        return "teamAverageReportResults";
-    }
-
-
-    //TODO update topMood to return
     @GetMapping("/reports/topMood")
     public TopMoodProjectsReportRepresentation generateTopMood(@RequestParam String startDate,
                                                                @RequestParam String endDate,
@@ -96,7 +88,7 @@ public class ReportController {
         TopMoodProjectsReportRepresentation report = reportService.generateTopMoodProjectsReport(sdf.parse(startDate), sdf.parse(endDate));
 
         if (sendEmail && !toEmailAddress.isEmpty()) {
-            emailService.sendMessageWithAttachment(toEmailAddress, report.getName(), "This is an automatically generated email.", "TestFile.txt", "myAttachmentFile.txt");
+            emailService.sendMessageWithAttachment(toEmailAddress, report.getName(), "This is an automatically generated email.");
         }
         return report;
 

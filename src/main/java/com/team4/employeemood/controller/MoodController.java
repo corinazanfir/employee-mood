@@ -26,14 +26,14 @@ public class MoodController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/api/v1/moods")
+    @GetMapping("/moods")
     public String getAllMoods(Model model) {
         List<Mood> moods = moodRepository.findAll();
         model.addAttribute("moods", moods);
         return "moods";
     }
 
-    @GetMapping("/api/v1/moods/{projectId}")
+    @GetMapping("/moods/{projectId}")
     public String getAllMoodsForProject(@PathVariable Integer projectId, Model model) {
         List<User> byProjectId = userRepository.findAllByProjectId(projectId);
         List<Integer> userIdsForProjectForDates = byProjectId.stream().map(user -> user.getId()).collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class MoodController {
         return "moods";
     }
 
-    @GetMapping("/api/v1/moods/{projectId}/{startDate}/{endDate}")
+    @GetMapping("/moods/{projectId}/{startDate}/{endDate}")
     @ResponseBody
     public List<Mood> getMoodsForProjectBetweenDates(@PathVariable Integer projectId, @PathVariable String startDate, @PathVariable String endDate) throws ParseException {
 

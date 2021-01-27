@@ -11,6 +11,7 @@
         }
 
 
+
     </script>
 </head>
 
@@ -32,11 +33,18 @@
             <input type="date" name="startDate" value=""><br>
             <h4>Select reporting end date:</h4>
             <input type="date" name="endDate" value=""><br>
+
+
+            <label for="sendEMail">
+                <input type="checkbox" id="sendEmail" name="sendEmail" />Send report copy via email
+            </label><br>
+
             <input style="display:flex; justify-content: center; align-items: center; border-radius: 15px; background-color:rgb(77,191,77); color:white; margin-top: 10px; padding: 5px 10px"
                    type="submit" value="Generate report"/>
             <input style="display:flex; justify-content: center; align-items: center; border-radius: 15px; background-color:rgb(77,191,77); color:white; margin-top: 10px; padding: 5px 10px"
                    type="reset" value="Reset"/>
-                <a href="/reports" style="display:flex; justify-content: center; align-items: center; border-radius: 15px; background-color:rgb(77,191,77); color:white; margin-top: 10px; padding: 5px 10px; width: 300px;text-decoration: none; color: white">Back</a>
+            <a href="/reports"
+               style="display:flex; justify-content: center; align-items: center; border-radius: 15px; background-color:rgb(77,191,77); color:white; margin-top: 10px; padding: 5px 10px; width: 300px;text-decoration: none; color: white">Back</a>
         </form>
     </div>
 </div>
