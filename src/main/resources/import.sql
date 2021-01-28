@@ -46,6 +46,7 @@ insert into MOODS values (17,'New colleague','2021-01-20',5,'Ok','New day',1)
 insert into MOODS values (18,'Missing phone','2021-01-21',1,'New one','New colleague',1)
 insert into MOODS values (19,'Very busy','2021-01-22',2,'Less tasks','Missing phone',1)
 insert into MOODS values (20,'One defect solved','2021-01-23',4,'New testing','Very busy',1)
+
 --insert into MOODS values (21,'Comments','2021-01-24',3,'Improvement Idea','Previous day comments',1)
 --insert into MOODS values (22,'Comments','2021-01-25',5,'Improvement Idea','Previous day comments',1)
 --insert into MOODS values (23,'Comments','2021-01-26',4,'Improvement Idea','Previous day comments',1)
@@ -98,6 +99,7 @@ insert into MOODS values (68,'Server down','2021-01-15',1,'New one','Feeling goo
 insert into MOODS values (69,'Good day','2021-01-16',5,'Ok','Server down',2)
 insert into MOODS values (70,'New tool to accommodate','2021-01-17',1,'Training','Good day',2)
 insert into MOODS values (71,'Everything ok','2021-01-18',4,'Nothing','New tool to accommodate',2)
+
 --insert into MOODS values (72,'Comments','2021-01-19',3,'Improvement Idea','Previous day comments',2)
 --insert into MOODS values (73,'Comments','2021-01-20',1,'Improvement Idea','Previous day comments',2)
 --insert into MOODS values (74,'Comments','2021-01-21',3,'Improvement Idea','Previous day comments',2)
@@ -155,6 +157,7 @@ insert into MOODS values (124,'Server down','2021-01-15',1,'New one','Feeling go
 insert into MOODS values (125,'Good day','2021-01-16',5,'Ok','Server down',3)
 insert into MOODS values (126,'New tool to accommodate','2021-01-17',1,'Training','Good day',3)
 insert into MOODS values (127,'Everything ok','2021-01-18',4,'Nothing','New tool to accommodate',3)
+
 
 --insert into MOODS values (128,'Comments','2021-01-19',2,'Improvement Idea','Previous day comments',3)
 --insert into MOODS values (129,'Comments','2021-01-20',4,'Improvement Idea','Previous day comments',3)
