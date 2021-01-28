@@ -2,6 +2,8 @@ package com.team4.employeemood.controller;
 
 import com.team4.employeemood.controller.representation.TeamAverageReportRepresentation;
 import com.team4.employeemood.controller.representation.TopMoodProjectsReportRepresentation;
+import com.team4.employeemood.model.Mail;
+import com.team4.employeemood.service.EmailSenderService;
 import com.team4.employeemood.service.EmailService;
 import com.team4.employeemood.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ReportController {
@@ -25,23 +26,24 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
+    //old one
     @Autowired
     private EmailService emailService;
+    //for thymeleaf template
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @GetMapping("/reports")
     public String getReports() {
         return "reports";
     }
 
-    // Sample to test - localhost:8080/reports/teamAverage?projectId=1&startDate=2018-01-01&endDate=2021-01-15
-    // Sample to test - localhost:8080/reports/teamAverage?projectId=1&startDate=2018-01-01&endDate=2021-01-15&sendEmail=true&toEmailAddress=catalingheorghe111@gmail.com
-
     @GetMapping("/reports/teamAverage")
     public String TeamAverageReport(@RequestParam(required = false) Integer projectId,
                                     @RequestParam(required = false) String startDate,
                                     @RequestParam(required = false) String endDate,
                                     @RequestParam(required = false) String sendEmail,
-                                    Model model) throws ParseException, MessagingException {
+                                    Model model) throws ParseException, MessagingException, IOException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -66,15 +68,31 @@ public class ReportController {
         TeamAverageReportRepresentation report = reportValues.get(0);
 
         if (sendEmail != null) {
-            emailService.sendMessageWithAttachment("catalingheorghe111@gmail.com",
-                    report.getName() + " from: " +
-                            sdf.format(report.getStartDate()) + " to: " +
-                            sdf.format(reportValues.get(0).getEndDate()),
-                    "body");
+
+            Map<String, Object> properties = new HashMap<String, Object>();
+            properties.put("projectName", report.getProjectName());
+            properties.put("startDate", report.getStartDate());
+            properties.put("endDate", report.getEndDate());
+            properties.put("averageRating", report.getAverageRating());
+            properties.put("noUsers", report.getNoUsers());
+            properties.put("noUsersFeedbackSubmitted", report.getNoUsersFeedbackSubmitted());
+            properties.put("projectManager", report.getProjectManager());
+            properties.put("noSubmissions", report.getNoSubmissions());
+
+            Mail mail = Mail.builder()
+                    .from("catalingheorghe111@gmail.com")
+                    .to("catalingheorghe111@gmail.com")
+                    .htmlTemplate(new Mail.HtmlTemplate("teamAverageReportResultsMail", properties))
+                    .subject(report.getName() + " from " +
+                            sdf.format(report.getStartDate()) + " to " +
+                            sdf.format(report.getEndDate()))
+                    .build();
+
+            emailSenderService.sendEmail(mail);
+
         }
 
         return "teamAverageReportResults";
-
     }
 
     @GetMapping("/reports/topMood")
@@ -91,6 +109,5 @@ public class ReportController {
             emailService.sendMessageWithAttachment(toEmailAddress, report.getName(), "This is an automatically generated email.");
         }
         return report;
-
     }
 }
