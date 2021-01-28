@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name="moods")
-public class Mood {
+@Entity(name = "moods")
+public class Mood implements Comparable<Mood> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Mood {
 
     @ManyToOne()
     @JsonIgnore
-    @JoinColumn(name="userId")
+    @JoinColumn(name = "userId")
     private User user;
 
 
@@ -108,4 +108,17 @@ public class Mood {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public int compareTo(Mood o) {
+        if (id < o.getId()) {
+            return 1;
+        } else if (id > o.getId()) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
 }
+
+

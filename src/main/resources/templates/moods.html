@@ -64,7 +64,7 @@
         <th>Date</th>
     </tr>
     </thead>
-    <tr th:each="mood: ${moods}">
+    <tr th:each="mood: ${#lists.sort(moods)}">
         <td th:text="${mood.user.firstName} + ' ' + ${mood.user.lastName}"></td>
         <td th:text="${mood.dayRating}"></td>
         <td th:text="${mood.comment}"></td>
