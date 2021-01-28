@@ -43,11 +43,34 @@
     font-weight: bold;
     color: rgb(77,191,77)
 }
+
+
     </style>
+
+    <script>
+function sendReportToMail() {
+    var url = window.location.href;
+    window.location = url + "&sendEmail=on";
+    alert("Report was sent to you via email.");
+}
+
+    </script>
+
+    <script>
+        function goBack() {
+
+var url = window.location.href;
+window.location = url.substring(0,url.indexOf("?"));
+}
+
+    </script>
+
+
 </head>
 <body>
 <form>
-    <input type="button" value="Back" onclick="history.back()">
+    <input type="button" value="Back" onclick="goBack();">
+    <input type="button" value="Send report to email" onclick="sendReportToMail();">
 </form>
 <table class="styled-table">
     <thead>
